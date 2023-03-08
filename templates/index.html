@@ -13,7 +13,7 @@
 
     <title>La casa del Gelat</title>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
     <header>
     <div id="header-div" class="text-center">
         <h1 class="display-1 py-5">La Casa del Gelat</h1>
@@ -54,8 +54,37 @@
       </nav>
     </div>
 </header>
-<footer>
-    <div class="row h5 pt-3">
+<div class="row">
+  <div class="col-4">
+  <p class="ms-3"><strong>Ingredient</strong></p>
+</div>
+  <p class="col-4"><strong>Image</strong></p>
+  <div class="col-4">
+  <p class="me-3"><strong>Units left</strong></p>
+</div>
+</div>
+  {% for ingredient in ingredient_list %}
+  <div class="row">
+    <div class="col 4">
+    <p class="ms-3">{{ ingredient.name }}</p>
+  </div>
+    <p class="col-4">{{ ingredient.image }}</p>
+    <div class="col-4">
+      <div class="row">
+        <div class="col-4 text-center">
+        <button class="col-4">-</button>
+      </div>
+        <p class="col-4 text-center">{{ ingredient.units }}</p>
+        <div class="col-4 text-center">
+        <button class="me-3">+</button>
+      </div>
+      </div>
+      
+    </div>
+  </div>
+  {% endfor %}
+<footer class="mt-auto">
+    <div class="row h5">
         <div class="col-4">
             <p class="ms-3">La casa del Gelat</p>
         </div>
