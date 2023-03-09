@@ -6,4 +6,4 @@ from .models import Ingredient
 class IngredientsList(generic.ListView):
     model = Ingredient
     template_name = 'index.html'
-    paginate_by = 30
+    paginate_by = 10
