@@ -26,18 +26,18 @@
     <p class="col-4">{{ ingredient.unit_weight }}kg</p>
     <div class="col-4">
       <div class="row">
-        <div class="col-4 text-center">
+        <div class="col-5 text-end">
           <form action="{% url 'remove_ingredient' ingredient.slug %}" method="POST">
             {% csrf_token %}
             {% if ingredient.units == 0 %}
-            <button type="submit" value="{{ingredient.slug}}" class="me-3 bg-danger rounded-circle" disabled>-</button>
+            <button type="submit" value="{{ingredient.slug}}" class="bg-danger rounded-circle border" disabled>-</button>
             {% else %}
-          <button type="submit" value="{{ingredient.slug}}" class="me-3 bg-danger rounded-circle" >-</button>
+          <button type="submit" value="{{ingredient.slug}}" class="bg-danger rounded-circle border" >-</button>
           {% endif %}      
         </form>  
       </div>
-        <p class="col-4 text-center">{{ ingredient.units }}</p>
-        <div class="col-4 text-center">
+        <p class="col-2 text-center">{{ ingredient.units }}</p>
+        <div class="col-5 text-start">
           <form action="{% url 'add_ingredient' ingredient.slug %}" method="POST">
             {% csrf_token %}
           <button type="submit" value="{{ingredient.slug}}" class="me-3 bg-success rounded-circle" >+</button>

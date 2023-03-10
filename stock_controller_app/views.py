@@ -26,3 +26,8 @@ class removeIngredient(View):
         ingredient.save()
 
         return HttpResponseRedirect(reverse('home'))
+
+
+class showStockList(generic.ListView):
+    model = Ingredient
+    template_name = 'stock-list.html'
