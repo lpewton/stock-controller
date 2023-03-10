@@ -13,7 +13,13 @@
     </div>
   </div>
   {% for ingredient in ingredient_list %}
-  <div class="row border pt-2 bg-info">
+  {% if ingredient.units > 5 %}
+  <div class="row border pt-2 bg-success">
+  {% elif ingredient.units > 0 %}
+  <div class="row border pt-2 bg-warning">
+  {% elif ingredient.units == 0 %}
+  <div class="row border pt-2 bg-danger">
+  {% endif %}
     <div class="col 4">
       <p class="ms-3">{{ ingredient.name }}</p>
     </div>
