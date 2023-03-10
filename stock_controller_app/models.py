@@ -5,6 +5,7 @@ from cloudinary.models import CloudinaryField
 
 class Ingredient(models.Model):
     name = models.CharField(max_length=50, unique=True)
+    slug = models.SlugField(max_length=50, unique=True)
     price = models.FloatField()
     unit_weight = models.FloatField(default=0)
     image = CloudinaryField('image', default='placeholder')
@@ -12,3 +13,6 @@ class Ingredient(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        ordering = ["name"]
