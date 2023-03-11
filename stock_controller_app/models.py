@@ -4,12 +4,14 @@ from cloudinary.models import CloudinaryField
 
 
 class Ingredient(models.Model):
+    PRODUCT_TYPES = ((0, 'solid'), (1, 'liquid'))
     name = models.CharField(max_length=50, unique=True)
     slug = models.SlugField(max_length=50, unique=True)
     price = models.FloatField()
     unit_weight = models.FloatField(default=0)
     image = CloudinaryField('image', default='placeholder')
     units = models.IntegerField()
+    type = models.IntegerField(choices=PRODUCT_TYPES, default=0)
 
     def __str__(self):
         return self.name
