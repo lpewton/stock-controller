@@ -2,7 +2,20 @@
 
 {% block content %}
 <body>
-    <h1>Hello</h1>
+    <div class="row mt-2">
+    <p class="col-3 ps-3"><strong>Ingredient</strong></p>
+    <p class="col-3"><strong>Units</strong></p>
+    <p class="col-3"><strong>Total quantity</strong></p>
+    <p class="col-3"><strong>Total value</strong></p>
+</div>
+    {% for ingredient in ingredient_list %}
+<div class="row border pt-3">
+    <p class="col-3 ps-3"><strong>{{ ingredient.name }}</strong></p>
+    <p class="col-3">{{ ingredient.units }}</p>
+    <p class="col-3">{{ ingredient.weight_value}}kg</p>
+    <p class="col-3">{{ ingredient.price_value}}€</p>
+</div>
+    {% endfor %}
 </body>
 
 {% endblock %}

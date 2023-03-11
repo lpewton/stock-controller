@@ -14,5 +14,11 @@ class Ingredient(models.Model):
     def __str__(self):
         return self.name
 
+    def weight_value(self):
+        return self.unit_weight * self.units
+
+    def price_value(self):
+        return self.price * self.units
+
     class Meta:
         ordering = ["name"]
