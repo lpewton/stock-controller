@@ -23,7 +23,7 @@ class addIngredient(View):
         ingredient.units += 1
         ingredient.save()
 
-        return HttpResponseRedirect(reverse('home'))
+        return HttpResponseRedirect(reverse('ingredients_list'))
 
 
 class removeIngredient(View):
@@ -32,7 +32,7 @@ class removeIngredient(View):
         ingredient.units -= 1
         ingredient.save()
 
-        return HttpResponseRedirect(reverse('home'))
+        return HttpResponseRedirect(reverse('ingredients_list'))
 
 
 class showStockList(generic.ListView):
