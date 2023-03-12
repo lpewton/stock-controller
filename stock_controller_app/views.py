@@ -4,6 +4,13 @@ from django.views import generic, View
 from .models import Ingredient
 
 
+class homePage(View):
+    template_name = 'homepage.html'
+
+    def get(self, request):
+        return render(request, 'homepage.html')
+
+
 class IngredientsList(generic.ListView):
     model = Ingredient
     template_name = 'index.html'
