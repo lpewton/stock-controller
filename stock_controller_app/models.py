@@ -12,6 +12,7 @@ class Ingredient(models.Model):
     image = CloudinaryField('image', default='placeholder')
     units = models.IntegerField()
     type = models.IntegerField(choices=PRODUCT_TYPES, default=0)
+    supplier = models.CharField(max_length=20, default='VILA')
 
     def __str__(self):
         return self.name

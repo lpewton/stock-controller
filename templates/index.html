@@ -13,20 +13,22 @@
     </div>
   </div>
   {% for ingredient in ingredient_list %}
-  {% if ingredient.units > 5 %}
+  {% if ingredient.weight_value > 10 %}
+  <div class="row border pt-2 bg-info">
+  {% elif ingredient.weight_value > 5 %}
   <div class="row border pt-2 bg-success">
-  {% elif ingredient.units > 0 %}
+  {% elif ingredient.weight_value > 0 %}
   <div class="row border pt-2 bg-warning">
-  {% elif ingredient.units == 0 %}
+  {% elif ingredient.weight_value == 0 %}
   <div class="row border pt-2 bg-danger">
   {% endif %}
     <div class="col 4">
       <p class="ms-3">{{ ingredient.name }}</p>
     </div>
     {% if ingredient.type == 1 %}
-    <p class="col-4">{{ ingredient.weight_value}}kg</p>
-    {% else %}
     <p class="col-4">{{ ingredient.weight_value}}L</p>
+    {% else %}
+    <p class="col-4">{{ ingredient.weight_value}}Kg</p>
     {% endif %}    
     <div class="col-4">
       <div class="row">
