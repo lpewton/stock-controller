@@ -54,6 +54,24 @@ class newIngredient(View):
         return render(request, 'new-ingredient.html', context)
 
 
+class editIngredient(View):
+
+    def post(self, request):
+        form = IngredientForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('ingredients_list')
+
+    def get(self, request):
+        form = IngredientForm()
+        context = {
+            'form': form
+        }
+
+        return render(request, 'edit-ingredient.html', context)
+
+
 class showStockList(generic.ListView):
     model = Ingredient
     template_name = 'stock-list.html'
