@@ -35,6 +35,13 @@ class removeIngredient(View):
         return HttpResponseRedirect(reverse('ingredients_list'))
 
 
+class newIngredient(View):
+    template_name = 'new-ingredient.html'
+
+    def get(self, request):
+        return render(request, 'new-ingredient.html')
+
+
 class showStockList(generic.ListView):
     model = Ingredient
     template_name = 'stock-list.html'

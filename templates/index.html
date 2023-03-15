@@ -53,6 +53,9 @@
     </div>
   </div>
   {% endfor %}
+  <div class="row text-center">
+    <a href="{% url 'new_ingredient' %}">Add Ingredient</a>
+</div>
 
   <ul class="pagination justify-content-center mt-5">
     {% if page_obj.has_previous %}

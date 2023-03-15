@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form class="mt-5" action="">
+    <p>
+        <label for="id_name">Name: </label>
+        <input type="text" id="id_name" name="ingredient_name">
+    </p>
+    <p>
+        <label for="id_name">Price: </label>
+        <input type="integer" id="id_price" name="ingredient_price">
+    </p>
+    <p>
+        <label for="id_unit_weight">Unit Weight: </label>
+        <input type="integer" id="id_unit_weight" name="ingredient_unit_weight">
+    </p>
+    <p>
+        <label for="id_units">Units: </label>
+        <input type="integer" id="id_units" name="ingredient_units">
+    </p>
+    <p>
+        <label for="id_type">Type: </label>
+        <input type="choices" id="id_type" name="ingredient_type">
+    </p>
+    <p>
+        <label for="id_supplier">Supplier: </label>
+        <input type="text" id="id_supplier" name="ingredient_supplier">
+    </p>
+</form>
+
+{% endblock %}
