@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.http import HttpResponseRedirect
 from django.views import generic, View
 from .models import Ingredient
+from .forms import IngredientForm
 
 
 class homePage(View):
@@ -36,25 +37,21 @@ class removeIngredient(View):
 
 
 class newIngredient(View):
-    template_name = 'new-ingredient.html'
-
-    def get(self, request):
-        return render(request, 'new-ingredient.html')
 
     def post(self, request):
-        if request.method == 'POST':
+        form = IngredientForm(request.POST)
 
-            name = request.POST.get('ingredient_name')
-            slug = request.POST.get('ingredient_name')
-            price = request.POST.get('ingredient_price')
-            unit_weight = request.POST.get('ingredient_unit_weight')
-            units = request.POST.get('ingredient_units')
-            type = request.POST.get('ingredient_type')
-            supplier = request.POST.get('ingredient_supplier')
-
-            Ingredient.objects.create(
-                name=name, price=price, slug=slug, unit_weight=unit_weight, units=units, type=type, supplier=supplier)
+        if form.is_valid():
+            form.save()
             return redirect('ingredients_list')
+
+    def get(self, request):
+        form = IngredientForm()
+        context = {
+            'form': form
+        }
+
+        return render(request, 'new-ingredient.html', context)
 
 
 class showStockList(generic.ListView):
