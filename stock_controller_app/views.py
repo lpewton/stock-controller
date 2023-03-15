@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.http import HttpResponseRedirect
 from django.views import generic, View
 from .models import Ingredient
@@ -40,6 +40,21 @@ class newIngredient(View):
 
     def get(self, request):
         return render(request, 'new-ingredient.html')
+
+    def post(self, request):
+        if request.method == 'POST':
+
+            name = request.POST.get('ingredient_name')
+            slug = request.POST.get('ingredient_name')
+            price = request.POST.get('ingredient_price')
+            unit_weight = request.POST.get('ingredient_unit_weight')
+            units = request.POST.get('ingredient_units')
+            type = request.POST.get('ingredient_type')
+            supplier = request.POST.get('ingredient_supplier')
+
+            Ingredient.objects.create(
+                name=name, price=price, slug=slug, unit_weight=unit_weight, units=units, type=type, supplier=supplier)
+            return redirect('ingredients_list')
 
 
 class showStockList(generic.ListView):
