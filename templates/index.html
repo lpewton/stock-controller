@@ -49,13 +49,14 @@
           <button type="submit" value="{{ingredient.slug}}" class="me-3 bg-success rounded-circle" >+</button>
         </form>
         </div>
+        <a href="{% url 'edit_ingredient' ingredient.slug %}">Edit Ingredient</a>
+
       </div>
     </div>
   </div>
   {% endfor %}
   <div class="row text-center">
     <a href="{% url 'new_ingredient' %}">Add Ingredient</a>
-    <a href="{% url 'edit_ingredient' %}">Edit Ingredient</a>
 </div>
 
   <ul class="pagination justify-content-center mt-5">

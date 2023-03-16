@@ -56,17 +56,21 @@ class newIngredient(View):
 
 class editIngredient(View):
 
-    def post(self, request):
-        form = IngredientForm(request.POST)
+    def post(self, request, slug):
+        ingredient = get_object_or_404(Ingredient, slug=slug)
+        form = IngredientForm(request.POST, instance=ingredient)
 
         if form.is_valid():
             form.save()
             return redirect('ingredients_list')
 
-    def get(self, request):
-        form = IngredientForm()
+    def get(self, request, slug):
+        ingredient = get_object_or_404(Ingredient, slug=slug)
+        form = IngredientForm(instance=ingredient)
+
         context = {
-            'form': form
+            'form': form,
+            'ingredient': ingredient
         }
 
         return render(request, 'edit-ingredient.html', context)
