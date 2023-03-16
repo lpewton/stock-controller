@@ -76,6 +76,15 @@ class editIngredient(View):
         return render(request, 'edit-ingredient.html', context)
 
 
+class deleteIngredient(View):
+
+    def post(self, request, slug, *args, **kwargs):
+        ingredient = get_object_or_404(Ingredient, slug=slug)
+        ingredient.delete()
+
+        return HttpResponseRedirect(reverse('ingredients_list'))
+
+
 class showStockList(generic.ListView):
     model = Ingredient
     template_name = 'stock-list.html'

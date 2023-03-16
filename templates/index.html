@@ -50,8 +50,10 @@
         </form>
         </div>
         <a href="{% url 'edit_ingredient' ingredient.slug %}">Edit Ingredient</a>
-
-      </div>
+        <form action="{% url 'delete_ingredient' ingredient.slug %}" method="POST">
+          {% csrf_token %}
+        <button type="submit" value="{{ingredient.slug}}" class="" >Delete</button>
+      </form>      </div>
     </div>
   </div>
   {% endfor %}
