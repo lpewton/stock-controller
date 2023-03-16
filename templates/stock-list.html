@@ -1,29 +1,30 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 <body>
     <div class="row mt-3">
-    <p class="col-2 ps-3"><strong>Ingredient</strong></p>
-    <p class="col-2"><strong>Units</strong></p>
-    <p class="col-2"><strong>Total quantity</strong></p>
-    <p class="col-2"><strong>Unit value</strong></p>
-    <p class="col-2"><strong>Total value</strong></p>
-    <p class="col-2"><strong>Supplier</strong></p>
-</div>
+        <p class="col-2 ps-3"><strong>Ingredient</strong></p>
+        <p class="col-2"><strong>Units</strong></p>
+        <p class="col-2"><strong>Total quantity</strong></p>
+        <p class="col-2"><strong>Unit value</strong></p>
+        <p class="col-2"><strong>Total value</strong></p>
+        <p class="col-2"><strong>Supplier</strong></p>
+    </div>
     {% for ingredient in ingredient_list %}
-<div class="row border pt-3">
-    <p class="col-2 ps-3"><strong>{{ ingredient.name }}</strong></p>
-    <p class="col-2">{{ ingredient.units }}</p>
-    {% if ingredient.type == 1 %}
-    <p class="col-2">{{ ingredient.weight_value}}L</p>
-    {% else %}
-    <p class="col-2">{{ ingredient.weight_value}}g</p>
-    {% endif %}
-    <p class="col-2">{{ ingredient.price}}€</p>
-    <p class="col-2">{{ ingredient.price_value}}€</p>
-    <p class="col-2">{{ ingredient.supplier}}</p>
+    <div class="row border pt-3">
+        <p class="col-2 ps-3"><strong>{{ ingredient.name }}</strong></p>
+        <p class="col-2">{{ ingredient.units }}</p>
+        {% if ingredient.type == 1 %}
+        <p class="col-2">{{ ingredient.weight_value}}L</p>
+        {% else %}
+        <p class="col-2">{{ ingredient.weight_value}}g</p>
+        {% endif %}
+        <p class="col-2">{{ ingredient.price}}€</p>
+        <p class="col-2">{{ ingredient.price_value}}€</p>
+        <p class="col-2">{{ ingredient.supplier}}</p>
 
-</div>
+    </div>
     {% endfor %}
 </body>
 

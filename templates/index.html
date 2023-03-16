@@ -1,7 +1,8 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 
 {% block content %}
 
+<!--Labels -->
 <div class="container-fluid">
   <div class="row mt-3">
     <div class="col-4">
@@ -13,95 +14,104 @@
     </div>
   </div>
   {% for ingredient in ingredient_list %}
+
+  <!--Filter ingredient by weight_value -->
   {% if ingredient.weight_value > 10 %}
   <div class="row border pt-2 bg-info">
-  {% elif ingredient.weight_value > 5 %}
-  <div class="row border pt-2 bg-success">
-  {% elif ingredient.weight_value > 0 %}
-  <div class="row border pt-2 bg-warning">
-  {% elif ingredient.weight_value == 0 %}
-  <div class="row border pt-2 bg-danger">
-  {% endif %}
-    <div class="col 4">
-      <p class="ms-3">{{ ingredient.name }}</p>
-    </div>
-    {% if ingredient.type == 1 %}
-    <p class="col-4">{{ ingredient.weight_value}}L</p>
-    {% else %}
-    <p class="col-4">{{ ingredient.weight_value}}Kg</p>
-    {% endif %}    
-    <div class="col-4">
-      <div class="row">
-        <div class="col-5 text-end">
-          <form action="{% url 'remove_ingredient' ingredient.slug %}" method="POST">
-            {% csrf_token %}
-            {% if ingredient.units == 0 %}
-            <button type="submit" value="{{ingredient.slug}}" class="bg-danger rounded-circle border" disabled>-</button>
-            {% else %}
-          <button type="submit" value="{{ingredient.slug}}" class="bg-danger rounded-circle border" >-</button>
-          {% endif %}      
-        </form>  
-      </div>
-        <p class="col-2 text-center">{{ ingredient.units }}</p>
-        <div class="col-5 text-start">
-          <form action="{% url 'add_ingredient' ingredient.slug %}" method="POST">
-            {% csrf_token %}
-          <button type="submit" value="{{ingredient.slug}}" class="me-3 bg-success rounded-circle" >+</button>
-        </form>
+    {% elif ingredient.weight_value > 5 %}
+    <div class="row border pt-2 bg-success">
+      {% elif ingredient.weight_value > 0 %}
+      <div class="row border pt-2 bg-warning">
+        {% elif ingredient.weight_value == 0 %}
+        <div class="row border pt-2 bg-danger">
+          {% endif %}
+          <div class="col 4">
+            <p class="ms-3">{{ ingredient.name }}</p>
+          </div>
+          {% if ingredient.type == 1 %}
+          <p class="col-4">{{ ingredient.weight_value}}L</p>
+          {% else %}
+          <p class="col-4">{{ ingredient.weight_value}}Kg</p>
+          {% endif %}
+
+          <!--Buttons for adding and removing -->
+          <div class="col-4">
+            <div class="row">
+              <div class="col-5 text-end">
+                <form action="{% url 'remove_ingredient' ingredient.slug %}" method="POST">
+                  {% csrf_token %}
+                  {% if ingredient.units == 0 %}
+                  <button type="submit" value="{{ingredient.slug}}" class="bg-danger rounded-circle border"
+                    disabled>-</button>
+                  {% else %}
+                  <button type="submit" value="{{ingredient.slug}}" class="bg-danger rounded-circle border">-</button>
+                  {% endif %}
+                </form>
+              </div>
+              <p class="col-2 text-center">{{ ingredient.units }}</p>
+              <div class="col-5 text-start">
+                <form action="{% url 'add_ingredient' ingredient.slug %}" method="POST">
+                  {% csrf_token %}
+                  <button type="submit" value="{{ingredient.slug}}" class="me-3 bg-success rounded-circle">+</button>
+                </form>
+              </div>
+
+              <!--Editing and deleting ingredients -->
+              <a href="{% url 'edit_ingredient' ingredient.slug %}">Edit Ingredient</a>
+              <form action="{% url 'delete_ingredient' ingredient.slug %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" value="{{ingredient.slug}}" class="">Delete</button>
+              </form>
+            </div>
+          </div>
         </div>
-        <a href="{% url 'edit_ingredient' ingredient.slug %}">Edit Ingredient</a>
-        <form action="{% url 'delete_ingredient' ingredient.slug %}" method="POST">
-          {% csrf_token %}
-        <button type="submit" value="{{ingredient.slug}}" class="" >Delete</button>
-      </form>      </div>
-    </div>
-  </div>
-  {% endfor %}
-  <div class="row text-center">
-    <a href="{% url 'new_ingredient' %}">Add Ingredient</a>
-</div>
+        {% endfor %}
+        <div class="row text-center">
+          <a href="{% url 'new_ingredient' %}">Add Ingredient</a>
+        </div>
 
-  <ul class="pagination justify-content-center mt-5">
-    {% if page_obj.has_previous %}
-        <li class="page-item m-1">
+        <!--Pagination -->
+        <ul class="pagination justify-content-center mt-5">
+          {% if page_obj.has_previous %}
+          <li class="page-item m-1">
             <a href="?page=1" class="page-link directory-pag-a">&laquo; First</a>
-        </li>
-        <li class="page-item m-1">
+          </li>
+          <li class="page-item m-1">
             <a href="?page={{ page_obj.previous_page_number }}" class="page-link directory-pag-a">Previous</a>
-        </li>
-    {% else %}
-        <li class="page-item m-1">
+          </li>
+          {% else %}
+          <li class="page-item m-1">
             <a href="#" class="page-link directory-pag-a">&laquo; First</a>
-        </li>
-        <li class="page-item m-1">
+          </li>
+          <li class="page-item m-1">
             <a href="#" class="page-link directory-pag-a">Previous</a>
-        </li>
-        
-    {% endif %}
+          </li>
 
-    {% for page in page_obj.paginator.page_range %}
-            <li class="page-item m-1"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
-    {% endfor %}
+          {% endif %}
 
-    {% if page_obj.has_next %}
-        <li class="page-item m-1">
+          {% for page in page_obj.paginator.page_range %}
+          <li class="page-item m-1"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
+          {% endfor %}
+
+          {% if page_obj.has_next %}
+          <li class="page-item m-1">
             <a href="?page={{ page_obj.next_page_number }}" class="page-link">Next</a>
-        </li>
-        <li class="page-item m-1">
+          </li>
+          <li class="page-item m-1">
             <a href="?page={{ page_obj.paginator.num_pages }}" class="page-link">Last &raquo;</a>
-        </li>
+          </li>
 
-    {% else %}
-        <li class="page-item m-1">
+          {% else %}
+          <li class="page-item m-1">
             <a href="#" class="page-link">Next</a>
-        </li>
-        <li class="page-item m-1">
+          </li>
+          <li class="page-item m-1">
             <a href="#" class="page-link">Last &raquo;</a>
-        </li>
-        
-    {% endif %}
-</ul>
+          </li>
 
-</div>
+          {% endif %}
+        </ul>
 
-{% endblock %}
+      </div>
+
+      {% endblock %}

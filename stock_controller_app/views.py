@@ -19,7 +19,7 @@ class IngredientsList(generic.ListView):
 
 
 class addIngredient(View):
-    def post(self, request, slug, *args, **kwargs):
+    def post(self, request, slug):
         ingredient = get_object_or_404(Ingredient, slug=slug)
         ingredient.units += 1
         ingredient.save()
@@ -28,7 +28,7 @@ class addIngredient(View):
 
 
 class removeIngredient(View):
-    def post(self, request, slug, *args, **kwargs):
+    def post(self, request, slug):
         ingredient = get_object_or_404(Ingredient, slug=slug)
         ingredient.units -= 1
         ingredient.save()
