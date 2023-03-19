@@ -38,29 +38,29 @@
           <div class="col-5 col-md-3 text-end">
             <div class="row">
               <div class="col-2 text-end">
-                <form action="{% url 'remove_ingredient' ingredient.slug %}" method="POST">
+                <form action="{% url 'remove_ingredient' ingredient.pk %}" method="POST">
                   {% csrf_token %}
                   {% if ingredient.units == 0 %}
-                  <button type="submit" value="{{ingredient.slug}}" class="bg-danger rounded-circle border"
+                  <button type="submit" value="{{ingredient.pk}}" class="bg-danger rounded-circle border"
                     disabled>-</button>
                   {% else %}
-                  <button type="submit" value="{{ingredient.slug}}" class="bg-danger rounded-circle border">-</button>
+                  <button type="submit" value="{{ingredient.pk}}" class="bg-danger rounded-circle border">-</button>
                   {% endif %}
                 </form>
               </div>
               <p class="col-2 text-center">{{ ingredient.units }}</p>
               <div class="col-2 text-start">
-                <form action="{% url 'add_ingredient' ingredient.slug %}" method="POST">
+                <form action="{% url 'add_ingredient' ingredient.pk %}" method="POST">
                   {% csrf_token %}
-                  <button type="submit" value="{{ingredient.slug}}" class="me-3 bg-success rounded-circle">+</button>
+                  <button type="submit" value="{{ingredient.pk}}" class="me-3 bg-success rounded-circle">+</button>
                 </form>
               </div>
 
               <!--Editing and deleting ingredients -->
-              <a class="col-1" href="{% url 'edit_ingredient' ingredient.slug %}">E</a>
-              <form class="col-2" action="{% url 'delete_ingredient' ingredient.slug %}" method="POST">
+              <a class="col-1" href="{% url 'edit_ingredient' ingredient.pk %}">E</a>
+              <form class="col-2" action="{% url 'delete_ingredient' ingredient.pk %}" method="POST">
                 {% csrf_token %}
-                <button type="submit" value="{{ingredient.slug}}" class="">D</button>
+                <button type="submit" value="{{ingredient.pk}}" class="">D</button>
               </form>
             </div>
           </div>

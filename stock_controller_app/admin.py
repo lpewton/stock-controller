@@ -6,4 +6,3 @@ from .models import Ingredient
 class IngredientAdmin(admin.ModelAdmin):
     list_display = ('name', 'units', 'price')
     search_fields = ['name']
-    prepopulated_fields = {'slug': ('name',)}

@@ -6,4 +6,4 @@ class IngredientForm(forms.ModelForm):
 
     class Meta:
         model = Ingredient
-        fields = ['name', 'slug', 'price', 'unit_weight', 'units', 'type', 'supplier']
+        fields = ['name', 'price', 'unit_weight', 'units', 'type', 'supplier']

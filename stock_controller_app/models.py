@@ -6,7 +6,6 @@ from cloudinary.models import CloudinaryField
 class Ingredient(models.Model):
     PRODUCT_TYPES = ((0, 'Solid'), (1, 'Liquid'))
     name = models.CharField(max_length=50, unique=True)
-    slug = models.SlugField(max_length=50, unique=True)
     price = models.FloatField(default=0)
     unit_weight = models.FloatField(default=0)
     image = CloudinaryField('image', default='placeholder')
