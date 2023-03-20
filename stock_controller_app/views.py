@@ -94,3 +94,8 @@ class showStockList(ListView):
     """Renders stock list page"""
     model = Ingredient
     template_name = 'stock-list.html'
+
+
+class recipes(TemplateView):
+    """Render recipes list page"""
+    template_name = 'recipes.html'

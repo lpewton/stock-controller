@@ -10,4 +10,5 @@ urlpatterns = [
     path('add-ingredient/<int:pk>', views.addIngredient.as_view(), name='add_ingredient'),
     path('remove-ingredient/<int:pk>', views.removeIngredient.as_view(), name='remove_ingredient'),
     path('stock-list', views.showStockList.as_view(), name='stock_list'),
+    path('recipes', views.recipes.as_view(), name='recipes')
 ]
