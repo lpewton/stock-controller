@@ -57,17 +57,17 @@
               </div>
 
               <!--Editing and deleting ingredients -->
-              <a class="col-1" href="{% url 'edit_ingredient' ingredient.pk %}">E</a>
+              <a class="col-1" href="{% url 'edit_ingredient' ingredient.pk %}"><i class="fa-regular fa-pen-to-square text-dark h4"></i></a>
               <form class="col-2" action="{% url 'delete_ingredient' ingredient.pk %}" method="POST">
                 {% csrf_token %}
-                <button type="submit" value="{{ingredient.pk}}" class="">D</button>
+                <button type="submit" value="{{ingredient.pk}}" class="ms-4 bg-danger">Delete</i></button>
               </form>
             </div>
           </div>
         </div>
         {% endfor %}
-        <div class="row text-center">
-          <a href="{% url 'new_ingredient' %}">Add Ingredient</a>
+        <div class="text-center">
+          <a href="{% url 'new_ingredient' %}" class="mt-3 bg-success text-dark p-1 btn">Add Ingredient</a>
         </div>
 
         <!--Pagination -->
