@@ -24,3 +24,14 @@ class Ingredient(models.Model):
 
     class Meta:
         ordering = ["name"]
+
+
+class Recipe(models.Model):
+    name = models.CharField(max_length=200, unique=True)
+    solids = models.ManyToManyField(Ingredient, limit_choices_to={'type': 0}, related_name='solid_recipes')
+    liquids = models.ManyToManyField(Ingredient, limit_choices_to={'type': 1}, related_name='liquid_recipes')
+    intermediate_procedures = models.CharField(max_length=200, default='')
+    add_ons = models.CharField(max_length=200, default='')
+
+    def __str__(self):
+        return self.name
