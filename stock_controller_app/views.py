@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.http import HttpResponseRedirect
 from django.views import generic
 from django.views.generic import TemplateView, ListView, DetailView, View
-from .models import Ingredient
+from .models import Ingredient, Recipe
 from .forms import IngredientForm
 
 
@@ -96,6 +96,8 @@ class showStockList(ListView):
     template_name = 'stock-list.html'
 
 
-class recipes(TemplateView):
+class recipes(ListView):
     """Render recipes list page"""
+    model = Recipe
     template_name = 'recipes.html'
+    paginate_by = 12
