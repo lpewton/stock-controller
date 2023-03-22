@@ -101,3 +101,8 @@ class recipes(ListView):
     model = Recipe
     template_name = 'recipes.html'
     paginate_by = 12
+
+
+class recipeDetail(DetailView):
+    model = Recipe
+    template_name = 'recipe-detail.html'
