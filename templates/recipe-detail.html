@@ -1,1 +1,38 @@
-<h1>Hello!</h1>
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+<h2 class="mt-3">Strawberry Ice Cream</h2>
+
+<hr>
+<div class="row">
+    <div class="col-3">
+<h3>Ingredients</h3>
+<ul>
+    <li>350g Strawberries</li>
+    <li>600g Bananas</li>
+    <li>3L MilK</li>
+    <li>600g Sugar</li>
+</ul>
+</div>
+<div class="col-6">
+    <h3>Procedure:</h3>
+    <ol>
+        <li>Join the Strawberries, bananas and sugar and mix them all</li>
+        <li>In another bowl, mix the milk</li>
+        <li>Add them together</li>
+        <li>Put them in the mixer</li>
+        <li>Remove them from mixer, into a cold recipient and put in blast freezer for 10 minutes</li>
+    </ol>
+</div>
+<div class="col-3">
+    <h3>Notes:</h3>
+    <ul>
+        <li>Before miximg the chocolate, melt it in the microwave for intervals of 5 minutes</li>
+        <li>After removing from the machine, add chocolate and mix the ice cream</li>
+    </ul>
+</div>
+</div>
+</div>
+
+{% endblock %}
