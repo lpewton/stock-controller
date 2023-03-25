@@ -7,10 +7,13 @@
     <div class="row">
         <div class="col-3">
             <h3>Ingredients</h3>
+            <h6>SOLIDS:</h6>
             <ul>
-                {% for ingredient in recipe.ingredient.all %}
+            {% for ingredient in recipe.solid_ingredient.all %}
                 <li>{{ ingredient.quantity }}g of {{ ingredient.name }}</li>
-                {% endfor %} </ul>
+            {% endfor %}
+        </ul>
+
         </div>
         <div class="col-6">
             <h3>Procedure:</h3>

@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.http import HttpResponseRedirect
 from django.views import generic
 from django.views.generic import TemplateView, ListView, DetailView, View
-from .models import Ingredient, Recipe, Quantity
+from .models import Ingredient, Recipe, solidsQuantity, liquidsQuantity
 from .forms import IngredientForm
 
 

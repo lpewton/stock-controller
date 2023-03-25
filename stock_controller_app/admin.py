@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Ingredient, Recipe, Quantity
+from .models import Ingredient, Recipe, solidsQuantity, liquidsQuantity
 
 
 @admin.register(Ingredient)
@@ -13,6 +13,11 @@ class recipeAdmin(admin.ModelAdmin):
     search_fields = ['name']
 
 
-@admin.register(Quantity)
+@admin.register(solidsQuantity)
+class ingredientsQuantity(admin.ModelAdmin):
+    search_fields = ['name']
+
+
+@admin.register(liquidsQuantity)
 class ingredientsQuantity(admin.ModelAdmin):
     search_fields = ['name']
