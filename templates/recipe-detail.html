@@ -9,20 +9,26 @@
             <h3>Ingredients</h3>
             <h6>SOLIDS:</h6>
             <ul>
-            {% for ingredient in recipe.solid_ingredient.all %}
+                {% for ingredient in recipe.solid_ingredient.all %}
                 <li>{{ ingredient.quantity }}g of {{ ingredient.name }}</li>
-            {% endfor %}
-        </ul>
+                {% endfor %}
+            </ul>
+            <h6>LIQUIDS:</h6>
+            <ul>
+                {% for ingredient in recipe.liquid_ingredient.all %}
+                <li>{{ ingredient.quantity }}g of {{ ingredient.name }}</li>
+                {% endfor %}
+            </ul>
 
         </div>
         <div class="col-6">
             <h3>Procedure:</h3>
             <ol>
-                <li>Join the {{ recipe.solids.all|join:", " }} and mix them all</li>
-                <li>In another bowl, mix the {{ recipe.liquids.all|join:", " }}</li>
-                <li>Add them together</li>
-                <li>Put them in the mixer</li>
-                <li>Remove them from mixer, into a cold recipient and put in blast freezer for 10 minutes</li>
+                <li>Join the solid ingredients and mix them all</li>
+                <li>In another bowl, mix the liquid ingredients</li>
+                <li>Add them together, stirring them well</li>
+                <li>Put them in the mixer machine</li>
+                <li>Remove the mass from mixer, into a cold recipient and put it in blast freezer for 10 minutes, before putting it in the regular freezer</li>
             </ol>
         </div>
         <div class="col-3">
