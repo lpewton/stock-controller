@@ -3,23 +3,14 @@
 {% block content %}
 <div class="container">
     <h2 class="mt-3">{{ recipe.name }}</h2>
-
     <hr>
     <div class="row">
         <div class="col-3">
             <h3>Ingredients</h3>
-                <p><strong>SOLIDS:</strong></p>
-                <ul>
-            {% for solid in recipe.solids.all %}
-            <li>{{ solid.name }}</li>
-            {% endfor %}
-            </ul>
-            <P><strong>LIQUIDS:</strong></P>
             <ul>
-            {% for liquid in recipe.liquids.all %}
-            <li>{{ liquid.name }}</li>
-            {% endfor %}
-        </ul>
+                {% for ingredient in recipe.ingredient.all %}
+                <li>{{ ingredient.quantity }}g of {{ ingredient.name }}</li>
+                {% endfor %} </ul>
         </div>
         <div class="col-6">
             <h3>Procedure:</h3>

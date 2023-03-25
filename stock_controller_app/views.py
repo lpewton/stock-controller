@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.http import HttpResponseRedirect
 from django.views import generic
 from django.views.generic import TemplateView, ListView, DetailView, View
-from .models import Ingredient, Recipe
+from .models import Ingredient, Recipe, Quantity
 from .forms import IngredientForm
 
 
@@ -106,3 +106,4 @@ class recipes(ListView):
 class recipeDetail(DetailView):
     model = Recipe
     template_name = 'recipe-detail.html'
+    context_object_name = 'recipe'
