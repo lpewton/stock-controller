@@ -104,6 +104,13 @@ class recipes(ListView):
 
 
 class recipeDetail(DetailView):
+    """Renders the details of each recipe"""
     model = Recipe
     template_name = 'recipe-detail.html'
     context_object_name = 'recipe'
+
+
+class newRecipe(TemplateView):
+    """Renders new recipe page"""
+    def get(self, request):
+        return render(request, 'new-recipe.html')
