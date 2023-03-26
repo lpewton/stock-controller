@@ -123,15 +123,13 @@ class newRecipe(TemplateView):
         return render(request, 'new-recipe.html', context)
 
     def post(self, request):
-        form = RecipeForm(request.POST)
+        recipeForm = RecipeForm(request.POST)
+        ingredientQuantityForm = IngredientQuantityForm(request.POST)
 
-        if form.is_valid():
-            form.save()
+        if recipeForm.is_valid():
+            recipeForm.save()
             return redirect('recipes')
 
-    def post(self, request):
-        form = IngredientQuantityForm(request.POST)
-
-        if form.is_valid():
-            form.save()
+        elif ingredientQuantityForm.is_valid():
+            ingredientQuantityForm.save()
             return redirect('new_recipe')

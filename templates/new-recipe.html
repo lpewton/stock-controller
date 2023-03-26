@@ -2,24 +2,27 @@
 
 {% block content %}
 <div class="container">
-<h1>Add a Recipe</h1>
-<div class="row">
-<div class="col-6">
-    <form class="mt-2 mx-auto text-center w-50" action="{% url 'new_recipe' %}" method="POST">
-        {% csrf_token %}
-        {{ RecipeForm.as_p }}
-        <hr>
-        <button type="submit">Add Recipe</button>
-    </form>
-</div>
-<div class="col-6">
-    <form class="mt-2 mx-auto text-center w-50" action="{% url 'new_recipe' %}" method="POST">
-        {% csrf_token %}
-        {{ IngredientQuantityForm.as_p }}
-        <hr>
-        <button type="submit">Add Recipe</button>
-    </form>
-</div>
-</div>
+    <h2 class="mt-3">Add a Recipe</h2>
+    <hr>
+    <div class="row">
+        <div class="col-4">
+            <h5 class="mb-3">Create new recipe</h5>
+            <form class="border py-2 ps-2" action="{% url 'new_recipe' %}" method="POST">
+                {% csrf_token %}
+                {{ RecipeForm.as_p }}
+                <hr>
+                <button type="submit">Add Recipe</button>
+            </form>
+        </div>
+        <div class="col-4 text-start">
+            <h5 class="mb-3">Add an Ingredient Quantity (g)</h5>
+            <form class="border py-2 ps-2" action="{% url 'new_recipe' %}" method="POST">
+                {% csrf_token %}
+                {{ IngredientQuantityForm.as_p }}
+                <hr>
+                <button type="submit">Add Ingredient Quantity</button>
+            </form>
+        </div>
+    </div>
 </div>
 {% endblock %}
