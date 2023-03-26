@@ -1,14 +1,8 @@
 #header-div {
-    height: 250px;
+    height: 150px;
     background-color: #ad886e;
 }
 
 footer {
-    height: 50px;
     background-color: #ad886e;
-}
-
-.reipe-anchor {
-    height: 160px;
-    width: 160px;
 }

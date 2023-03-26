@@ -19,58 +19,58 @@
 </head>
 
 <!--Navbar -->
+
 <body class="d-flex flex-column min-vh-100">
   <header>
     <div id="header-div" class="text-center">
       <div>
         <h1 class="display-1 py-5">La Casa del Gelat</h1>
       </div>
-      {% if user.is_authenticated %}
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active px-5" aria-current="page" href="{% url 'ingredients_list' %}">Stock</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active px-5" aria-current="page" href="{% url 'stock_list' %}">Stock List</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link px-5" href="{% url 'recipes' %}">Recipes</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link px-5" href="{% url 'new_recipe' %}">New Recipe</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link px-5">Ingredients calculation</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link px-5" href="{% url 'account_logout' %}">Log Out</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-      {% endif %}
     </div>
+    {% if user.is_authenticated %}
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active px-5" aria-current="page" href="{% url 'ingredients_list' %}">Stock</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active px-5" aria-current="page" href="{% url 'stock_list' %}">Stock List</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link px-5" href="{% url 'recipes' %}">Recipes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link px-5" href="{% url 'new_recipe' %}">New Recipe</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link px-5">Ingredients calculation</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link px-5" href="{% url 'account_logout' %}">Log Out</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    {% endif %}
   </header>
 
   <main>
-  {% block content %}
-  {% endblock %}
+    {% block content %}
+    {% endblock %}
   </main>
 
   <!--Footer -->
-  <footer class="fixed-bottom">
-    <div class="row h5 pt-3">
+  <footer>
+    <div class="row h6 mt-3">
       <div class="col-4">
-        <p class="ms-3 h5">La casa del Gelat</p>
+        <p class="ms-3">La casa del Gelat</p>
       </div>
       <div class="col-4 text-center">
         <p>Stock-Controller</p>
@@ -80,7 +80,7 @@
       </div>
     </div>
   </footer>
-<script src="https://kit.fontawesome.com/8b45f7f3ca.js" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/8b45f7f3ca.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

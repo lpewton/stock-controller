@@ -5,19 +5,20 @@
 <!--Labels -->
 <div class="container-fluid">
   <div class="row mt-3">
-    <div class="col-3">
+    <div class="col-4">
       <p class="ms-md-3"><strong>Ingredient</strong></p>
     </div>
-    <p class="col-4 col-md-6"><strong>Unit weight</strong></p>
-    <div class="col-5 col-md-3 ps-md-4">
+    <p class="col-5 col-md-5"><strong>Unit weight</strong></p>
+    <div class="col-3 col-md-3 ps-md-4">
       <p><strong>Units left</strong></p>
     </div>
   </div>
 
   {% for ingredient in ingredient_list %}
+  
   <!--Filter ingredient by weight_value -->
-    {% if ingredient.weight_value > 10000 %}
-    <div class="row border pt-2 bg-info">
+  {% if ingredient.weight_value > 10000 %}
+  <div class="row border pt-2 bg-info">
     {% elif ingredient.weight_value > 5000 %}
     <div class="row border pt-2 bg-success">
       {% elif ingredient.weight_value > 0 %}
@@ -25,17 +26,19 @@
         {% elif ingredient.weight_value == 0 %}
         <div class="row border pt-2 bg-danger">
           {% endif %}
-          <div class="col-3">
+          <div class="col-4">
             <p class="ms-3">{{ ingredient.name }}</p>
           </div>
+          <div class="col-4 col-md-6"">
           {% if ingredient.type == 1 %}
-          <p class="col-4 col-md-6">{{ ingredient.weight_value}}mL</p>
+          <p>{{ ingredient.weight_value}}mL</p>
           {% else %}
-          <p class="col-4 col-md-6">{{ ingredient.weight_value}}g</p>
+          <p>{{ ingredient.weight_value}}g</p>
           {% endif %}
+        </div>
 
           <!--Buttons for adding and removing -->
-          <div class="col-5 col-md-3 text-end">
+          <div class=" col-4 col-md-3 text-start">
             <div class="row">
               <div class="col-2 text-end">
                 <form action="{% url 'remove_ingredient' ingredient.pk %}" method="POST">
@@ -56,16 +59,22 @@
                 </form>
               </div>
 
-            <!--Editing and deleting ingredients -->
-            <a class="col-1" href="{% url 'edit_ingredient' ingredient.pk %}"><i class="fa-regular fa-pen-to-square text-dark h4"></i></a>
-            <form class="col-2" action="{% url 'delete_ingredient' ingredient.pk %}" method="POST">
-            {% csrf_token %}
-            <button type="submit" value="{{ingredient.pk}}" class="ms-4 bg-danger">Delete</i></button>
-            </form>
+              <!--Editing and deleting ingredients -->
+              <a class="col-1 ps-3" href="{% url 'edit_ingredient' ingredient.pk %}"><i
+                  class="fa-regular fa-pen-to-square text-dark h4"></i></a>
+            </div>
+            <div class="text-center mb-1">
+              <form class="" action="{% url 'delete_ingredient' ingredient.pk %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" value="{{ingredient.pk}}" class="ms-4 bg-danger">Delete</i></button>
+              </form>
+            </div>
+
           </div>
         </div>
-      </div>
-  {% endfor %}
+
+        {% endfor %}
+
         <div class="text-center">
           <a href="{% url 'new_ingredient' %}" class="mt-3 bg-success text-dark p-1 btn">Add Ingredient</a>
         </div>
