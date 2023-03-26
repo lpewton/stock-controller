@@ -1,5 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+<div class="container">
+<h1>Add a Recipe</h1>
+<div class="row">
+<div class="col-6">
+    <form class="mt-2 mx-auto text-center w-50" action="{% url 'new_recipe' %}" method="POST">
+        {% csrf_token %}
+        {{ RecipeForm.as_p }}
+        <hr>
+        <button type="submit">Add Recipe</button>
+    </form>
+</div>
+<div class="col-6">
+    <form class="mt-2 mx-auto text-center w-50" action="{% url 'new_recipe' %}" method="POST">
+        {% csrf_token %}
+        {{ IngredientQuantityForm.as_p }}
+        <hr>
+        <button type="submit">Add Recipe</button>
+    </form>
+</div>
+</div>
+</div>
 {% endblock %}

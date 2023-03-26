@@ -2,8 +2,8 @@ from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.http import HttpResponseRedirect
 from django.views import generic
 from django.views.generic import TemplateView, ListView, DetailView, View
-from .models import Ingredient, Recipe, solidsQuantity, liquidsQuantity
-from .forms import IngredientForm
+from .models import Ingredient, Recipe, ingredientQuantity
+from .forms import IngredientForm, RecipeForm, IngredientQuantityForm
 
 
 class homePage(TemplateView):
@@ -113,4 +113,25 @@ class recipeDetail(DetailView):
 class newRecipe(TemplateView):
     """Renders new recipe page"""
     def get(self, request):
-        return render(request, 'new-recipe.html')
+        recipeForm = RecipeForm
+        ingredientQuantityForm = IngredientQuantityForm
+        context = {
+            'RecipeForm': RecipeForm,
+            'IngredientQuantityForm': IngredientQuantityForm
+        }
+
+        return render(request, 'new-recipe.html', context)
+
+    def post(self, request):
+        form = RecipeForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('recipes')
+
+    def post(self, request):
+        form = IngredientQuantityForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('new_recipe')
