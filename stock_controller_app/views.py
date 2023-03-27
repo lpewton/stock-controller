@@ -100,7 +100,7 @@ class recipes(ListView):
     """Render recipes list page"""
     model = Recipe
     template_name = 'recipes.html'
-    paginate_by = 12
+    paginate_by = 15
 
 
 class recipeDetail(DetailView):

@@ -6,3 +6,25 @@
 footer {
     background-color: #ad886e;
 }
+
+.recipe-anchor {
+    height: 80px;
+}
+
+@media screen and (min-width: 750px) {
+    .recipe-anchor {
+        height: 150px
+    }
+
+    #recipe-name {
+        font-size: 25px;
+    }
+}
+
+@media screen and (min-width: 1300px) {
+    .recipe-anchor {
+        height: 160px;
+        width: 160px;
+        
+    }
+}
