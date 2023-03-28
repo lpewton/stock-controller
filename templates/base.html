@@ -56,7 +56,6 @@
             </li>
           </ul>
         </div>
-      </div>
     </nav>
     {% endif %}
   </header>
@@ -64,22 +63,20 @@
   <main>
     {% block content %}
     {% endblock %}
+  </div>
   </main>
 
   <!--Footer -->
-  <footer>
-    <div class="row h6 mt-3">
-      <div class="col-4">
-        <p class="ms-3">La casa del Gelat</p>
-      </div>
-      <div class="col-4 text-center">
-        <p>Stock-Controller</p>
-      </div>
-      <div class="col-4 text-end">
-        <img class="me-3" src="../media/logo.png" alt="Logo Here" aria-label="La Casa del Gelat Logo">
-      </div>
+  <footer class="container-fluid mt-auto py-2">
+    <div class="row">
+        <div class="col-6">
+            <p><i class="fa-regular fa-copyright"></i> La Casa del Gelat</p>
+        </div>
+        <div class="col-6 text-end">
+            <p>Stock Controller</p>
+        </div>
     </div>
-  </footer>
+</footer>
   <script src="https://kit.fontawesome.com/8b45f7f3ca.js" crossorigin="anonymous"></script>
 </body>
 

@@ -5,6 +5,8 @@
 
 footer {
     background-color: #ad886e;
+    height: 50px;
+    font-size: large;
 }
 
 .recipe-anchor {
