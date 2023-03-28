@@ -133,3 +133,8 @@ class newRecipe(TemplateView):
         elif ingredientQuantityForm.is_valid():
             ingredientQuantityForm.save()
             return redirect('new_recipe')
+
+
+class ingredientsCalculation(TemplateView):
+    """Renders Ingredient Calculation page"""
+    template_name = 'ingredients-calculation.html'
