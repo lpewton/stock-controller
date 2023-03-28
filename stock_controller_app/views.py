@@ -2,8 +2,8 @@ from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.http import HttpResponseRedirect
 from django.views import generic
 from django.views.generic import TemplateView, ListView, DetailView, View
-from .models import Ingredient, Recipe, ingredientQuantity
-from .forms import IngredientForm, RecipeForm, IngredientQuantityForm
+from .models import Ingredient, Recipe, ingredientQuantity, IngredientsCalculation
+from .forms import IngredientForm, RecipeForm, IngredientQuantityForm, IngredientsCalculationForm
 
 
 class homePage(TemplateView):
@@ -135,6 +135,18 @@ class newRecipe(TemplateView):
             return redirect('new_recipe')
 
 
-class ingredientsCalculation(TemplateView):
+class ingredientsCalculation(View):
     """Renders Ingredient Calculation page"""
-    template_name = 'ingredients-calculation.html'
+    def get(self, request):
+        ingredientsCalculation = IngredientsCalculation
+        context = {
+            'IngredientsCalculationForm': IngredientsCalculationForm,
+        }
+        return render(request, 'ingredients-calculation.html', context)
+
+    def post(self, request):
+        ingredientsCalculationForm = IngredientsCalculationForm(request.POST)
+
+        if ingredientsCalculationForm.is_valid():
+            ingredientsCalculationForm.save()
+            return redirect('ingredients_calculation')

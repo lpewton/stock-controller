@@ -46,3 +46,11 @@ class Recipe(models.Model):
 
     class Meta:
         ordering = ["name"]
+
+
+class IngredientsCalculation(models.Model):
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
+
+    def __str__(self):
+        return f"{self.recipe} ({self.quantity}L)"

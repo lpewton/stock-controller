@@ -1,1 +1,10 @@
-<h1>Hello!</h1>
+{% extends 'base.html' %}
+
+{% block content %}
+<form class="border py-2 px-2" action="{% url 'ingredients_calculation' %}" method="POST">
+    {% csrf_token %}
+    {{ IngredientsCalculationForm.as_p }}
+    <hr>
+    <button type="submit">Add Recipe</button>
+</form>
+{% endblock %}
