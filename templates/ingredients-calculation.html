@@ -7,4 +7,12 @@
     <hr>
     <button type="submit">Add Recipe</button>
 </form>
+
+<div>
+    <div>
+        {% for recipe in ingredients %}
+    <p>{{ recipe.recipe }} ({{ recipe.quantity }}L)</p>
+    {% endfor %}
+</div>
+</div>
 {% endblock %}

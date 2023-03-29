@@ -17,14 +17,14 @@
         <p class="col-2 d-none d-md-flex">{{ ingredient.units }}</p>
         <div class="col-3 col-md-2">
             {% if ingredient.type == 1 %}
-            <p>{{ ingredient.weight_value}}L</p>
+            <p>{{ ingredient.weight_value }}L</p>
             {% else %}
-            <p>{{ ingredient.weight_value}}g</p>
+            <p>{{ ingredient.weight_value }}g</p>
             {% endif %}
         </div>
-        <p class="col-2 d-none d-md-flex">{{ ingredient.price}}€</p>
-        <p class="col-2">{{ ingredient.price_value}}€</p>
-        <p class="col-2 pe-4">{{ ingredient.supplier}}</p>
+        <p class="col-2 d-none d-md-flex">{{ ingredient.price }}€</p>
+        <p class="col-2">{{ ingredient.price_value }}€</p>
+        <p class="col-2 pe-4">{{ ingredient.supplier }}</p>
 
     </div>
     {% endfor %}

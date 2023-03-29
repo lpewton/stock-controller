@@ -138,9 +138,10 @@ class newRecipe(TemplateView):
 class ingredientsCalculation(View):
     """Renders Ingredient Calculation page"""
     def get(self, request):
-        ingredientsCalculation = IngredientsCalculation
+        model = IngredientsCalculation
         context = {
             'IngredientsCalculationForm': IngredientsCalculationForm,
+            'ingredients': IngredientsCalculation.objects.all
         }
         return render(request, 'ingredients-calculation.html', context)
 
