@@ -11,6 +11,7 @@ class homePage(TemplateView):
     template_name = 'homepage.html'
 
 
+# Ingredients
 class IngredientsList(ListView):
     """Render index page"""
     model = Ingredient
@@ -96,6 +97,7 @@ class showStockList(ListView):
     template_name = 'stock-list.html'
 
 
+# Recipes
 class recipes(ListView):
     """Render recipes list page"""
     model = Recipe
@@ -135,6 +137,7 @@ class newRecipe(TemplateView):
             return redirect('new_recipe')
 
 
+# Recipes Calculations
 class ingredientsCalculation(View):
     """Renders Ingredient Calculation page"""
     def get(self, request):
@@ -151,3 +154,18 @@ class ingredientsCalculation(View):
         if ingredientsCalculationForm.is_valid():
             ingredientsCalculationForm.save()
             return redirect('ingredients_calculation')
+
+
+class resetIngredients(View):
+    """Resets Ingredients Calculation list"""
+    def post(self, request):
+        IngredientsCalculation.objects.all().delete()
+        return HttpResponseRedirect(reverse('ingredients_calculation'))
+
+
+class ingredientsResult(TemplateView):
+    """Calculates how many ingredients are needed for an X number of recipes"""
+    def get(self, request):
+        model = IngredientsCalculation
+
+        return render(request, 'ingredients-result.html')

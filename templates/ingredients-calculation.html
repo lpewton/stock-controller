@@ -13,6 +13,12 @@
         {% for recipe in ingredients %}
     <p>{{ recipe.recipe }} ({{ recipe.quantity }}L)</p>
     {% endfor %}
-</div>
+    <form action="{% url 'reset_ingredients' %}" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="bg-danger rounded-circle border">RESET</button>
+      </form>
+      <a href=" {% url 'ingredients_result' %}">CALCULATE</a>
+      </form>
+    </div>
 </div>
 {% endblock %}
