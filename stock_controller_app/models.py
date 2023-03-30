@@ -48,9 +48,26 @@ class Recipe(models.Model):
         ordering = ["name"]
 
 
+final_list = []
+
+
 class IngredientsCalculation(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
 
     def __str__(self):
         return f"{self.recipe} ({self.quantity}L)"
+
+    def recipe_ingredients(self):
+
+        ingredient_list = []
+
+        ingredients = self.recipe.ingredient.all()
+        for ingredient in ingredients:
+            ingredient_list.append(f'{ingredient.name}, {ingredient.quantity}')
+        
+        final_list.extend(ingredient_list)
+
+        return final_list
+
+#ADD THEM ALL TO A GENERAL LIST, IF IS-_INCLUDED, ADD THE VALUES    

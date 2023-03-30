@@ -167,5 +167,8 @@ class ingredientsResult(TemplateView):
     """Calculates how many ingredients are needed for an X number of recipes"""
     def get(self, request):
         model = IngredientsCalculation
+        context = {
+            'recipes': IngredientsCalculation.objects.all,
+        }
 
-        return render(request, 'ingredients-result.html')
+        return render(request, 'ingredients-result.html', context)
