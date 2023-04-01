@@ -48,7 +48,7 @@ class Recipe(models.Model):
         ordering = ["name"]
 
 
-final_list = []
+final_ic_list = []
 
 
 class IngredientsCalculation(models.Model):
@@ -60,14 +60,21 @@ class IngredientsCalculation(models.Model):
 
     def recipe_ingredients(self):
 
-        ingredient_list = []
-
         ingredients = self.recipe.ingredient.all()
         for ingredient in ingredients:
-            ingredient_list.append(f'{ingredient.name}, {ingredient.quantity}')
-        
-        final_list.extend(ingredient_list)
+            if f'{ingredient.name}, {ingredient.quantity}' not in final_ic_list:
+                final_ic_list.append(f'{ingredient.name}, {ingredient.quantity}')
+            else:
+                removed_index = final_ic_list.index(f'{ingredient.name}, {ingredient.quantity}')
 
-        return final_list
+                split_list = final_ic_list[removed_index].split(',')
+                new_quantity = int(split_list[1]) + ingredient.quantity
+                
+                final_ic_list.pop(removed_index)
+
+                final_ic_list.append(f'{ingredient.name}, {new_quantity}')
+                final_ic_list.sort()
+
+        return final_ic_list
 
 #ADD THEM ALL TO A GENERAL LIST, IF IS-_INCLUDED, ADD THE VALUES    

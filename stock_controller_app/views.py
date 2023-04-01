@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.http import HttpResponseRedirect
 from django.views import generic
 from django.views.generic import TemplateView, ListView, DetailView, View
-from .models import Ingredient, Recipe, ingredientQuantity, IngredientsCalculation
+from .models import Ingredient, Recipe, ingredientQuantity, IngredientsCalculation, final_ic_list
 from .forms import IngredientForm, RecipeForm, IngredientQuantityForm, IngredientsCalculationForm
 
 
@@ -146,6 +146,7 @@ class ingredientsCalculation(View):
             'IngredientsCalculationForm': IngredientsCalculationForm,
             'ingredients': IngredientsCalculation.objects.all
         }
+        final_ic_list.clear()
         return render(request, 'ingredients-calculation.html', context)
 
     def post(self, request):
@@ -160,6 +161,7 @@ class resetIngredients(View):
     """Resets Ingredients Calculation list"""
     def post(self, request):
         IngredientsCalculation.objects.all().delete()
+
         return HttpResponseRedirect(reverse('ingredients_calculation'))
 
 
