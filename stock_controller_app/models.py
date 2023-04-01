@@ -2,6 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
+names_ic_list = []
+final_ic_list = []
+
 
 class Ingredient(models.Model):
     PRODUCT_TYPES = ((0, 'Solid'), (1, 'Liquid'))
@@ -48,9 +51,6 @@ class Recipe(models.Model):
         ordering = ["name"]
 
 
-final_ic_list = []
-
-
 class IngredientsCalculation(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
@@ -61,20 +61,25 @@ class IngredientsCalculation(models.Model):
     def recipe_ingredients(self):
 
         ingredients = self.recipe.ingredient.all()
+
         for ingredient in ingredients:
-            if f'{ingredient.name}, {ingredient.quantity}' not in final_ic_list:
+            ingredient_name = f'{ingredient.name}'
+            matching_item = next((item for item in final_ic_list if ingredient_name in item), None)
+
+            if matching_item is None:
                 final_ic_list.append(f'{ingredient.name}, {ingredient.quantity}')
             else:
-                removed_index = final_ic_list.index(f'{ingredient.name}, {ingredient.quantity}')
+                removed_index = final_ic_list.index(matching_item)
 
                 split_list = final_ic_list[removed_index].split(',')
                 new_quantity = int(split_list[1]) + ingredient.quantity
-                
+
                 final_ic_list.pop(removed_index)
 
                 final_ic_list.append(f'{ingredient.name}, {new_quantity}')
                 final_ic_list.sort()
 
-        return final_ic_list
+        return self
+
 
 #ADD THEM ALL TO A GENERAL LIST, IF IS-_INCLUDED, ADD THE VALUES    

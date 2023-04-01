@@ -146,7 +146,6 @@ class ingredientsCalculation(View):
             'IngredientsCalculationForm': IngredientsCalculationForm,
             'ingredients': IngredientsCalculation.objects.all
         }
-        final_ic_list.clear()
         return render(request, 'ingredients-calculation.html', context)
 
     def post(self, request):
@@ -165,12 +164,14 @@ class resetIngredients(View):
         return HttpResponseRedirect(reverse('ingredients_calculation'))
 
 
-class ingredientsResult(TemplateView):
+class ingredientsResult(View):
     """Calculates how many ingredients are needed for an X number of recipes"""
     def get(self, request):
+        final_ic_list.clear()
         model = IngredientsCalculation
         context = {
-            'recipes': IngredientsCalculation.objects.all,
+            'final_ic_list': final_ic_list,
+            'recipes': IngredientsCalculation.objects.all
         }
 
         return render(request, 'ingredients-result.html', context)
