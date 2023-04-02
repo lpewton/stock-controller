@@ -13,6 +13,7 @@
                 <button type="submit">Add Recipe</button>
             </form>
         </div>
+        {% if ingredients %}
 
         <div class="col-md-6 mt-3 mt-md-0">
             <h5>Recipes:</h5>
@@ -28,6 +29,7 @@
                     <button type="submit" class="bg-danger rounded border">RESET</button>
                 </form>
             </div>
+            {% endif %}
 
         </div>
         <hr class="mt-3">
