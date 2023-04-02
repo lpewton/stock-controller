@@ -18,7 +18,7 @@
   <title>La casa del Gelat</title>
 </head>
 
-<!--Navbar -->
+<!-- Navbar -->
 
 <body class="d-flex flex-column min-vh-100">
   <header>
@@ -46,9 +46,6 @@
               <a class="nav-link px-5" href="{% url 'recipes' %}">Recipes</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link px-5" href="{% url 'new_recipe' %}">New Recipe</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link px-5" href="{% url 'ingredients_calculation' %}">Ingredients calculation</a>
             </li>
             <li class="nav-item">
@@ -60,13 +57,14 @@
     {% endif %}
   </header>
 
+  <!-- Page Content -->
   <main>
     {% block content %}
     {% endblock %}
   </div>
   </main>
 
-  <!--Footer -->
+  <!-- Footer -->
   <footer class="container-fluid mt-auto py-2">
     <div class="row">
         <div class="col-6">
