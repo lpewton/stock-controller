@@ -1,13 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="mx-auto">
-    <h1>Edit an Ingredient</h1>
-    <form class="mt-3 text-center" action="{% url 'edit_ingredient' ingredient.pk %}" method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Edit Ingredient</button>
-    </form>
+<div class="container">
+    <div class="text-center mb-3 justify-contents-center">
+        <h1>Edit an Ingredient</h1>
+        <div class="col-8 mx-auto col-md-3 col-xl-2">
+            <form action="{% url 'edit_ingredient' ingredient.pk %}" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <hr>
+                <button type="submit">Edit Ingredient</button>
+            </form>
+        </div>
+    </div>
 </div>
-
 {% endblock %}
