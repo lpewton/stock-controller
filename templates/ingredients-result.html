@@ -1,21 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="container">
+    <h5 class="mt-2">Recipes requested:</h5>
+    {% for recipe in recipes %}
+    <ul>
+        <li>{{ recipe.recipe_ingredients }}</li>
+    </ul>
 
-{% for recipe in recipes %}
+    {% endfor %}
 
-<p>{{ recipe.recipe_ingredients }}</p>
+    <h5 class="mt-2">Stock needed:</h5>
 
-{% endfor %}
+    {% for ingredient_quantity in final_ic_list %}
 
+    <ul>
+        <li>{{ ingredient_quantity }}g</li>
+    </ul>
 
-{% for ingredient_quantity in final_ic_list %}
-
-<ul>
-    <li>{{ ingredient_quantity }}g</li>
-</ul>
-
-{% endfor %}
+    {% endfor %}
+</div>
 
 
 {% endblock %}
