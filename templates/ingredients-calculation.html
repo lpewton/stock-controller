@@ -1,24 +1,39 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<form class="border py-2 px-2" action="{% url 'ingredients_calculation' %}" method="POST">
-    {% csrf_token %}
-    {{ IngredientsCalculationForm.as_p }}
-    <hr>
-    <button type="submit">Add Recipe</button>
-</form>
+<div class="container">
+    <h2 class="mt-2">How much stock do I need?</h2>
+    <div class="row mt-3">
+        <div class="col-md-6">
+            <h5>Add a recipe:</h5>
+            <form class="border py-2 px-2" action="{% url 'ingredients_calculation' %}" method="POST">
+                {% csrf_token %}
+                {{ IngredientsCalculationForm.as_p }}
+                <hr>
+                <button type="submit">Add Recipe</button>
+            </form>
+        </div>
 
-<div>
-    <div>
-        {% for recipe in ingredients %}
-    <p>{{ recipe.recipe }} ({{ recipe.quantity }}L)</p>
-    {% endfor %}
-    <form action="{% url 'reset_ingredients' %}" method="POST">
-        {% csrf_token %}
-        <button type="submit" class="bg-danger rounded-circle border">RESET</button>
-      </form>
-      <a href=" {% url 'ingredients_result' %}">CALCULATE</a>
-      </form>
+        <div class="col-md-6 mt-3">
+            <h5>Recipes:</h5>
+            {% for recipe in ingredients %}
+            <ul>
+                <li>{{ recipe.recipe }} ({{ recipe.quantity }}L)</li>
+            </ul>
+            {% endfor %}
+
+        </div>
+        <div class="text-center">
+            <form action="{% url 'reset_ingredients' %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="bg-danger rounded border">RESET</button>
+                <hr>
+            </form>
+            <a href=" {% url 'ingredients_result' %}"
+                class="bg-info rounded border text-dark decoration-none p-1">CALCULATE</a>
+            </form>
+        </div>
     </div>
+</div>
 </div>
 {% endblock %}
