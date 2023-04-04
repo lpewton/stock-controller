@@ -4,6 +4,7 @@ from django.views import generic
 from django.views.generic import TemplateView, ListView, DetailView, View
 from .models import Ingredient, Recipe, ingredientQuantity, IngredientsCalculation, final_ic_list
 from .forms import IngredientForm, RecipeForm, IngredientQuantityForm, IngredientsCalculationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 
 class homePage(TemplateView):
@@ -175,3 +176,12 @@ class ingredientsResult(View):
         }
 
         return render(request, 'ingredients-result.html', context)
+
+
+class signup(View):
+    def get(self, request):
+        context = {
+            'signup_form': UserCreationForm()
+        }
+
+        return render(request, 'signup.html', context)
