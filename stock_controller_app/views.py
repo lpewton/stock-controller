@@ -180,8 +180,19 @@ class ingredientsResult(View):
 
 class signup(View):
     def get(self, request):
-        context = {
-            'signup_form': UserCreationForm()
-        }
+        signup_form = UserCreationForm()
+        return render(request, 'signup.html')
 
-        return render(request, 'signup.html', context)
+    def post(self, request):
+        signup_form = UserCreationForm(request.POST)
+
+        username = request.POST['username']
+        worker_type = request.POST['worker-type']
+        password1 = request.POST['password1']
+        password2 = request.POST['password2']
+
+        if signup_form.is_valid():
+            signup_form.save()
+            return redirect('ingredients_list')
+        else:
+            return redirect('signup')

@@ -1,5 +1,6 @@
 from django import forms
 from .models import Ingredient, Recipe, ingredientQuantity, IngredientsCalculation
+from django.contrib.auth.forms import UserCreationForm
 
 
 class IngredientForm(forms.ModelForm):
@@ -28,3 +29,10 @@ class IngredientsCalculationForm(forms.ModelForm):
     class Meta:
         model = IngredientsCalculation
         fields = ['recipe', 'quantity']
+
+
+class CustomUserCreationForm(UserCreationForm):
+    worker_type = forms.Select()
+
+    class Meta:
+        fields = ['username', 'worker-type', 'password1', 'password2']

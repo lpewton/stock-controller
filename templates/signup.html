@@ -2,34 +2,34 @@
 
 {% block content %}
 <div class="container text-center">
-    <h2 class="mt-3">Register a Worker</h2>
+    <h2 class="mt-3">Register an Employee</h2>
     <div class="text-center mx-auto w-25">
-        <form action="" class="text-center">
+        <form method="POST">
             {% csrf_token %}
-            <div class="row">
+            <div class="row text-center">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>
             </div>
             <div class="row">
-                <label for="type">Worker type:</label>
-                <select name="worker-type" id="worker-type" class="text-center" required>
+                <label for="worker-type">Worker type:</label>
+                <select name="worker-type" id="worker-type" class="text-center">
                     <option value="stock-manager">Stock Manager</option>
-                    <option value="scooper">Scooper</option>
                     <option value="cook">Cook</option>
+                    <option value="scooper">Scooper</option>
                 </select>
             </div>
             <div class="row">
-                <label for="username">Password:</label>
-                <input type="text" id="password" name="password" required>
+                <label for="password1">Password:</label>
+                <input type="password" id="password1" name="password1" required>
             </div>
             <div class="row">
-                <label for="username">Confirm Password:</label>
-                <input type="text" id="conf-password" name="conf-password" required>
+                <label for="password2">Confirm Password:</label>
+                <input type="password" id="password2" name="password2" required>
             </div>
-
             <hr>
-            <button type="submit">Register new Worker</button>
+            <button type="submit">Register Employee</button>
+        </form>
         </form>
     </div>
-</div>
-{% endblock %}
+
+    {% endblock %}
