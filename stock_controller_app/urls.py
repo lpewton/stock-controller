@@ -28,5 +28,4 @@ urlpatterns = [
           name='ingredients_result'),
      path('sign-up', views.signup.as_view(),
           name='signup'),
-     path('register/', views.signup.as_view(), name='register'),
 ]

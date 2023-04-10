@@ -24,10 +24,11 @@
   <header>
     <div id="header-div" class="text-center">
       <div>
-        <h1 class="display-1 py-5">La Casa del Gelat</h1>
+        <h1 class="display-1 py-3">La Casa del Gelat</h1>
+        {% if user.is_authenticated %}
+        <h6 class="pb-3">Welcome {{ user.username }}</h6>
       </div>
     </div>
-    {% if user.is_authenticated %}
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -48,9 +49,11 @@
             <li class="nav-item">
               <a class="nav-link px-5" href="{% url 'ingredients_calculation' %}">Ingredients calculation</a>
             </li>
+            {% if user.is_staff %}
             <li class="nav-item">
               <a class="nav-link px-5" href="{% url 'signup' %}">Signup</a>
             </li>
+            {% endif %}
             <li class="nav-item">
               <a class="nav-link px-5" href="{% url 'account_logout' %}">Log Out</a>
             </li>
@@ -64,20 +67,20 @@
   <main>
     {% block content %}
     {% endblock %}
-  </div>
+    </div>
   </main>
 
   <!-- Footer -->
   <footer class="container-fluid mt-auto py-2">
     <div class="row">
-        <div class="col-6">
-            <p><i class="fa-regular fa-copyright"></i> La Casa del Gelat</p>
-        </div>
-        <div class="col-6 text-end">
-            <p>Stock Controller</p>
-        </div>
+      <div class="col-6">
+        <p><i class="fa-regular fa-copyright"></i> La Casa del Gelat</p>
+      </div>
+      <div class="col-6 text-end">
+        <p>Stock Controller</p>
+      </div>
     </div>
-</footer>
+  </footer>
   <script src="https://kit.fontawesome.com/8b45f7f3ca.js" crossorigin="anonymous"></script>
 </body>
 
