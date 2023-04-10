@@ -1,6 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
+from django.contrib.auth.models import AbstractUser
 
 names_ic_list = []
 final_ic_list = []
@@ -83,4 +83,27 @@ class IngredientsCalculation(models.Model):
         return self
 
 
-#ADD THEM ALL TO A GENERAL LIST, IF IS-_INCLUDED, ADD THE VALUES    
+class CustomUser(AbstractUser):
+    WORKER_TYPES = (
+        ('scooper', 'Scooper'),
+        ('cook', 'Cook'),
+        ('stock-controller', 'Stock Controller'),
+    )
+
+    worker_type = models.CharField(max_length=50, choices=WORKER_TYPES, default='scooper')
+    groups = models.ManyToManyField(
+        'auth.Group',
+        related_name='customuser_set',
+        related_query_name='customuser',
+        blank=True,
+        verbose_name='groups',
+        help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.',
+    )
+    user_permissions = models.ManyToManyField(
+        'auth.Permission',
+        related_name='customuser_set',
+        related_query_name='customuser',
+        blank=True,
+        verbose_name='user permissions',
+        help_text='Specific permissions for this user.',
+    )

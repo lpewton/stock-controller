@@ -1,6 +1,7 @@
 from django import forms
 from .models import Ingredient, Recipe, ingredientQuantity, IngredientsCalculation
 from django.contrib.auth.forms import UserCreationForm
+from .models import CustomUser
 
 
 class IngredientForm(forms.ModelForm):
@@ -32,7 +33,13 @@ class IngredientsCalculationForm(forms.ModelForm):
 
 
 class CustomUserCreationForm(UserCreationForm):
-    worker_type = forms.Select()
+    WORKER_TYPES = [
+        ('scooper', 'Scooper'),
+        ('cook', 'Cook'),
+        ('stock-controller', 'Stock Controller')
+    ]
+    worker_type = forms.ChoiceField(choices=WORKER_TYPES)
 
     class Meta:
-        fields = ['username', 'worker-type', 'password1', 'password2']
+        model = CustomUser
+        fields = ('username', 'password1', 'password2', 'worker_type')

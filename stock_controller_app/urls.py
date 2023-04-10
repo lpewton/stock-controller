@@ -27,5 +27,6 @@ urlpatterns = [
      path('ingredients-result', views.ingredientsResult.as_view(),
           name='ingredients_result'),
      path('sign-up', views.signup.as_view(),
-          name='signup')
+          name='signup'),
+     path('register/', views.signup.as_view(), name='register'),
 ]

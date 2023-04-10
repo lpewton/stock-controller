@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Ingredient, Recipe, ingredientQuantity, IngredientsCalculation
-
+from .models import Ingredient, Recipe, ingredientQuantity, IngredientsCalculation, CustomUser
+from django.contrib.auth.admin import UserAdmin
 
 @admin.register(Ingredient)
 class IngredientAdmin(admin.ModelAdmin):
@@ -21,3 +21,14 @@ class ingredientsQuantity(admin.ModelAdmin):
 @admin.register(IngredientsCalculation)
 class ingredientsCalculation(admin.ModelAdmin):
     search_fields = ['recipe']
+
+
+class CustomUserAdmin(UserAdmin):
+    model = CustomUser
+    list_display = ['username', 'worker_type', 'is_staff']
+    fieldsets = UserAdmin.fieldsets + (
+        ('Custom Fields', {'fields': ('worker_type',)}),
+    )
+
+
+admin.site.register(CustomUser, CustomUserAdmin)

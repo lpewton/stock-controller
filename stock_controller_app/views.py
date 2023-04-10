@@ -3,8 +3,7 @@ from django.http import HttpResponseRedirect
 from django.views import generic
 from django.views.generic import TemplateView, ListView, DetailView, View
 from .models import Ingredient, Recipe, ingredientQuantity, IngredientsCalculation, final_ic_list
-from .forms import IngredientForm, RecipeForm, IngredientQuantityForm, IngredientsCalculationForm
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from .forms import IngredientForm, RecipeForm, IngredientQuantityForm, IngredientsCalculationForm, CustomUserCreationForm
 
 
 class homePage(TemplateView):
@@ -180,19 +179,19 @@ class ingredientsResult(View):
 
 class signup(View):
     def get(self, request):
-        signup_form = UserCreationForm()
-        return render(request, 'signup.html')
+        context = {
+            'signup_form': CustomUserCreationForm()
+        }
+        return render(request, 'signup.html', context)
 
     def post(self, request):
-        signup_form = UserCreationForm(request.POST)
-
-        username = request.POST['username']
-        worker_type = request.POST['worker-type']
-        password1 = request.POST['password1']
-        password2 = request.POST['password2']
-
-        if signup_form.is_valid():
-            signup_form.save()
-            return redirect('ingredients_list')
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            worker_type = form.cleaned_data['worker_type']
+            user.worker_type = worker_type
+            user.save()
+            return redirect('stock_list')
         else:
-            return redirect('signup')
+            form = CustomUserCreationForm()
+            return render(request, 'registration/register.html', {'form': form})
