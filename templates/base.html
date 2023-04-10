@@ -43,13 +43,17 @@
             <li class="nav-item">
               <a class="nav-link active px-5" aria-current="page" href="{% url 'stock_list' %}">Stock List</a>
             </li>
+            {% if user.worker_type != 'scooper' %}
             <li class="nav-item">
               <a class="nav-link px-5" href="{% url 'recipes' %}">Recipes</a>
             </li>
+            {% endif %}
+            {% if user.worker_type != 'scooper' %}
             <li class="nav-item">
               <a class="nav-link px-5" href="{% url 'ingredients_calculation' %}">Ingredients calculation</a>
             </li>
-            {% if user.is_staff %}
+            {% endif %}
+            {% if user.worker_type == 'stock-controller' %}
             <li class="nav-item">
               <a class="nav-link px-5" href="{% url 'signup' %}">Signup</a>
             </li>
