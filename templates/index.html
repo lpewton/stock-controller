@@ -15,7 +15,7 @@
   </div>
 
   {% for ingredient in ingredient_list %}
-  
+
   <!--Filter ingredient by weight_value -->
   {% if ingredient.weight_value > 10000 %}
   <div class="row border pt-2 bg-info">
@@ -27,20 +27,19 @@
         <div class="row border pt-2 bg-danger">
           {% endif %}
           <div class="col-4">
-            <p class="ms-3">{{ ingredient.name }}</p>
+            <p>{{ ingredient.name }}</p>
           </div>
-          <div class="col-3 col-md-4">
-          {% if ingredient.type == 1 %}
-          <p>{{ ingredient.weight_value}}mL</p>
-          {% else %}
-          <p>{{ ingredient.weight_value}}g</p>
-          {% endif %}
-        </div>
+          <div class="col-5 col-md-4">
+            {% if ingredient.type == 1 %}
+            <p>{{ ingredient.weight_value}}mL</p>
+            {% else %}
+            <p>{{ ingredient.weight_value}}g</p>
+            {% endif %}
+          </div>
 
           <!--Buttons for adding and removing -->
-          {% if user.worker_type == 'stock-manager' %}
-
-          <div class="col-5 col-md-4 d-md-flex">
+          {% if user.worker_type == 'stock-manager' or is_staff %}
+          <div class="col-3 col-md-4 d-md-flex">
             <div class="row justify-content-end pe-3">
               <div class="col-2 text-end">
                 <form action="{% url 'remove_ingredient' ingredient.pk %}" method="POST">
@@ -54,7 +53,7 @@
                 </form>
               </div>
               <p class="col-2 text-center">{{ ingredient.units }}</p>
-              <div class="col-2 text-start me-3">
+              <div class="col-2 text-start">
                 <form action="{% url 'add_ingredient' ingredient.pk %}" method="POST">
                   {% csrf_token %}
                   <button type="submit" value="{{ingredient.pk}}" class="me-3 bg-success rounded-circle">+</button>
@@ -70,9 +69,14 @@
                 {% csrf_token %}
                 <button type="submit" value="{{ingredient.pk}}" class="ms-4 bg-danger">Delete</i></button>
               </form>
-            {% else %}
-            <div class="col-5 col-md-4 d-md-flex">
-              <div class="row justify-content-end pe-3">
+
+              <div class="text-center">
+                <a href="{% url 'new_ingredient' %}" class="mt-3 bg-success text-dark p-1 btn">Add Ingredient</a>
+              </div>
+
+
+              {% else %}
+              <div class="row col-3 col-md-4 d-md-flex justify-content-around">
                 <div class="col-2 text-end">
                   <form action="{% url 'remove_ingredient' ingredient.pk %}" method="POST">
                     {% csrf_token %}
@@ -85,77 +89,62 @@
                   </form>
                 </div>
                 <p class="col-2 text-center">{{ ingredient.units }}</p>
-                <div class="col-2 text-start me-3">
+                <div class="col-2 text-start">
                   <form action="{% url 'add_ingredient' ingredient.pk %}" method="POST">
                     {% csrf_token %}
-                    <button type="submit" value="{{ingredient.pk}}" class="me-3 bg-success rounded-circle">+</button>
+                    <button type="submit" value="{{ingredient.pk}}" class="bg-success rounded-circle">+</button>
                   </form>
                 </div>
-  
-                <!--Editing and deleting ingredients -->
-                <a class="col-1" href="{% url 'edit_ingredient' ingredient.pk %}"><i
-                    class="fa-regular fa-pen-to-square text-dark h4"></i></a>
+                {% endif %}
               </div>
-              <div class="text-center mb-1">
-                <form action="{% url 'delete_ingredient' ingredient.pk %}" method="POST">
-                  {% csrf_token %}
-                  <button type="submit" value="{{ingredient.pk}}" class="ms-4 bg-danger">Delete</i></button>
-                </form>
+
+            </div>
           </div>
 
-          </div>
-          {% endif %}
-
-        </div>
-
-        {% endfor %}
-
-        <div class="text-center">
-          <a href="{% url 'new_ingredient' %}" class="mt-3 bg-success text-dark p-1 btn">Add Ingredient</a>
-        </div>
-
-        <!--Pagination -->
-        <ul class="pagination justify-content-center mt-5">
-          {% if page_obj.has_previous %}
-          <li class="page-item m-1">
-            <a href="?page=1" class="page-link directory-pag-a">&laquo; First</a>
-          </li>
-          <li class="page-item m-1">
-            <a href="?page={{ page_obj.previous_page_number }}" class="page-link directory-pag-a">Previous</a>
-          </li>
-          {% else %}
-          <li class="page-item m-1">
-            <a href="#" class="page-link directory-pag-a">&laquo; First</a>
-          </li>
-          <li class="page-item m-1">
-            <a href="#" class="page-link directory-pag-a">Previous</a>
-          </li>
-
-          {% endif %}
-
-          {% for page in page_obj.paginator.page_range %}
-          <li class="page-item m-1"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
           {% endfor %}
 
-          {% if page_obj.has_next %}
-          <li class="page-item m-1">
-            <a href="?page={{ page_obj.next_page_number }}" class="page-link">Next</a>
-          </li>
-          <li class="page-item m-1">
-            <a href="?page={{ page_obj.paginator.num_pages }}" class="page-link">Last &raquo;</a>
-          </li>
+          <!--Pagination -->
+          <ul class="pagination justify-content-center mt-5">
+            {% if page_obj.has_previous %}
+            <li class="page-item m-1">
+              <a href="?page=1" class="page-link directory-pag-a">&laquo; First</a>
+            </li>
+            <li class="page-item m-1">
+              <a href="?page={{ page_obj.previous_page_number }}" class="page-link directory-pag-a">Previous</a>
+            </li>
+            {% else %}
+            <li class="page-item m-1">
+              <a href="#" class="page-link directory-pag-a">&laquo; First</a>
+            </li>
+            <li class="page-item m-1">
+              <a href="#" class="page-link directory-pag-a">Previous</a>
+            </li>
 
-          {% else %}
-          <li class="page-item m-1">
-            <a href="#" class="page-link">Next</a>
-          </li>
-          <li class="page-item m-1">
-            <a href="#" class="page-link">Last &raquo;</a>
-          </li>
+            {% endif %}
 
-          {% endif %}
-        </ul>
+            {% for page in page_obj.paginator.page_range %}
+            <li class="page-item m-1"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
+            {% endfor %}
 
-      </div>
+            {% if page_obj.has_next %}
+            <li class="page-item m-1">
+              <a href="?page={{ page_obj.next_page_number }}" class="page-link">Next</a>
+            </li>
+            <li class="page-item m-1">
+              <a href="?page={{ page_obj.paginator.num_pages }}" class="page-link">Last &raquo;</a>
+            </li>
 
-      {% endblock %}
+            {% else %}
+            <li class="page-item m-1">
+              <a href="#" class="page-link">Next</a>
+            </li>
+            <li class="page-item m-1">
+              <a href="#" class="page-link">Last &raquo;</a>
+            </li>
+
+            {% endif %}
+          </ul>
+
+        </div>
+
+        {% endblock %}
