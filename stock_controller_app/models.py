@@ -64,7 +64,9 @@ class IngredientsCalculation(models.Model):
 
         for ingredient in ingredients:
             ingredient_name = f'{ingredient.name}'
-            matching_item = next((item for item in final_ic_list if ingredient_name in item), None)
+            matching_item = next((
+                item for item in final_ic_list if ingredient_name in item),
+                    None)
 
             if matching_item is None:
                 new_quantity = ingredient.quantity * self.quantity
@@ -73,7 +75,8 @@ class IngredientsCalculation(models.Model):
                 removed_index = final_ic_list.index(matching_item)
 
                 split_list = final_ic_list[removed_index].split(',')
-                new_quantity = int(split_list[1]) + (ingredient.quantity * self.quantity)
+                new_quantity = int(split_list[1]) + (
+                    ingredient.quantity * self.quantity)
 
                 final_ic_list.pop(removed_index)
 
@@ -90,14 +93,15 @@ class CustomUser(AbstractUser):
         ('stock-controller', 'Stock Controller'),
     )
 
-    worker_type = models.CharField(max_length=50, choices=WORKER_TYPES, default='scooper')
+    worker_type = models.CharField(
+        max_length=50, choices=WORKER_TYPES, default='scooper')
     groups = models.ManyToManyField(
         'auth.Group',
         related_name='customuser_set',
         related_query_name='customuser',
         blank=True,
         verbose_name='groups',
-        help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.',
+        help_text='The groups this user belongs to.',
     )
     user_permissions = models.ManyToManyField(
         'auth.Permission',

@@ -1,6 +1,7 @@
 from django.contrib import admin
-from .models import Ingredient, Recipe, ingredientQuantity, IngredientsCalculation, CustomUser
+from .models import *
 from django.contrib.auth.admin import UserAdmin
+
 
 @admin.register(Ingredient)
 class IngredientAdmin(admin.ModelAdmin):

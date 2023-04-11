@@ -2,8 +2,8 @@ from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.http import HttpResponseRedirect
 from django.views import generic
 from django.views.generic import TemplateView, ListView, DetailView, View
-from .models import Ingredient, Recipe, ingredientQuantity, IngredientsCalculation, final_ic_list
-from .forms import IngredientForm, RecipeForm, IngredientQuantityForm, IngredientsCalculationForm, CustomUserCreationForm
+from .models import *
+from .forms import *
 
 
 class homePage(TemplateView):
@@ -194,4 +194,5 @@ class signup(View):
             return redirect('stock_list')
         else:
             form = CustomUserCreationForm()
-            return render(request, 'registration/register.html', {'form': form})
+            return render(
+                request, 'registration/register.html', {'form': form})
