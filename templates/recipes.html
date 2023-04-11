@@ -16,10 +16,12 @@
     </div>
 </div>
 
+{% if user.worker_type == 'stock-manager' or is_staff %}
 <!-- New Recipe Button -->
 <div class="text-center">
     <a href="{% url 'new_recipe' %}" class="mt-3 bg-success text-dark p-1 btn">Add Recipe</a>
 </div>
+{% endif %}
 
 <!-- Pagination -->
 <ul class="pagination justify-content-center mb-5">
