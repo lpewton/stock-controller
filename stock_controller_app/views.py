@@ -6,6 +6,7 @@ from .models import *
 from .forms import *
 
 
+# Login
 class homePage(TemplateView):
     """Render the landing page"""
     template_name = 'homepage.html'
@@ -177,6 +178,7 @@ class ingredientsResult(View):
         return render(request, 'ingredients-result.html', context)
 
 
+# Register a new user
 class signup(View):
     def get(self, request):
         context = {

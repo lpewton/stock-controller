@@ -24,6 +24,7 @@ class ingredientsCalculation(admin.ModelAdmin):
     search_fields = ['recipe']
 
 
+# Authorized Users
 class CustomUserAdmin(UserAdmin):
     model = CustomUser
     list_display = ['username', 'worker_type', 'is_staff']
