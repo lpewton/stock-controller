@@ -15,14 +15,14 @@ class RecipeForm(forms.ModelForm):
 
     class Meta:
         model = Recipe
-        fields = ['name', 'ingredient', 'notes']
+        fields = ['recipe_name', 'ingredient', 'notes']
 
 
 class IngredientQuantityForm(forms.ModelForm):
 
     class Meta:
         model = ingredientQuantity
-        fields = ['name', 'quantity']
+        fields = ['ingredient_name', 'quantity']
 
 
 class IngredientsCalculationForm(forms.ModelForm):

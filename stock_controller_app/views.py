@@ -106,6 +106,15 @@ class recipes(ListView):
     paginate_by = 15
 
 
+class deleteRecipe(View):
+    """Deletes ingredient"""
+
+    def post(self, request, pk):
+        recipe = get_object_or_404(Recipe, pk=pk)
+        recipe.delete()
+
+        return HttpResponseRedirect(reverse('recipes'))
+
 class recipeDetail(DetailView):
     """Renders the details of each recipe"""
     model = Recipe
@@ -135,6 +144,7 @@ class newRecipe(TemplateView):
 
         elif ingredientQuantityForm.is_valid():
             ingredientQuantityForm.save()
+
             return redirect('new_recipe')
 
 

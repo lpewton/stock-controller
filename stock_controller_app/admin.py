@@ -11,12 +11,12 @@ class IngredientAdmin(admin.ModelAdmin):
 
 @admin.register(Recipe)
 class recipeAdmin(admin.ModelAdmin):
-    search_fields = ['name']
+    search_fields = ['recipe_name']
 
 
 @admin.register(ingredientQuantity)
 class ingredientsQuantity(admin.ModelAdmin):
-    search_fields = ['name']
+    search_fields = ['ingredient_name']
 
 
 @admin.register(IngredientsCalculation)

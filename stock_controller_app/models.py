@@ -29,26 +29,26 @@ class Ingredient(models.Model):
 
 
 class ingredientQuantity(models.Model):
-    name = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
+    ingredient_name = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=500)
 
     def __str__(self):
-        return f"{self.name} ({self.quantity}g)"
+        return f"{self.ingredient_name} ({self.quantity}g)"
 
     class Meta:
-        ordering = ["name"]
+        ordering = ["ingredient_name"]
 
 
 class Recipe(models.Model):
-    name = models.CharField(max_length=200, unique=True)
+    recipe_name = models.CharField(max_length=200, unique=True)
     ingredient = models.ManyToManyField(ingredientQuantity)
     notes = models.CharField(max_length=200, default='', null=True, blank=True)
 
     def __str__(self):
-        return self.name
+        return self.recipe_name
 
     class Meta:
-        ordering = ["name"]
+        ordering = ["recipe_name"]
 
 
 class IngredientsCalculation(models.Model):
