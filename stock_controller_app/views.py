@@ -106,14 +106,38 @@ class recipes(ListView):
     paginate_by = 15
 
 
+class editRecipe(DetailView):
+    """Render edit recipe page"""
+
+    def get(self, request, pk):
+        recipe = get_object_or_404(Recipe, pk=pk)
+        form = RecipeForm(instance=recipe)
+
+        context = {
+            'form': form,
+            'recipe': recipe
+        }
+
+        return render(request, 'edit-ingredient.html', context)
+
+    def post(self, request, pk):
+        recipe = get_object_or_404(Recipe, pk=pk)
+        form = RecipeForm(request.POST, instance=recipe)
+
+        if form.is_valid():
+            form.save()
+            return redirect('recipes')
+
+
 class deleteRecipe(View):
-    """Deletes ingredient"""
+    """Deletes recipe"""
 
     def post(self, request, pk):
         recipe = get_object_or_404(Recipe, pk=pk)
         recipe.delete()
 
         return HttpResponseRedirect(reverse('recipes'))
+
 
 class recipeDetail(DetailView):
     """Renders the details of each recipe"""

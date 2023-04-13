@@ -9,15 +9,23 @@
         {% for recipe in recipe_list %}
         <a href="{% url 'recipe_detail' recipe.pk %}"
             class="recipe-anchor col-3 col-xl-2 bg-success mx-1 mb-4 rounded d-flex align-items-center justify-content-center text-decoration-none flex-column">
-            <p id="recipe-name" class="text-dark h6 md-h3 text-center">{{ recipe.recipe_name }}</p>
-            <form action="{% url 'delete_recipe' recipe.pk %}" method="POST">
-                {% csrf_token %}
-                <button type="submit" value="{{recipe.pk}}"><i class="fa-solid fa-trash"></i></button>
-            </form>
+            <div>
+                <p id="recipe-name" class="text-dark h6 md-h3 text-center">{{ recipe.recipe_name }}</p>
+            </div>
+            <div class="row mt-4">
+                <form action="{% url 'edit_recipe' recipe.pk %}" method="POST" class="w-50">
+                    {% csrf_token %}
+                    <button type="submit" value="{{recipe.pk}}"><i class="fa-solid fa-pen-to-square"></i></button>
+                </form>
+                <form action="{% url 'delete_recipe' recipe.pk %}" method="POST" class="w-50">
+                    {% csrf_token %}
+                    <button type="submit" value="{{recipe.pk}}"><i class="fa-solid fa-trash"></i></button>
+                </form>
+            </div>
         </a>
 
-    {% endfor %}
-</div>
+        {% endfor %}
+    </div>
 
 </div>
 
