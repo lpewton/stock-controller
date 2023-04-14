@@ -111,14 +111,13 @@ class editRecipe(DetailView):
 
     def get(self, request, pk):
         recipe = get_object_or_404(Recipe, pk=pk)
-        form = RecipeForm(instance=recipe)
-
+        recipeForm = RecipeForm(instance=recipe)
         context = {
-            'form': form,
-            'recipe': recipe
+            'recipeForm': recipeForm,
+            'recipe': recipe,
         }
 
-        return render(request, 'edit-ingredient.html', context)
+        return render(request, 'edit-recipe.html', context)
 
     def post(self, request, pk):
         recipe = get_object_or_404(Recipe, pk=pk)

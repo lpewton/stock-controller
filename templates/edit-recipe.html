@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mt-3">Edit a Recipe</h2>
+    <hr>
+    <div class="row">
+        <div class="col-md-5">
+            <h5 class="mb-3">Edit recipe</h5>
+            <form class="border p-2" action="{% url 'edit_recipe' recipe.pk %}" method="POST">
+                {% csrf_token %}
+                {{ recipeForm.as_p }}
+                <hr>
+                <button type="submit">Add Recipe</button>
+            </form>
+
+        </div>
+        <div class="col-md-5 mb-3">
+            <h5 class="my-3 mt-md-0">Add an Ingredient Quantity (g)</h5>
+            <form class="border p-2" action="{% url 'new_recipe' %}" method="POST">
+                {% csrf_token %}
+                {{ IngredientQuantityForm.as_p }}
+                <hr>
+                <button type="submit">Add Ingredient Quantity</button>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+
+<form action="" class="text-center">
+    {% csrf_token %}
+    <div class="row">
+        <label for="recipe_name">Recipe Name:</label>
+        <input type="text" id="recipe_name" name="recipe_name" required>
+    </div>
+    <form action="" class="text-center">
+        <label for="recipe_ingredient_name">Ingredient:</label>
+        {{ IngredientQuantityForm.name }}
+        <br>
+        <label for="recipe_ingredient_quantity">Quantity:</label>
+        <input type="integer" id="recipe_ingredient_quantity" name="recipe_ingredient_quantity" required>
+        <br>
+        <button type="submit">Add ingredient</button>
+
+    </form>
+    <div class="row">
+        <label for="recipe_notes">Password:</label>
+        <input type="text" id="recipe_notes" name="recipe_notes" required>
+    </div>
+    <hr>
+    <button type="submit">Edit recipe</button>
+</form>
+{% endblock %}
