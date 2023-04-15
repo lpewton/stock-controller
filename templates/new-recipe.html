@@ -27,27 +27,4 @@
 </div>
 </div>
 
-<form action="" class="text-center">
-    {% csrf_token %}
-    <div class="row">
-        <label for="recipe_name">Recipe Name:</label>
-        <input type="text" id="recipe_name" name="recipe_name" required>
-    </div>
-    <form action="" class="text-center">
-        <label for="recipe_ingredient_name">Ingredient:</label>
-        {{ IngredientQuantityForm.name }}
-        <br>
-        <label for="recipe_ingredient_quantity">Quantity:</label>
-        <input type="integer" id="recipe_ingredient_quantity" name="recipe_ingredient_quantity" required>
-        <br>
-        <button type="submit">Add ingredient</button>
-
-    </form>
-    <div class="row">
-        <label for="recipe_notes">Password:</label>
-        <input type="text" id="recipe_notes" name="recipe_notes" required>
-    </div>
-    <hr>
-    <button type="submit">Add recipe</button>
-</form>
 {% endblock %}
