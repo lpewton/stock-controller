@@ -39,10 +39,10 @@
           </div>
 
           <!--Ingredient buttons if user is manager -->
-          {% if user.worker_type == 'stock-controller' or is_staff %}
+          {% if user.worker_type == 'stock-controller' or user.is_staff %}
           <div class="col-3 col-md-4 d-md-flex">
-            <div class="row justify-content-end pe-3">
-              <div class="col-2 text-end">
+            <div class="col-md-6 row d-flex justify-content-center">
+              <div class="col-1 text-end">
                 <form action="{% url 'remove_ingredient' ingredient.pk %}" method="POST">
                   {% csrf_token %}
                   {% if ingredient.units == 0 %}
@@ -53,22 +53,21 @@
                   {% endif %}
                 </form>
               </div>
-              <p class="col-2 text-center">{{ ingredient.units }}</p>
-              <div class="col-2 text-start">
-                <form action="{% url 'add_ingredient' ingredient.pk %}" method="POST">
-                  {% csrf_token %}
-                  <button type="submit" value="{{ingredient.pk}}" class="me-3 bg-success rounded-circle">+</button>
-                </form>
-              </div>
+              <p class="col-1 text-center">{{ ingredient.units }}</p>
+              <form class="col-1" action="{% url 'add_ingredient' ingredient.pk %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" value="{{ingredient.pk}}" class="me-3 bg-success rounded-circle">+</button>
+              </form>
+            </div>
+            <!--Editing and deleting ingredients -->
+            <div class="col-md-6 row d-flex justify-content-center pe-4 pb-1">
 
-              <!--Editing and deleting ingredients -->
               <a class="col-1" href="{% url 'edit_ingredient' ingredient.pk %}">
                 <i class="fa-regular fa-pen-to-square text-dark h4"></i></a>
-            </div>
-            <div class="text-center mb-1">
-              <form action="{% url 'delete_ingredient' ingredient.pk %}" method="POST">
+              <form class="col-1" action="{% url 'delete_ingredient' ingredient.pk %}" method="POST">
                 {% csrf_token %}
-                <button type="submit" value="{{ingredient.pk}}" class="ms-4 bg-danger">Delete</i></button>
+                <button type="submit" value="{{ingredient.pk}}" class="ms-4 bg-danger"><i
+                    class="fa-solid fa-trash"></i></i></button>
               </form>
             </div>
           </div>

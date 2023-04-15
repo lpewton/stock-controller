@@ -63,14 +63,15 @@ class IngredientsCalculation(models.Model):
         ingredients = self.recipe.ingredient.all()
 
         for ingredient in ingredients:
-            ingredient_name = f'{ingredient.name}'
+            ingredient_name = f'{ingredient.ingredient_name}'
             matching_item = next((
                 item for item in final_ic_list if ingredient_name in item),
                     None)
 
             if matching_item is None:
                 new_quantity = ingredient.quantity * self.quantity
-                final_ic_list.append(f'{ingredient.name}, {new_quantity}')
+                final_ic_list.append(
+                    f'{ingredient.ingredient_name},{new_quantity}')
             else:
                 removed_index = final_ic_list.index(matching_item)
 
@@ -80,7 +81,7 @@ class IngredientsCalculation(models.Model):
 
                 final_ic_list.pop(removed_index)
 
-                final_ic_list.append(f'{ingredient.name}, {new_quantity}')
+                final_ic_list.append(f'{ingredient.ingredient_name}, {new_quantity}')
                 final_ic_list.sort()
 
         return self
