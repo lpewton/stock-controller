@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.http import HttpResponseRedirect
 from django.views import generic
 from django.views.generic import TemplateView, ListView, DetailView, View
+from django.db.models import Q
 from .models import *
 from .forms import *
 
@@ -10,6 +11,41 @@ from .forms import *
 class homePage(TemplateView):
     """Render the landing page"""
     template_name = 'homepage.html'
+
+
+class SearchResults(generic.ListView):
+    """
+    View for rendering the search results page
+    """
+    model = Ingredient
+    template_name = 'search-results.html'
+    paginate_by = 4
+
+    def querystring(self):
+        """
+        querystring method
+        Required for retaining the same queryset across multiple -
+        - pagination pages
+        """
+        querystring = self.request.GET.copy()
+        querystring.pop(self.page_kwarg, None)
+        encoded_querystring = querystring.urlencode()
+        return encoded_querystring
+
+    def get_queryset(self):
+        """
+        get_queryset method
+        Constructs a queryset using Q methods
+        Returns an object_list for use within the template
+        """
+        query = self.request.GET.get('search')
+        object_list = Ingredient.objects.filter(
+            Q(name__icontains=query) |
+            Q(price__icontains=query) |
+            Q(unit_weight__icontains=query) |
+            Q(supplier__icontains=query)
+            )
+        return object_list
 
 
 # Ingredients
