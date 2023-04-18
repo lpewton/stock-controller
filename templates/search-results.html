@@ -5,89 +5,86 @@
 <div class="container-fluid">
 
 {% for ingredient in object_list %}
-<!--Filter ingredient by weight_value -->
-{% if ingredient.weight_value > 10000 %}
-<div class="row border mt-5 bg-info">
-  {% elif ingredient.weight_value > 5000 %}
-  <div class="row border pt-2 bg-success">
-    {% elif ingredient.weight_value > 0 %}
-    <div class="row border pt-2 bg-warning">
-      {% elif ingredient.weight_value == 0 %}
-      <div class="row border pt-2 bg-danger">
-        {% endif %}
-        <div class="col-4">
-          <p>{{ ingredient.name }}</p>
-        </div>
-        <div class="col-4">
-          {% if ingredient.type == 1 %}
-          <p>{{ ingredient.weight_value}}mL</p>
-          {% else %}
-          <p>{{ ingredient.weight_value}}g</p>
-          {% endif %}
-        </div>
+ <!--Filter ingredient by weight_value -->
+ {% if ingredient.weight_value > 10000 %}
+ <div class="row border pt-2 bg-info">
+   {% elif ingredient.weight_value > 5000 %}
+   <div class="row border pt-2 bg-success">
+     {% elif ingredient.weight_value > 0 %}
+     <div class="row border pt-2 bg-warning">
+       {% elif ingredient.weight_value == 0 %}
+       <div class="row border pt-2 bg-danger">
+         {% endif %}
+         <div class="col-4">
+           <p>{{ ingredient.name }}</p>
+         </div>
+         <div class="col-4">
+           {% if ingredient.type == 1 %}
+           <p>{{ ingredient.weight_value}}mL</p>
+           {% else %}
+           <p>{{ ingredient.weight_value}}g</p>
+           {% endif %}
+         </div>
 
-        <!--Ingredient buttons if user is manager -->
-        {% if user.worker_type == 'stock-controller' or user.is_staff %}
-        <div class="col-3 col-md-4 d-md-flex">
-          <div class="col-md-6 row d-flex justify-content-center">
-            <div class="col-1 text-end">
-              <form action="{% url 'remove_ingredient' ingredient.pk %}" method="POST">
-                {% csrf_token %}
-                {% if ingredient.units == 0 %}
-                <button type="submit" value="{{ingredient.pk}}" class="bg-danger rounded-circle border"
-                  disabled>-</button>
-                {% else %}
-                <button type="submit" value="{{ingredient.pk}}" class="bg-danger rounded-circle border">-</button>
-                {% endif %}
-              </form>
-            </div>
-            <p class="col-1 text-center">{{ ingredient.units }}</p>
-            <form class="col-1" action="{% url 'add_ingredient' ingredient.pk %}" method="POST">
-              {% csrf_token %}
-              <button type="submit" value="{{ingredient.pk}}" class="me-3 bg-success rounded-circle">+</button>
-            </form>
-          </div>
-          <!--Editing and deleting ingredients -->
-          <div class="col-md-6 row d-flex justify-content-center pe-4 pb-1">
+         <!--Ingredient buttons if user is manager -->
+         {% if user.worker_type == 'stock-controller' or user.is_staff %}
+         <div class="col-3 col-md-4 d-md-flex">
+           <div class="col-md-6 row d-flex justify-content-center">
+             <div class="col-1 text-end">
+               <form action="{% url 'remove_ingredient' ingredient.pk %}" method="POST">
+                 {% csrf_token %}
+                 {% if ingredient.units == 0 %}
+                 <button type="submit" value="{{ingredient.pk}}" class="bg-danger rounded-circle border"
+                   disabled>-</button>
+                 {% else %}
+                 <button type="submit" value="{{ingredient.pk}}" class="bg-danger rounded-circle border">-</button>
+                 {% endif %}
+               </form>
+             </div>
+             <p class="col-1 text-center">{{ ingredient.units }}</p>
+             <form class="col-1" action="{% url 'add_ingredient' ingredient.pk %}" method="POST">
+               {% csrf_token %}
+               <button type="submit" value="{{ingredient.pk}}" class="me-3 bg-success rounded-circle">+</button>
+             </form>
+           </div>
+           <!--Editing and deleting ingredients -->
+           <div class="col-md-6 row d-flex justify-content-center pe-4 pb-1">
 
-            <a class="col-1" href="{% url 'edit_ingredient' ingredient.pk %}">
-              <i class="fa-regular fa-pen-to-square text-dark h4"></i></a>
-            <form class="col-1" action="{% url 'delete_ingredient' ingredient.pk %}" method="POST">
-              {% csrf_token %}
-              <button type="submit" value="{{ingredient.pk}}" class="ms-4 bg-danger"><i
-                  class="fa-solid fa-trash"></i></i></button>
-            </form>
-          </div>
-        </div>
-      </div>
+             <a class="col-1" href="{% url 'edit_ingredient' ingredient.pk %}">
+               <i class="fa-regular fa-pen-to-square text-dark h4"></i></a>
+             <form class="col-1" action="{% url 'delete_ingredient' ingredient.pk %}" method="POST">
+               {% csrf_token %}
+               <button type="submit" value="{{ingredient.pk}}" class="ms-4 bg-danger"><i
+                   class="fa-solid fa-trash"></i></i></button>
+             </form>
+           </div>
+         </div>
+       </div>
 
-      <!--Ingredient buttons if user is not manager -->
-      {% else %}
-      <div class="row col-4 d-md-flex justify-content-around">
-        <div class="col-2 text-end">
-          <form action="{% url 'remove_ingredient' ingredient.pk %}" method="POST">
-            {% csrf_token %}
-            {% if ingredient.units == 0 %}
-            <button type="submit" value="{{ingredient.pk}}" class="bg-danger rounded-circle border"
-              disabled>-</button>
-            {% else %}
-            <button type="submit" value="{{ingredient.pk}}" class="bg-danger rounded-circle border">-</button>
-            {% endif %}
-          </form>
-        </div>
-        <p class="col-2 text-center">{{ ingredient.units }}</p>
-        <div class="col-2 text-start">
-          <form action="{% url 'add_ingredient' ingredient.pk %}" method="POST">
-            {% csrf_token %}
-            <button type="submit" value="{{ingredient.pk}}" class="bg-success rounded-circle">+</button>
-          </form>
-        </div>
-        {% endif %}
-      </div>
-    </div>
-  </div>
-</div>
+       <!--Ingredient buttons if user is not manager -->
+       {% else %}
+       <div class="row col-4 d-md-flex justify-content-around">
+         <div class="col-2 text-end">
+           <form action="{% url 'remove_ingredient' ingredient.pk %}" method="POST">
+             {% csrf_token %}
+             {% if ingredient.units == 0 %}
+             <button type="submit" value="{{ingredient.pk}}" class="bg-danger rounded-circle border"
+               disabled>-</button>
+             {% else %}
+             <button type="submit" value="{{ingredient.pk}}" class="bg-danger rounded-circle border">-</button>
+             {% endif %}
+           </form>
+         </div>
+         <p class="col-2 text-center">{{ ingredient.units }}</p>
+         <div class="col-2 text-start">
+           <form action="{% url 'add_ingredient' ingredient.pk %}" method="POST">
+             {% csrf_token %}
+             <button type="submit" value="{{ingredient.pk}}" class="bg-success rounded-circle">+</button>
+           </form>
+         </div>
+         {% endif %}
+       </div>
+     </div>
+   </div>
 
-{% endfor %}
-
-{% endblock %}
+   {% endblock %}

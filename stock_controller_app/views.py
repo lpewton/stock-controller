@@ -39,21 +39,14 @@ class SearchResults(generic.ListView):
         Returns an object_list for use within the template
         """
         query = self.request.GET.get('search')
-        search_results = []
         ingredients_list = Ingredient.objects.filter(
             Q(name__icontains=query) |
             Q(price__icontains=query) |
             Q(unit_weight__icontains=query) |
             Q(supplier__icontains=query)
             )
+        return ingredients_list
 
-        recipes_list = Recipe.objects.filter(
-            Q(recipe_name__icontains=query)
-            )
-
-        search_results.extend(ingredients_list)
-        search_results.extend(recipes_list)
-        return search_results
 
 # Ingredients
 class IngredientsList(ListView):
