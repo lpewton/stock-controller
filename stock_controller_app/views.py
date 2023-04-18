@@ -14,11 +14,11 @@ class homePage(TemplateView):
 
 
 # Search Bar
-class SearchResults(generic.ListView):
+class IngredientSearchResults(generic.ListView):
     """
     View for rendering the search results page
     """
-    template_name = 'search-results.html'
+    template_name = 'search-ingredients.html'
     paginate_by = 4
 
     def querystring(self):
@@ -46,6 +46,37 @@ class SearchResults(generic.ListView):
             Q(supplier__icontains=query)
             )
         return ingredients_list
+
+
+class RecipeSearchResults(generic.ListView):
+    """
+    View for rendering the search results page
+    """
+    template_name = 'search-recipes.html'
+    paginate_by = 4
+
+    def querystring(self):
+        """
+        querystring method
+        Required for retaining the same queryset across multiple -
+        - pagination pages
+        """
+        querystring = self.request.GET.copy()
+        querystring.pop(self.page_kwarg, None)
+        encoded_querystring = querystring.urlencode()
+        return encoded_querystring
+
+    def get_queryset(self):
+        """
+        get_queryset method
+        Constructs a queryset using Q methods
+        Returns an object_list for use within the template
+        """
+        query = self.request.GET.get('search')
+        recipes_list = Recipe.objects.filter(
+            Q(recipe_name__icontains=query)
+            )
+        return recipes_list
 
 
 # Ingredients

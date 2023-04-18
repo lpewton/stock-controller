@@ -1,90 +1,113 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
 
 {% block content %}
 
+<div class="col-3 mt-1 ms-1">
+    <form class="d-flex" role="search" action="{% url 'recipe_search_results' %}" method="GET">
+        <input class="form-control me-2" type="search" placeholder="Search Recipe" aria-label="Search"
+            name="search" />
+        <button class="btn btn-outline-success vibrant-green" type="submit">
+            Search
+        </button>
+    </form>
+</div>
+
 <!-- Recipes List -->
 <div class="container">
-    <h2 class="my-3 ms-3">Recipes</h2>
+  <h2 class="my-3 ms-3">Recipes</h2>
 
-    <div class="container">
-        <div class="row d-flex justify-content-around mb-3">
-            {% for recipe in recipe_list %}
-            <div class="card mb-5 mb-md-0 row col-md-2 text-center">
-                <div class="card-body">
-                    <a href="{% url 'recipe_detail' recipe.pk %}"
-                        class="h5 card-title text-decoration-none">{{ recipe.recipe_name }}</a>
-                    <br>
-                    <hr>
-                    <div class="row justify-content-around">
-                        <a href="{% url 'edit_recipe' recipe.pk %}" class="w-50"><i
-                                class="fa-regular fa-pen-to-square text-dark h4"></i></a>
-                        <form class="w-50" action="{% url 'delete_recipe' recipe.pk %}" method="POST">
-                            {% csrf_token %}
-                            <button type="submit" value="{{recipe.pk}}"><i class="fa-solid fa-trash"></i></button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            {% if forloop.counter|divisibleby:4 %}
+  <div class="container">
+    <div class="row d-flex justify-content-around mb-3">
+      {% for recipe in recipe_list %}
+      <div class="card mb-5 mb-md-0 row col-md-2 text-center">
+        <div class="card-body">
+          <a
+            href="{% url 'recipe_detail' recipe.pk %}"
+            class="h5 card-title text-decoration-none"
+            >{{ recipe.recipe_name }}</a
+          >
+          <br />
+          <hr />
+          <div class="row justify-content-around">
+            <a href="{% url 'edit_recipe' recipe.pk %}" class="w-50"
+              ><i class="fa-regular fa-pen-to-square text-dark h4"></i
+            ></a>
+            <form
+              class="w-50"
+              action="{% url 'delete_recipe' recipe.pk %}"
+              method="POST"
+            >
+              {% csrf_token %}
+              <button type="submit" value="{{recipe.pk}}">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </form>
+          </div>
         </div>
-        <div class="row d-flex justify-content-around mb-3">
-
-            {% endif %}
-
-            {% endfor %}
-        </div>
-
+      </div>
+      {% if forloop.counter|divisibleby:4 %}
     </div>
-
-    {% if user.worker_type == 'stock-controller' or user.is_staff %}
-
-    <!-- New Recipe Button -->
-    <div class="text-center">
-        <a href="{% url 'new_recipe' %}" class="mb-3 bg-success text-dark p-1 btn">Add Recipe</a>
+    <div class="row d-flex justify-content-around mb-3">
+      {% endif %} 
+      {% endfor %}
     </div>
+  </div>
+
+  {% if user.worker_type == 'stock-controller' or user.is_staff %}
+
+  <!-- New Recipe Button -->
+  <div class="text-center">
+    <a href="{% url 'new_recipe' %}" class="mb-3 bg-success text-dark p-1 btn"
+      >Add Recipe</a
+    >
+  </div>
+  {% endif %}
+
+  <!-- Pagination -->
+  <ul class="pagination justify-content-center mb-5">
+    {% if page_obj.has_previous %}
+    <li class="page-item m-1">
+      <a href="?page=1" class="page-link directory-pag-a">&laquo; First</a>
+    </li>
+    <li class="page-item m-1">
+      <a
+        href="?page={{ page_obj.previous_page_number }}"
+        class="page-link directory-pag-a"
+        >Previous</a
+      >
+    </li>
+    {% else %}
+    <li class="page-item m-1">
+      <a href="#" class="page-link directory-pag-a">&laquo; First</a>
+    </li>
+    <li class="page-item m-1">
+      <a href="#" class="page-link directory-pag-a">Previous</a>
+    </li>
+
+    {% endif %} {% for page in page_obj.paginator.page_range %}
+    <li class="page-item m-1">
+      <a class="page-link" href="?page={{ page }}">{{ page }}</a>
+    </li>
+    {% endfor %} {% if page_obj.has_next %}
+    <li class="page-item m-1">
+      <a href="?page={{ page_obj.next_page_number }}" class="page-link">Next</a>
+    </li>
+    <li class="page-item m-1">
+      <a href="?page={{ page_obj.paginator.num_pages }}" class="page-link"
+        >Last &raquo;</a
+      >
+    </li>
+
+    {% else %}
+    <li class="page-item m-1">
+      <a href="#" class="page-link">Next</a>
+    </li>
+    <li class="page-item m-1">
+      <a href="#" class="page-link">Last &raquo;</a>
+    </li>
+
     {% endif %}
+  </ul>
 
-    <!-- Pagination -->
-    <ul class="pagination justify-content-center mb-5">
-        {% if page_obj.has_previous %}
-        <li class="page-item m-1">
-            <a href="?page=1" class="page-link directory-pag-a">&laquo; First</a>
-        </li>
-        <li class="page-item m-1">
-            <a href="?page={{ page_obj.previous_page_number }}" class="page-link directory-pag-a">Previous</a>
-        </li>
-        {% else %}
-        <li class="page-item m-1">
-            <a href="#" class="page-link directory-pag-a">&laquo; First</a>
-        </li>
-        <li class="page-item m-1">
-            <a href="#" class="page-link directory-pag-a">Previous</a>
-        </li>
-
-        {% endif %}
-
-        {% for page in page_obj.paginator.page_range %}
-        <li class="page-item m-1"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
-        {% endfor %}
-
-        {% if page_obj.has_next %}
-        <li class="page-item m-1">
-            <a href="?page={{ page_obj.next_page_number }}" class="page-link">Next</a>
-        </li>
-        <li class="page-item m-1">
-            <a href="?page={{ page_obj.paginator.num_pages }}" class="page-link">Last &raquo;</a>
-        </li>
-
-        {% else %}
-        <li class="page-item m-1">
-            <a href="#" class="page-link">Next</a>
-        </li>
-        <li class="page-item m-1">
-            <a href="#" class="page-link">Last &raquo;</a>
-        </li>
-
-        {% endif %}
-    </ul>
-
-
-    {% endblock %}
+  {% endblock %}
+</div>
