@@ -78,7 +78,6 @@
               </form>
             </div>
           </div>
-        </div>
 
         <!--Ingredient buttons if user is not manager -->
         {% else %}
@@ -93,20 +92,21 @@
               <button type="submit" value="{{ingredient.pk}}" class="bg-danger rounded-circle border">-</button>
               {% endif %}
             </form>
-          </div>
           <p class="col-2 text-center">{{ ingredient.units }}</p>
           <div class="col-2 text-start">
             <form action="{% url 'add_ingredient' ingredient.pk %}" method="POST">
               {% csrf_token %}
               <button type="submit" value="{{ingredient.pk}}" class="bg-success rounded-circle">+</button>
             </form>
-          </div>
-          {% endif %}
         </div>
-      </div>
-    </div>
 
-    {% endfor %}
+          {% endif %}
+
+        </div>
+        {% endfor %}
+
+      </div>
+
 
     {% if user.worker_type == 'stock-controller' or user.is_staff %}
     <div class="text-center">
@@ -157,5 +157,9 @@
     </ul>
 
   </div>
-
+</div>
+</div>
+</div>
+</div>
+  
   {% endblock %}

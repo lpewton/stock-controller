@@ -5,6 +5,7 @@ from django.views.generic import TemplateView, ListView, DetailView, View
 from django.db.models import Q
 from .models import *
 from .forms import *
+from django.contrib import messages
 
 
 # Login
@@ -123,6 +124,8 @@ class newIngredient(TemplateView):
 
         if form.is_valid():
             form.save()
+            messages.success(request, "Ingredient added successfully")
+
             return redirect('ingredients_list')
 
 
@@ -146,6 +149,8 @@ class editIngredient(DetailView):
 
         if form.is_valid():
             form.save()
+            messages.success(request, "Ingredient edited successfully")
+
             return redirect('ingredients_list')
 
 
@@ -155,6 +160,7 @@ class deleteIngredient(View):
     def post(self, request, pk):
         ingredient = get_object_or_404(Ingredient, pk=pk)
         ingredient.delete()
+        messages.success(request, "Ingredient deleted successfully")
 
         return HttpResponseRedirect(reverse('ingredients_list'))
 
@@ -192,6 +198,7 @@ class editRecipe(DetailView):
 
         if form.is_valid():
             form.save()
+            messages.success(request, "Recipe edited successfully")
             return redirect('recipes')
 
 
@@ -201,6 +208,7 @@ class deleteRecipe(View):
     def post(self, request, pk):
         recipe = get_object_or_404(Recipe, pk=pk)
         recipe.delete()
+        messages.success(request, "Recipe deleted successfully")
 
         return HttpResponseRedirect(reverse('recipes'))
 
@@ -230,6 +238,8 @@ class newRecipe(TemplateView):
 
         if recipeForm.is_valid():
             recipeForm.save()
+            messages.success(request, "Recipe added successfully" )
+
             return redirect('recipes')
 
         elif ingredientQuantityForm.is_valid():
