@@ -85,7 +85,7 @@ class IngredientsList(ListView):
     """Render index page"""
     model = Ingredient
     template_name = 'index.html'
-    paginate_by = 10
+    paginate_by = 8
 
 
 class addIngredient(View):
@@ -176,7 +176,7 @@ class recipes(ListView):
     """Render recipes list page"""
     model = Recipe
     template_name = 'recipes.html'
-    paginate_by = 15
+    paginate_by = 12
 
 
 class editRecipe(DetailView):
