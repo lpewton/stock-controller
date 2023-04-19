@@ -19,7 +19,7 @@
   <div class="container">
     <div class="row d-flex justify-content-around mb-3">
       {% for recipe in recipe_list %}
-      <div class="card mb-5 mb-md-0 row col-md-2 text-center">
+      <div class="bg-light card mb-5 mb-md-0 row col-md-2 text-center">
         <div class="card-body">
           <a
             href="{% url 'recipe_detail' recipe.pk %}"

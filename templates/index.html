@@ -2,9 +2,10 @@
 
 {% block content %}
 
-<div class="col-3 mt-1 ms-1">
+<!--Searchbar-->
+<div class="col-6 mt-1 ms-1">
     <form class="d-flex" role="search" action="{% url 'ingredient_search_results' %}" method="GET">
-        <input class="form-control me-2" type="search" placeholder="Search Ingredient" aria-label="Search"
+        <input class="form-control me-2 col-10" type="search" placeholder="Search Ingredient" aria-label="Search"
             name="search">
         <button class="btn btn-outline-success vibrant-green" type="submit">Search</button>
     </form>
@@ -49,7 +50,7 @@
                     <!--Ingredient buttons if user is manager -->
                     {% if user.worker_type == 'stock-controller' or user.is_staff %}
                     <div class="col-3 col-md-4 d-md-flex">
-                        <div class="col-md-6 row d-flex justify-content-center">
+                        <div class="col-md-6 row d-flex justify-content-around>">
                             <div class="col-1 text-end">
                                 <form action="{% url 'remove_ingredient' ingredient.pk %}" method="POST">
                                     {% csrf_token %}
@@ -70,12 +71,14 @@
                             </form>
                         </div>
                         <!--Editing and deleting ingredients -->
-                        <div class="col-md-6 row d-flex justify-content-center pe-4 pb-1">
+                        <div class="col-md-6 row d-flex justify-content-around pe-4 pb-1">
 
-                            <a class="col-1" href="{% url 'edit_ingredient' ingredient.pk %}">
+                            <a class="col-6" href="{% url 'edit_ingredient' ingredient.pk %}">
                                 <i class="fa-regular fa-pen-to-square text-dark h4"></i></a>
-                            <button type="button" class="ms-5 col-2" data-toggle="modal"
-                                data-target="#deletes_ingredient"><i class="fa-solid fa-trash"></i></button>
+                            <button type="button" class="col-6 bg-danger" data-bs-toggle="modal"
+                                data-bs-target="#deletes_ingredient">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
                         </div>
                     </div>
 
@@ -84,7 +87,7 @@
                     <div class="modal" tabindex="-1" role="dialog" id="deletes_ingredient">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
-                                <div class="modal-header">
+                                <div class="modal-header text-center">
                                     <h5 class="modal-title">Delete ingredient</h5>
                                 </div>
                                 <div class="modal-body text-center">
@@ -98,27 +101,8 @@
                                             DELETE
                                         </button>
                                     </form>
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="modal" tabindex="-1" role="dialog" id="deletes">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Modal title</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Modal body text goes here.</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
                                 </div>
                             </div>
                         </div>
