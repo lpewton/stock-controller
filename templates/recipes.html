@@ -33,16 +33,36 @@
             <a href="{% url 'edit_recipe' recipe.pk %}" class="w-50"
               ><i class="fa-regular fa-pen-to-square text-dark h4"></i
             ></a>
-            <form
-              class="w-50"
-              action="{% url 'delete_recipe' recipe.pk %}"
-              method="POST"
-            >
-              {% csrf_token %}
-              <button type="submit" value="{{recipe.pk}}">
-                <i class="fa-solid fa-trash"></i>
-              </button>
-            </form>
+            <button type="button" class="col-6" data-bs-toggle="modal"
+                                data-bs-target="#deletes_recipe">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+
+            
+            <!--RECIPE DELETING MODAL-->
+            <div class="modal" tabindex="-1" role="dialog" id="deletes_recipe">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Delete recipe</h5>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure you want to delete this recipe?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <form action="{% url 'delete_recipe' recipe.pk %}" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" value="{{recipe.pk}}"
+                                    class="btn btn-primary border-none">
+                                    DELETE
+                                </button>
+                            </form>
+                            <button type="button" class="btn btn-secondary"
+                                data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
           </div>
         </div>
       </div>
