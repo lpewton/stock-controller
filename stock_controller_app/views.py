@@ -292,19 +292,20 @@ class ingredientsResult(View):
 class signup(View):
     def get(self, request):
         context = {
-            'signup_form': CustomUserCreationForm()
+            "user_form": UserCreationForm()
         }
         return render(request, 'signup.html', context)
 
     def post(self, request):
-        form = CustomUserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            worker_type = form.cleaned_data['worker_type']
-            user.worker_type = worker_type
-            user.save()
-            return redirect('stock_list')
+        signup_form = CustomUserCreationForm(request.POST)
+
+        username = request.POST['username']
+        worker_type = request.POST['worker_type']
+        password1 = request.POST['password1']
+        password2 = request.POST['password2']
+
+        if signup_form.is_valid():
+            signup_form.save()
+            return redirect('ingredients_list')
         else:
-            form = CustomUserCreationForm()
-            return render(
-                request, 'registration/register.html', {'form': form})
+            return redirect('recipes')
