@@ -8,7 +8,7 @@ final_ic_list = []
 
 
 class Ingredient(models.Model):
-    PRODUCT_TYPES = ((0, 'Solid'), (1, 'Liquid'))
+    PRODUCT_TYPES = ((0, 'Solid'), (1, 'Liquid'), (3, 'Non-Edibles'))
     name = models.CharField(max_length=50, unique=True)
     price = models.FloatField(validators=[MinValueValidator(0.01)])
     unit_weight = models.PositiveIntegerField(validators=[MinValueValidator(1)], default=0)

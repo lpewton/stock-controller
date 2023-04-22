@@ -18,7 +18,7 @@
         <div class="col-4">
             <p><strong>Ingredient</strong></p>
         </div>
-        <p class="col-4"><strong>Unit weight</strong></p>
+        <p class="col-4"><strong>Unit quantity</strong></p>
         <div class="col-4 text-center">
             <p><strong>Units left</strong></p>
         </div>
@@ -42,8 +42,10 @@
                     <div class="col-4">
                         {% if ingredient.type == 1 %}
                         <p>{{ ingredient.weight_value}}mL</p>
-                        {% else %}
+                        {% elif ingredient.type == 2 %}
                         <p>{{ ingredient.weight_value}}g</p>
+                        {% else %}
+                        <p>{{ ingredient.weight_value}} units</p>
                         {% endif %}
                     </div>
 
