@@ -128,6 +128,11 @@ class newIngredient(TemplateView):
 
             return redirect('ingredients_list')
 
+        else:
+            messages.error(
+                request, "Ingredient already exists or one of the options was marked as 0")
+            return redirect('new_ingredient')
+
 
 class editIngredient(DetailView):
     """Render edit ingredient page"""
