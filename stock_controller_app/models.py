@@ -11,7 +11,7 @@ class Ingredient(models.Model):
     PRODUCT_TYPES = ((0, 'Solid'), (1, 'Liquid'), (3, 'Non-Edibles'))
     name = models.CharField(max_length=50, unique=True)
     price = models.FloatField(validators=[MinValueValidator(0.01)])
-    unit_weight = models.PositiveIntegerField(validators=[MinValueValidator(1)], default=0)
+    unit_weight = models.PositiveIntegerField(validators=[MinValueValidator(1)], default=1)
     units = models.PositiveIntegerField(default=1)
     type = models.IntegerField(choices=PRODUCT_TYPES, default=0)
     supplier = models.CharField(max_length=20, default='VILA')
@@ -51,6 +51,19 @@ class Recipe(models.Model):
 
     class Meta:
         ordering = ["recipe_name"]
+
+    def recipe_price(self):
+
+        ingredients = self.ingredient.all()
+        ingredient_list = []
+
+        for ingredient in ingredients:
+            ingredient_int = (ingredient.ingredient_name.price * ingredient.quantity) / 1000
+            ingredient_list.append(ingredient_int)
+
+        price_count = sum(ingredient_list)
+
+        return price_count
 
 
 class IngredientsCalculation(models.Model):

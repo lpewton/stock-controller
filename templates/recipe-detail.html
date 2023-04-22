@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="container">
-    <h2 class="mt-3">{{ recipe.name }}</h2>
+    <h2 class="mt-3">{{ recipe.recipe_name }}</h2>
     <hr>
     <div class="row">
         <div class="col-xl-3 mb-3 mb-md-0">
@@ -30,6 +30,7 @@
             <p>{{ recipe.notes }}</p>
             {% endif %}
         </div>
+        <p>{{ recipe.recipe_price }}</p>
     </div>
 </div>
 
