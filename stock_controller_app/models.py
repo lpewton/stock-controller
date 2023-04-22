@@ -1,6 +1,7 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import MinValueValidator
 
 names_ic_list = []
 final_ic_list = []
@@ -9,9 +10,9 @@ final_ic_list = []
 class Ingredient(models.Model):
     PRODUCT_TYPES = ((0, 'Solid'), (1, 'Liquid'))
     name = models.CharField(max_length=50, unique=True)
-    price = models.FloatField(default=0)
-    unit_weight = models.IntegerField(default=0)
-    units = models.IntegerField(default=1)
+    price = models.FloatField(validators=[MinValueValidator(0)])
+    unit_weight = models.PositiveIntegerField(default=0)
+    units = models.PositiveIntegerField(default=1)
     type = models.IntegerField(choices=PRODUCT_TYPES, default=0)
     supplier = models.CharField(max_length=20, default='VILA')
 
@@ -30,13 +31,14 @@ class Ingredient(models.Model):
 
 class ingredientQuantity(models.Model):
     ingredient_name = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
-    quantity = models.IntegerField(default=500)
+    quantity = models.PositiveIntegerField(validators=[MinValueValidator(1)], default=500)
 
     def __str__(self):
         return f"{self.ingredient_name} ({self.quantity}g)"
 
     class Meta:
         ordering = ["ingredient_name"]
+        unique_together = ["ingredient_name", "quantity"]
 
 
 class Recipe(models.Model):

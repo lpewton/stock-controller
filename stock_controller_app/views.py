@@ -238,13 +238,17 @@ class newRecipe(TemplateView):
 
         if recipeForm.is_valid():
             recipeForm.save()
-            messages.success(request, "Recipe added successfully" )
+            messages.success(request, "Recipe added successfully")
 
             return redirect('recipes')
 
-        elif ingredientQuantityForm.is_valid():
+        if ingredientQuantityForm.is_valid():
             ingredientQuantityForm.save()
 
+            return redirect('new_recipe')
+
+        else:
+            messages.error(request, "Ingredient quantity already exists or quantity is smaller than 1g")
             return redirect('new_recipe')
 
 
