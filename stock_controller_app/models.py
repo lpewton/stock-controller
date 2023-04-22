@@ -52,7 +52,16 @@ class Recipe(models.Model):
     class Meta:
         ordering = ["recipe_name"]
 
-    def recipe_price(self):
+    def recipe_quantity(self):
+
+        ingredients = self.ingredient.all()
+        recipe_quantity = 0
+
+        for ingredient in ingredients:
+            recipe_quantity += ingredient.quantity
+        return recipe_quantity
+
+    def recipe_cost(self):
 
         ingredients = self.ingredient.all()
         ingredient_list = []
@@ -61,9 +70,12 @@ class Recipe(models.Model):
             ingredient_int = (ingredient.ingredient_name.price * ingredient.quantity) / 1000
             ingredient_list.append(ingredient_int)
 
-        price_count = round(sum(ingredient_list), 2)
+        recipe_cost = round(sum(ingredient_list), 2)
 
-        return price_count
+        return recipe_cost
+
+    def profit_medium(self):
+        return round(((self.recipe_quantity() / 120) * 3.8) - self.recipe_cost(), 2)
 
 
 class IngredientsCalculation(models.Model):

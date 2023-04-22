@@ -35,8 +35,8 @@
     {% if user.worker_type == 'stock-controller' or user.is_staff %}
     <div class="row">
         <h4>Details:</h4>
-        <p>Recipe Value (per 3.5Kg): {{ recipe.recipe_price }}€</p>
-
+        <p>Recipe cost ({{ recipe.recipe_quantity}}g): {{ recipe.recipe_cost }}€</p>
+        <p>Clean profit (selling medium containers): {{ recipe.profit_medium }}€</p>
     </div>
     {% endif %}
 </div>
