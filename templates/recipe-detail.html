@@ -30,8 +30,15 @@
             <p>{{ recipe.notes }}</p>
             {% endif %}
         </div>
-        <p>{{ recipe.recipe_price }}</p>
     </div>
+
+    {% if user.worker_type == 'stock-controller' or user.is_staff %}
+    <div class="row">
+        <h4>Details:</h4>
+        <p>Recipe Value (per 3.5Kg): {{ recipe.recipe_price }}€</p>
+
+    </div>
+    {% endif %}
 </div>
 
 {% endblock %}

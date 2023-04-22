@@ -61,7 +61,7 @@ class Recipe(models.Model):
             ingredient_int = (ingredient.ingredient_name.price * ingredient.quantity) / 1000
             ingredient_list.append(ingredient_int)
 
-        price_count = sum(ingredient_list)
+        price_count = round(sum(ingredient_list), 2)
 
         return price_count
 
