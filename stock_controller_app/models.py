@@ -45,6 +45,7 @@ class Recipe(models.Model):
     recipe_name = models.CharField(max_length=200, unique=True)
     ingredient = models.ManyToManyField(ingredientQuantity)
     notes = models.CharField(max_length=200, default='', null=True, blank=True)
+    tubs = models.PositiveIntegerField(default=1)
 
     def __str__(self):
         return self.recipe_name
