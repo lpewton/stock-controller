@@ -189,6 +189,26 @@ class recipes(ListView):
     paginate_by = 12
 
 
+class addRecipe(View):
+    """Adds to the value of the recipe's tubs"""
+    def post(self, request, pk=None):
+        recipe = get_object_or_404(Recipe, pk=pk)
+        recipe.tubs += 1
+        recipe.save()
+
+        return HttpResponseRedirect(reverse('ingredients_list'))
+
+
+class removeRecipe(View):
+    """Substracts from the value of the recipe's units"""
+    def post(self, request, pk):
+        recipe = get_object_or_404(Recipe, pk=pk)
+        recipe.tubs -= 1
+        recipe.save()
+
+        return HttpResponseRedirect(reverse('ingredients_list'))
+
+
 class editRecipe(DetailView):
     """Render edit recipe page"""
 

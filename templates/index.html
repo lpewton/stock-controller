@@ -206,6 +206,26 @@
         <div class="col 3">
             <p>{{ recipe.recipe_name }}</p>
         </div>
+        <div class="col-md-6 row d-flex justify-content-around>">
+            <div class="col-1 text-end">
+                <form action="{% url 'remove_recipe' recipe.pk %}" method="POST">
+                    {% csrf_token %}
+                    {% if recipe.units == 0 %}
+                    <button type="submit" value="{{recipe.pk}}"
+                        class="bg-danger rounded-circle border" disabled>-</button>
+                    {% else %}
+                    <button type="submit" value="{{recipe.pk}}"
+                        class="bg-danger rounded-circle border">-</button>
+                    {% endif %}
+                </form>
+            </div>
+            <p class="col-1 text-center">{{ recipe.tubs }} tubs</p>
+            <form class="col-1" action="{% url 'add_recipe' recipe.pk %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" value="{{recipe.pk}}"
+                    class="me-3 bg-success rounded-circle">+</button>
+            </form>
+        </div>
     </div>
     {% endfor %}
 
