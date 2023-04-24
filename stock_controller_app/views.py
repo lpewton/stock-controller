@@ -85,7 +85,7 @@ class IngredientsList(ListView):
     """Render index page"""
     model = Ingredient
     template_name = 'index.html'
-    paginate_by = 8
+    paginate_by = 2
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -196,7 +196,7 @@ class addRecipe(View):
         recipe.tubs += 1
         recipe.save()
 
-        return HttpResponseRedirect(reverse('ingredients_list'))
+        return HttpResponseRedirect(reverse('recipes'))
 
 
 class removeRecipe(View):
@@ -206,7 +206,7 @@ class removeRecipe(View):
         recipe.tubs -= 1
         recipe.save()
 
-        return HttpResponseRedirect(reverse('ingredients_list'))
+        return HttpResponseRedirect(reverse('recipes'))
 
 
 class editRecipe(DetailView):
