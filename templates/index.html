@@ -147,51 +147,6 @@
 
 
 
-                        <!--Labels -->
-                        <div class="row mt-3">
-                            <div class="col-6 col-md-8 col-xl-10">
-                                <p><strong>Recipe</strong></p>
-                            </div>
-                            <div class="col-6 col-md-4 col-xl-2 text-center">
-                                <p><strong>Tubs</strong></p>
-                            </div>
-
-                        </div> {% for recipe in Recipe %}
-                        <div class="row bg-light pt-2">
-                            <div class="col-6 col-md-8 col-xl-10">
-                                <p>{{ recipe.recipe_name }}</p>
-                            </div>
-                            <div class="col-6 col-md-4 col-xl-2 d-flex justify-content-around">
-                                <div class="col-2 text-center">
-                                    <form action="{% url 'remove_recipe' recipe.pk %}" method="POST">
-                                        {% csrf_token %}
-                                        {% if recipe.units == 0 %}
-                                        <button type="submit" value="{{recipe.pk}}"
-                                            class="bg-danger rounded-circle border" disabled>-</button>
-                                        {% else %}
-                                        <button type="submit" value="{{recipe.pk}}"
-                                            class="bg-danger rounded-circle border">-</button>
-                                        {% endif %}
-                                    </form>
-                                </div>
-                                <p class="col-4 text-center">{{ recipe.tubs }} tubs</p>
-                                <form class="col-2 text-center" action="{% url 'add_recipe' recipe.pk %}" method="POST">
-                                    {% csrf_token %}
-                                    <button type="submit" value="{{recipe.pk}}"
-                                        class="bg-success rounded-circle">+</button>
-                                </form>
-                            </div>
-                        </div>
-                        {% endfor %}
-
-
-                        {% if user.worker_type == 'stock-controller' or user.is_staff %}
-
-                        <!-- New Recipe Button -->
-                        <div class="text-center">
-                            <a href="{% url 'new_recipe' %}" class="mb-3 bg-success text-dark p-1 btn">Add Recipe</a>
-                        </div>
-                        {% endif %}
                     </div>
 
                 </div>
@@ -201,46 +156,6 @@
             <!--Pagination -->
             {% if page_obj.has_previous or page_obj.has_next %}
 
-            <ul class="pagination justify-content-center mt-5">
-                {% if page_obj.has_previous %}
-                <li class="page-item m-1">
-                    <a href="?page=1" class="page-link directory-pag-a">&laquo; First</a>
-                </li>
-                <li class="page-item m-1">
-                    <a href="?page={{ page_obj.previous_page_number }}" class="page-link directory-pag-a">Previous</a>
-                </li>
-                {% else %}
-                <li class="page-item m-1">
-                    <a href="#" class="page-link directory-pag-a">&laquo; First</a>
-                </li>
-                <li class="page-item m-1">
-                    <a href="#" class="page-link directory-pag-a">Previous</a>
-                </li>
-
-                {% endif %}
-
-                {% for page in page_obj.paginator.page_range %}
-                <li class="page-item m-1"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
-                {% endfor %}
-
-                {% if page_obj.has_next %}
-                <li class="page-item m-1">
-                    <a href="?page={{ page_obj.next_page_number }}" class="page-link">Next</a>
-                </li>
-                <li class="page-item m-1">
-                    <a href="?page={{ page_obj.paginator.num_pages }}" class="page-link">Last &raquo;</a>
-                </li>
-
-                {% else %}
-                <li class="page-item m-1">
-                    <a href="#" class="page-link">Next</a>
-                </li>
-                <li class="page-item m-1">
-                    <a href="#" class="page-link">Last &raquo;</a>
-                </li>
-
-                {% endif %}
-            </ul>
             {% endif %}
 
         </div>
