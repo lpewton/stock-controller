@@ -342,4 +342,5 @@ class signup(View):
             signup_form.save()
             return redirect('ingredients_list')
         else:
-            return redirect('recipes')
+            messages.error(request, "Something went wrong, please make sure password is long enough and contains letters and numbers")
+            return redirect('signup')
