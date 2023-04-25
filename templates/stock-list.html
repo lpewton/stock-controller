@@ -2,30 +2,51 @@
 
 {% block content %}
 
-<div class="row mt-3">
-    <p class="col-3 ms-3 col-md-2 ms-md-0 ps-md-4"><strong>Ingredient</strong></p>
-    <p class="col-2 d-none d-md-flex"><strong>Units</strong></p>
-    <p class="col-3 col-md-2"><strong>Total quantity</strong></p>
-    <p class="col-2 d-none d-md-flex"><strong>Unit value</strong></p>
-    <p class="col-2"><strong>Total value</strong></p>
-    <p class="col-2 pe-4"><strong>Supplier</strong></p>
-</div>
-{% for ingredient in ingredient_list %}
-<div class="row border pt-3">
-    <p class="col-3 ms-3 col-md-2 ms-md-0 ps-md-4"><strong>{{ ingredient.name }}</strong></p>
-    <p class="col-2 d-none d-md-flex">{{ ingredient.units }}</p>
-    <div class="col-3 col-md-2">
-        {% if ingredient.type == 1 %}
-        <p>{{ ingredient.weight_value }}L</p>
-        {% else %}
-        <p>{{ ingredient.weight_value }}g</p>
-        {% endif %}
+<div class="container-fluid">
+
+    <!--Searchbar-->
+    <div class="col-6 col-md-4 col-xl-2 mt-1 ms-1">
+        <form class="d-flex" role="search" action="{% url 'ingredient_search_results' %}" method="GET">
+            <input class="form-control me-2 col-10" type="search" placeholder="Search Ingredient" aria-label="Search"
+                name="search">
+            <button class="btn btn-outline-success vibrant-green" type="submit">Search</button>
+        </form>
     </div>
-    <p class="col-2 d-none d-md-flex">{{ ingredient.price }}€</p>
-    <p class="col-2">{{ ingredient.price_value }}€</p>
-    <p class="col-2 pe-4">{{ ingredient.supplier }}</p>
 
-</div>
-{% endfor %}
+    <!--Labels-->
+    <div class="row mt-3">
+        <p class="col-3 ms-3 col-md-2 ms-md-0 ps-md-4"><strong>Ingredient</strong></p>
+        <p class="col-2 d-none d-md-flex"><strong>Units</strong></p>
+        <p class="col-3 col-md-2"><strong>Total quantity</strong></p>
+        <p class="col-2 d-none d-md-flex"><strong>Unit value</strong></p>
+        <p class="col-2"><strong>Total value</strong></p>
+        <p class="col-2 pe-4"><strong>Supplier</strong></p>
+    </div>
 
-{% endblock %}
+    <!--Ingredients-->
+    {% for ingredient in ingredient_list %}
+    {% if ingredient.weight_value > 10000 %}
+    <div class="row border pt-2 text-success">
+        {% elif ingredient.weight_value > 0 %}
+        <div class="row border pt-2">
+            {% elif ingredient.weight_value == 0 %}
+            <div class="row border pt-2 text-danger">
+                {% endif %}
+                <p class="col-3 ms-3 col-md-2 ms-md-0 ps-md-4"><strong>{{ ingredient.name }}</strong></p>
+                <p class="col-2 d-none d-md-flex">{{ ingredient.units }}</p>
+                <div class="col-3 col-md-2">
+                    {% if ingredient.type == 1 %}
+                    <p>{{ ingredient.weight_value }}L</p>
+                    {% else %}
+                    <p>{{ ingredient.weight_value }}g</p>
+                    {% endif %}
+                </div>
+                <p class="col-2 d-none d-md-flex">{{ ingredient.price }}€</p>
+                <p class="col-2">{{ ingredient.price_value }}€</p>
+                <p class="col-2 pe-4">{{ ingredient.supplier }}</p>
+
+            </div>
+            {% endfor %}
+        </div>
+
+        {% endblock %}
