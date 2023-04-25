@@ -10,8 +10,9 @@ final_ic_list = []
 class Ingredient(models.Model):
     PRODUCT_TYPES = ((0, 'Solid'), (1, 'Liquid'), (3, 'Non-Edibles'))
     name = models.CharField(max_length=50, unique=True)
-    price = models.FloatField(validators=[MinValueValidator(0.01)])
-    unit_weight = models.PositiveIntegerField(validators=[MinValueValidator(1)], default=1)
+    price = models.FloatField(validators=[MinValueValidator(0)])
+    unit_weight = models.PositiveIntegerField(
+        validators=[MinValueValidator(1)], default=1)
     units = models.PositiveIntegerField(default=1)
     type = models.IntegerField(choices=PRODUCT_TYPES, default=0)
     supplier = models.CharField(max_length=20, default='VILA')
@@ -23,7 +24,7 @@ class Ingredient(models.Model):
         return self.unit_weight * self.units
 
     def price_value(self):
-        return self.price * self.units
+        return round(self.price * self.units, 2)
 
     class Meta:
         ordering = ["name"]

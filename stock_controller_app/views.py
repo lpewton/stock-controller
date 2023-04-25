@@ -85,7 +85,7 @@ class IngredientsList(ListView):
     """Render index page"""
     model = Ingredient
     template_name = 'index.html'
-    paginate_by = 2
+    paginate_by = 8
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
