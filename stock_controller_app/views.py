@@ -87,11 +87,6 @@ class IngredientsList(ListView):
     template_name = 'index.html'
     paginate_by = 8
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['Recipe'] = Recipe.objects.all()
-        return context
-
 
 class addIngredient(View):
     """Adds to the value of the ingredient's units"""

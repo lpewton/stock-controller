@@ -26,6 +26,10 @@ class Ingredient(models.Model):
     def price_value(self):
         return round(self.price * self.units, 2)
 
+    def total_cost(self):
+        ingredients = Ingredient.objects.all()
+        return sum(Ingredient.price_value(ingredient) for ingredient in ingredients)
+
     class Meta:
         ordering = ["name"]
 
