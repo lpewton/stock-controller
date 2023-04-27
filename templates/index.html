@@ -68,7 +68,7 @@
                             <a class="col-6 text-center" href="{% url 'edit_ingredient' ingredient.pk %}">
                                 <i class="fa-regular fa-pen-to-square text-dark h4"></i></a>
                             <button type="button" class="col-6 bg-danger" data-bs-toggle="modal"
-                                data-bs-target="#deletes_ingredient">
+                                data-bs-target="#deletes_ingredient-{{ ingredient.pk }}">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
                         </div>
@@ -76,7 +76,7 @@
 
 
                     <!--INGREDIENT DELETING MODAL-->
-                    <div class="modal" tabindex="-1" role="dialog" id="deletes_ingredient">
+                    <div class="modal" tabindex="-1" role="dialog" id="deletes_ingredient-{{ ingredient.pk }}">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header text-center">
