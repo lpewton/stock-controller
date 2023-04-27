@@ -54,13 +54,13 @@
                                 class="fa-regular fa-pen-to-square text-dark h4"></i></a>
                         <div class="col-6">
                             <button type="button" class="col-3 col-md-8" data-bs-toggle="modal"
-                                data-bs-target="#deletes_recipe">
+                                data-bs-target="#deletes_recipe-{{ recipe.pk }}">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
                         </div>
 
                         <!--RECIPE DELETING MODAL-->
-                        <div class="modal" tabindex="-1" role="dialog" id="deletes_recipe">
+                        <div class="modal" tabindex="-1" role="dialog" id="deletes_recipe-{{ recipe.pk }}">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
