@@ -11,7 +11,6 @@
                 <li>{{ recipe.recipe_ingredients }}</li>
             </ul>
 
-            {% endfor %}
 
         </div>
         <div class="col-md-6 border-start">
@@ -23,7 +22,12 @@
                 <li>{{ ingredient_quantity }}g</li>
             </ul>
 
+
             {% endfor %}
+            <hr>
+            <p><strong>Total ingredients cost: </strong>{{ recipe.recipe_cost }}€</p>
+            {% endfor %}
+
         </div>
     </div>
 </div>

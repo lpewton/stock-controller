@@ -10,7 +10,7 @@ final_ic_list = []
 class Ingredient(models.Model):
     PRODUCT_TYPES = ((0, 'Solid'), (1, 'Liquid'), (3, 'Non-Edibles'))
     name = models.CharField(max_length=50, unique=True)
-    price = models.FloatField(validators=[MinValueValidator(0)])
+    price = models.FloatField(validators=[MinValueValidator(0)], default=0)
     unit_weight = models.PositiveIntegerField(
         validators=[MinValueValidator(1)], default=1)
     units = models.PositiveIntegerField(default=1)
@@ -87,6 +87,7 @@ class Recipe(models.Model):
 class IngredientsCalculation(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
+    ingredient = models.ManyToManyField(ingredientQuantity)
 
     def __str__(self):
         return f"{self.recipe} ({self.quantity}L)"
@@ -104,7 +105,7 @@ class IngredientsCalculation(models.Model):
             if matching_item is None:
                 new_quantity = ingredient.quantity * self.quantity
                 final_ic_list.append(
-                    f'{ingredient.ingredient_name},{new_quantity}')
+                    f'{ingredient.ingredient_name}, {new_quantity}')
             else:
                 removed_index = final_ic_list.index(matching_item)
 
@@ -118,6 +119,19 @@ class IngredientsCalculation(models.Model):
                 final_ic_list.sort()
 
         return self
+
+    def recipe_cost(self):
+
+        ingredients = self.recipe.ingredient.all()
+        ingredient_list = []
+
+        for ingredient in ingredients:
+            ingredient_int = (ingredient.ingredient_name.price * ingredient.quantity) / 1000
+            ingredient_list.append(ingredient_int)
+
+        recipe_cost = round(sum(ingredient_list), 2)
+
+        return recipe_cost
 
 
 class CustomUser(AbstractUser):

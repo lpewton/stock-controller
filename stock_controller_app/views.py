@@ -130,7 +130,7 @@ class newIngredient(TemplateView):
 
         else:
             messages.error(
-                request, "Ingredient already exists or one of the options was marked as 0")
+                request, "Please make sure ingredient doesn't already exist or fields are entered correctly")
             return redirect('new_ingredient')
 
 
