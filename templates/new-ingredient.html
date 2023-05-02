@@ -19,7 +19,15 @@
 </div>
 
 {% else %}
-{% include "homepage.html" %}
+
+<div class="col-8 col-xl-6 mx-auto">
+    <div class="text-center bg-warning pb-3">
+        <h1 class="mt-3">Welcome to the Casa del Gelat stock controller</h1>
+        <h4 class="mt-3">Please sign in</h4>
+        <a href="{% url 'account_login' %}" class="btn bg-success">Log In</a>
+    </div>
+</div>
+
 {% endif %}
 
 {% endblock %}
