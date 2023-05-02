@@ -36,7 +36,7 @@ class Ingredient(models.Model):
 
 class ingredientQuantity(models.Model):
     ingredient_name = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
-    quantity = models.FloatField(validators=[MinValueValidator(0)], default=500)
+    quantity = models.PositiveIntegerField(default=500)
 
     def __str__(self):
         return f"{self.ingredient_name} ({self.quantity}g)"
@@ -86,7 +86,7 @@ class Recipe(models.Model):
 
 class IngredientsCalculation(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
-    quantity = models.IntegerField(default=1)
+    quantity = models.PositiveIntegerField(default=0)
     ingredient = models.ManyToManyField(ingredientQuantity)
 
     def __str__(self):
