@@ -1,43 +1,41 @@
 {% extends 'base.html' %}
-
 {% block content %}
+
+{% if user.is_authenticated %}
 
 <div class="container-fluid">
     <div class="container">
         <div class="row d-flex justify-content-around mb-3">
-          {% for recipe in recipe_list %}
-          <div class="card mb-5 mb-md-0 row col-md-2 text-center">
-            <div class="card-body">
-              <a
-                href="{% url 'recipe_detail' recipe.pk %}"
-                class="h5 card-title text-decoration-none"
-                >{{ recipe.recipe_name }}</a
-              >
-              <br />
-              <hr />
-              <div class="row justify-content-around">
-                <a href="{% url 'edit_recipe' recipe.pk %}" class="w-50"
-                  ><i class="fa-regular fa-pen-to-square text-dark h4"></i
-                ></a>
-                <form
-                  class="w-50"
-                  action="{% url 'delete_recipe' recipe.pk %}"
-                  method="POST"
-                >
-                  {% csrf_token %}
-                  <button type="submit" value="{{recipe.pk}}">
-                    <i class="fa-solid fa-trash"></i>
-                  </button>
-                </form>
-              </div>
+            {% for recipe in recipe_list %}
+            <div class="card mb-5 mb-md-0 row col-md-2 text-center">
+                <div class="card-body">
+                    <a href="{% url 'recipe_detail' recipe.pk %}"
+                        class="h5 card-title text-decoration-none">{{ recipe.recipe_name }}</a>
+                    <br />
+                    <hr />
+                    <div class="row justify-content-around">
+                        <a href="{% url 'edit_recipe' recipe.pk %}" class="w-50"><i
+                                class="fa-regular fa-pen-to-square text-dark h4"></i></a>
+                        <form class="w-50" action="{% url 'delete_recipe' recipe.pk %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" value="{{recipe.pk}}">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </div>
-          </div>
-          {% if forloop.counter|divisibleby:4 %}
+            {% if forloop.counter|divisibleby:4 %}
         </div>
         <div class="row d-flex justify-content-around mb-3">
-          {% endif %} 
-          {% endfor %}
+            {% endif %}
+            {% endfor %}
         </div>
-      </div>
+    </div>
+</div>
 
-      {% endblock %}
+{% else %}
+{% include "homepage.html" %}
+{% endif %}
+
+{% endblock %}

@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
-
 {% block content %}
+
+{% if user.is_authenticated %}
 
 <div class="container-fluid">
     <!--Labels-->
@@ -37,5 +38,10 @@
 
             </div>
             {% endfor %}
+        </div>
 
-            {% endblock %}
+        {% else %}
+        {% include "homepage.html" %}
+        {% endif %}
+
+        {% endblock %}

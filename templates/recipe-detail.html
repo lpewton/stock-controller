@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
-
 {% block content %}
+
+{% if user.is_authenticated %}
+
 <div class="container">
     <h2 class="mt-3">{{ recipe.recipe_name }}</h2>
     <hr>
@@ -40,5 +42,9 @@
     </div>
     {% endif %}
 </div>
+
+{% else %}
+{% include "homepage.html" %}
+{% endif %}
 
 {% endblock %}

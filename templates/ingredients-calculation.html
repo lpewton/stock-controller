@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
-
 {% block content %}
+
+{% if user.is_authenticated %}
+
 <div class="container">
     <h2 class="mt-2">How much stock do I need?</h2>
     <div class="row mt-2">
@@ -41,4 +43,9 @@
         </div>
     </div>
 </div>
+
+{% else %}
+{% include "homepage.html" %}
+{% endif %}
+
 {% endblock %}

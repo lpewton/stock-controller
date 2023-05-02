@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
-
 {% block content %}
+
+{% if user.is_authenticated %}
+
 <div class="container mt-3">
     <div class="text-center mb-3 justify-contents-center">
         <h1>Edit an Ingredient</h1>
@@ -14,4 +16,9 @@
         </div>
     </div>
 </div>
+
+{% else %}
+{% include "homepage.html" %}
+{% endif %}
+
 {% endblock %}

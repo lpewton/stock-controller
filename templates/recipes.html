@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
-
 {% block content %}
+
+{% if user.is_authenticated %}
 
 <!--Searchbar-->
 <div class="col-6 col-md-4 col-xl-2 mt-1 ms-1">
@@ -22,90 +23,94 @@
             {% for recipe in recipe_list %}
             {% if recipe.tubs == 0 %}
             <div class="bg-danger bg-gradient mb-5 mb-md-0 row col-md-3 col-xl-2 text-center">
-            {% else %}
-            <div class="bg-light mb-5 mb-md-0 row col-md-3 col-xl-2 text-center">
-            {% endif %}
-                <div class="card-body">
-                    <a href="{% url 'recipe_detail' recipe.pk %}"
-                        class="h5 card-title text-decoration-none">{{ recipe.recipe_name }}</a>
-                    <br />
-                    <hr />
-                    <div class="mt-2 d-flex justify-content-around">
-                        <div class="col-4 text-center">
-                            <form action="{% url 'remove_recipe' recipe.pk %}" method="POST">
+                {% else %}
+                <div class="bg-light mb-5 mb-md-0 row col-md-3 col-xl-2 text-center">
+                    {% endif %}
+                    <div class="card-body">
+                        <a href="{% url 'recipe_detail' recipe.pk %}"
+                            class="h5 card-title text-decoration-none">{{ recipe.recipe_name }}</a>
+                        <br />
+                        <hr />
+                        <div class="mt-2 d-flex justify-content-around">
+                            <div class="col-4 text-center">
+                                <form action="{% url 'remove_recipe' recipe.pk %}" method="POST">
+                                    {% csrf_token %}
+                                    {% if recipe.tubs == 0 %}
+                                    <button type="submit" value="{{recipe.pk}}" class="bg-danger rounded-circle border"
+                                        disabled>-</button>
+                                    {% else %}
+                                    <button type="submit" value="{{recipe.pk}}"
+                                        class="bg-danger rounded-circle border">-</button>
+                                    {% endif %}
+                                </form>
+                            </div>
+                            <p class="col-4 text-center">{{ recipe.tubs }}</p>
+                            <form class="col-4 text-center" action="{% url 'add_recipe' recipe.pk %}" method="POST">
                                 {% csrf_token %}
-                                {% if recipe.tubs == 0 %}
-                                <button type="submit" value="{{recipe.pk}}" class="bg-danger rounded-circle border"
-                                    disabled>-</button>
-                                {% else %}
-                                <button type="submit" value="{{recipe.pk}}"
-                                    class="bg-danger rounded-circle border">-</button>
-                                {% endif %}
+                                <button type="submit" value="{{recipe.pk}}" class="bg-success rounded-circle">+</button>
                             </form>
                         </div>
-                        <p class="col-4 text-center">{{ recipe.tubs }}</p>
-                        <form class="col-4 text-center" action="{% url 'add_recipe' recipe.pk %}" method="POST">
-                            {% csrf_token %}
-                            <button type="submit" value="{{recipe.pk}}" class="bg-success rounded-circle">+</button>
-                        </form>
-                    </div>
-                    <div class="row justify-content-around">
-                        <a href="{% url 'edit_recipe' recipe.pk %}" class="w-50"><i
-                                class="fa-regular fa-pen-to-square text-dark h4"></i></a>
-                        <div class="col-6">
-                            <button type="button" class="col-3 col-md-8" data-bs-toggle="modal"
-                                data-bs-target="#deletes_recipe-{{ recipe.pk }}">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                        </div>
+                        <div class="row justify-content-around">
+                            <a href="{% url 'edit_recipe' recipe.pk %}" class="w-50"><i
+                                    class="fa-regular fa-pen-to-square text-dark h4"></i></a>
+                            <div class="col-6">
+                                <button type="button" class="col-3 col-md-8" data-bs-toggle="modal"
+                                    data-bs-target="#deletes_recipe-{{ recipe.pk }}">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
 
-                        <!--RECIPE DELETING MODAL-->
-                        <div class="modal" tabindex="-1" role="dialog" id="deletes_recipe-{{ recipe.pk }}">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">Delete recipe</h5>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>Are you sure you want to delete this recipe?</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <form action="{% url 'delete_recipe' recipe.pk %}" method="POST">
-                                            {% csrf_token %}
-                                            <button type="submit" value="{{recipe.pk}}"
-                                                class="btn btn-primary border-none">
-                                                DELETE
-                                            </button>
-                                        </form>
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Close</button>
+                            <!--RECIPE DELETING MODAL-->
+                            <div class="modal" tabindex="-1" role="dialog" id="deletes_recipe-{{ recipe.pk }}">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Delete recipe</h5>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Are you sure you want to delete this recipe?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <form action="{% url 'delete_recipe' recipe.pk %}" method="POST">
+                                                {% csrf_token %}
+                                                <button type="submit" value="{{recipe.pk}}"
+                                                    class="btn btn-primary border-none">
+                                                    DELETE
+                                                </button>
+                                            </form>
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                {% if forloop.counter|divisibleby:4 %}
             </div>
-            {% if forloop.counter|divisibleby:4 %}
-        </div>
-        <div class="row d-flex justify-content-around mb-3">
-            {% endif %}
-            {% endfor %}
-        </div>
-        {% if user.worker_type == 'stock-controller' or user.is_staff %}
+            <div class="row d-flex justify-content-around mb-3">
+                {% endif %}
+                {% endfor %}
+            </div>
+            {% if user.worker_type == 'stock-controller' or user.is_staff %}
 
-        <!-- New Recipe Button -->
-        <div class="text-center mt-2">
-            <a href="{% url 'new_recipe' %}" class="mb-3 bg-success text-dark p-1 btn">Add Recipe</a>
+            <!-- New Recipe Button -->
+            <div class="text-center mt-2">
+                <a href="{% url 'new_recipe' %}" class="mb-3 bg-success text-dark p-1 btn">Add Recipe</a>
+            </div>
+            {% endif %}
         </div>
+
+
+        <!-- Pagination -->
+        {% if page_obj.has_previous or page_obj.has_next %}
+        {% include "pagination.html" %}
         {% endif %}
     </div>
-
-
-    <!-- Pagination -->
-    {% if page_obj.has_previous or page_obj.has_next %}
-    {% include "pagination.html" %}
+    
+    {% else %}
+    {% include "homepage.html" %}
     {% endif %}
 
     {% endblock %}
-</div>
