@@ -36,7 +36,7 @@ class Ingredient(models.Model):
 
 class ingredientQuantity(models.Model):
     ingredient_name = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField(validators=[MinValueValidator(1)], default=500)
+    quantity = models.FloatField(validators=[MinValueValidator(0)], default=500)
 
     def __str__(self):
         return f"{self.ingredient_name} ({self.quantity}g)"
@@ -119,19 +119,6 @@ class IngredientsCalculation(models.Model):
                 final_ic_list.sort()
 
         return self
-
-    def recipe_cost(self):
-
-        ingredients = self.recipe.ingredient.all()
-        ingredient_list = []
-
-        for ingredient in ingredients:
-            ingredient_int = (ingredient.ingredient_name.price * ingredient.quantity) / 1000
-            ingredient_list.append(ingredient_int)
-
-        recipe_cost = round(sum(ingredient_list), 2)
-
-        return recipe_cost
 
 
 class CustomUser(AbstractUser):
