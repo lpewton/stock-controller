@@ -8,7 +8,7 @@ final_ic_list = []
 
 
 class Ingredient(models.Model):
-    PRODUCT_TYPES = ((0, 'Solid'), (1, 'Liquid'), (3, 'Non-Edibles'))
+    PRODUCT_TYPES = ((0, 'Solid'), (1, 'Liquid'), (2, 'Non-Edibles'))
     name = models.CharField(max_length=50, unique=True)
     price = models.FloatField(validators=[MinValueValidator(0)], default=0)
     unit_weight = models.PositiveIntegerField(
@@ -73,7 +73,7 @@ class Recipe(models.Model):
         ingredient_list = []
 
         for ingredient in ingredients:
-            ingredient_int = (ingredient.ingredient_name.price * ingredient.quantity) / 1000
+            ingredient_int = ((ingredient.ingredient_name.price / ingredient.ingredient_name.unit_weight) * ingredient.quantity)
             ingredient_list.append(ingredient_int)
 
         recipe_cost = round(sum(ingredient_list), 2)
@@ -82,6 +82,11 @@ class Recipe(models.Model):
 
     def profit_medium(self):
         return round(((self.recipe_quantity() / 120) * 3.8) - self.recipe_cost(), 2)
+
+
+class IntermediateIngredientRecipe(models.Model):
+    ingredient = models.ForeignKey(ingredientQuantity, on_delete=models.CASCADE)
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
 
 
 class IngredientsCalculation(models.Model):
