@@ -123,7 +123,9 @@ class newIngredient(TemplateView):
         form = IngredientForm(request.POST)
 
         if form.is_valid():
-            form.save()
+            ingredient = form.save(commit=False)
+            ingredient.name = form.cleaned_data['name'].title()
+            ingredient.save()
             messages.success(request, "Ingredient added successfully")
 
             return redirect('ingredients_list')
@@ -153,7 +155,9 @@ class editIngredient(DetailView):
         form = IngredientForm(request.POST, instance=ingredient)
 
         if form.is_valid():
-            form.save()
+            ingredient = form.save(commit=False)
+            ingredient.name = form.cleaned_data['name'].title()
+            ingredient.save()
             messages.success(request, "Ingredient edited successfully")
 
             return redirect('ingredients_list')

@@ -6,7 +6,6 @@
 <div class="container mt-3">
     <div class="text-center mb-3 justify-contents-center">
         <h1>Add an Ingredient</h1>
-        <h6>IMPORTANT: Please make sure names of all entered ingredients are in title case</h6>
         <div class="col-8 mx-auto col-md-3 col-xl-2">
             <form action="{% url 'new_ingredient' %}" method="POST">
                 {% csrf_token %}
