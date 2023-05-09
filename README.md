@@ -1,108 +1,168 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# La Casa del Gelat – Stock Controller:
 
-Welcome lpewton,
+La Casa del Gelat, Stock Controller, is an app designed to allow a closer management of a real life ice cream shop located in Olot, Catalunya. This is my family’s shop and therefore it seemed like a good idea to put my work into practice for something that could be practically useful in the real world.
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+In a sense, it’s an app that allows for a centralized source of information that can contain all of the recipes, stocked ingredients and it also allows for calculations on the amount of ingredients needed in an event.
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+You can find the live link for this website here: https://lpewton-stock-controller.herokuapp.com.
 
-## Gitpod Reminders
+## TABLE OF CONTENTS:
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+- User experience (UX)
 
-`python3 -m http.server`
 
-A blue button should appear to click: _Make Public_,
+## User Experience (UX):
 
-Another blue button should appear to click: _Open Browser_.
+### App purpose:
+The purpose of the Stock Controller is to provide a centralized hub of information that is essential to the shop, like the recipes and ingredients that are needed, as well as keeping a closer eye on the stock. 
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+Another issue the app helps with is keeping a close eye on the stock, providing a clear visual idea of the ingredients that are about to run put.
 
-A blue button should appear to click: _Make Public_,
+Finally, the app helps with he calculation of how many ingredients are needed for a certain event with an X number of recipes, as well as giving the user the costs and profits that this will provide.
 
-Another blue button should appear to click: _Open Browser_.
+### App goals:
+One of the issues faced on the day to day in this shop was that the stock ran out and it was not know until it was too late, which caused major delays and headaches. If each employee of the shop marks on the website when an ingredient has been removed it provides a visual indication that can be seen without even being present in the shop and can avoid headaches.
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+Furthermore, another issue found in the shop was the fact that all the information on recipes, costs, profits… was located in different folder and finding resources could prove difficult. With this app the problem is solved as the recipes, profits and costs are all accessible in one location.
 
-To log into the Heroku toolbelt CLI:
+Finally, another thing that wasn’t an issue but does make life easier was added. The shop also does events (weddings, birthdays, parties…), in which the clients request a certain amount of recipes for the day. The app has also has the capacity to see how many ingredients would be required for these recipes, and what the total cost and profit for them would be.
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+### Target:
+The target for this app are the employees of La Casa del Gelat. That is why it’s only accessible if the user is authorized. As this app is for education purposes, the credentials are the following:
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+### Displays:
+The layout of the app is clear, communicative and there is an easy intuition in how to find the information.
 
-------
+### User Stories:
+The Agile methodology has been used during this app’s creation. This has been done by having biweekly meetings with the shop manager, addressing their needs and using the to create user stories. These can be found below:
 
-## Release History
+1. As a **stock manager:**
+- I can **calculate how much stock I need to make an X number of recipes** so that **I know how much to buy for an event**.
+- I can **add, remove or edit ingredients and recipes** so that **I can keep the list updated**.
+- I can **see how much stock is available** so that **I know if I need to buy any**.
+- I can **be able to alter recipes** so that **I can fix mistakes and update recipes**.
+- I can **see how much profit each recipe generates** so that ** can evaluate the most productive recipes and determine a price for them**.
+- I can **visualize a list of items that have run out** so that **I know what we need**.
+- I can **add expiration dates to the ingredients** so that **they disappear when they expire**.
+- I can **see how much stock I need for a recipe** so that **I know how much I need to buy**.
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+2. As a **cook:**
+- I can **see a list of the recipes with its ingredients** so that **I know how to make a recipe**.
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+3. As a **scooper:**
+- I can **add and remove units from the stock** so that **it can remain updated**.
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+## Database Schema:
+### Ingredient:
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+### Recipe:
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+### Custom User:
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+## Colors and design:
+Since this is a practical site that is not available to all users. The design was very minimalistic. The colors for the shop have been added in the heading and the rest are basic colors to alert the user of some information. 
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+## Features:
+### Landing page:
+### Stock items page:
+### New Ingredient form:
+### Edit Ingredient form:
+### Stock List page:
+### Recipes page:
+### New Recipe form:
+### Edit Recipe form:
+### Ingredients Calculation form:
+### Ingredients Result page:
+### Sign an Empoyee Up page:
+### Log Out page:
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+## Features left to implement:
+- A new page that contains a list of all the ingredients that are in red, so there is a visual representation of the ingredients that need to be purchased
+- Add expiration dates to the ingredients so that theuser knows when he can’t count on them and, eventually, have them disappear automatically from the list
+- Get the app to send an email to the providers to order ingredients automatically when they run out
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+## Major Issues Found:
+1. Bootstrap modals not working:
+- Through revision of everything I had done to insert the modals, I realized I had been using the Bootstrap 4 code for my app
+- I then changed what needed to be modified and did not repeat that mistake again
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+2.	Migration issues:
+- The app wasn’t migrating some updates on models because a certain element did not exist
+- With the help of the tutor support, I reset the table manually from my ElephantSQL database
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+3.	Not being able to provide the total stock cost:
+- I was not able to put the total stock cost for one ingredient, and showed behind every ingredient
+- With the {{ ingredient_list.0.total_cost }} I was able to show the total cost for only the first ingredient in the list (which will always be there), as it was the same for all ingredients
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+## Manual Testing:
+### INGREDIENT:
+- Names are unique
+- Cannot set a negative value for units
+- No blank names
+- Units Cannot have decimals
+- Should be lowercase sensitive
+- Cannot reach -1 in stock
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+### RECIPES
+- Ingredient quantities cannot be repeated
+- Names are unique
+- Ingredient quantities have to be positive
+- No blank names
+- Cannot reach -1 in stock
+- Cannot set a negative value for units
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+### GENERAL:
+All app functions were tested several times to make sure they worked under many conditions.
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+## Validator Testing:
 
-------
+## Technologies Used:
+- HTML5
+- CSS3
+- Bootstrap 5
+- Python
+- Django
+- ElephantSQL
 
-## FAQ about the uptime script
+## Deployment:
+### In the terminal:
+1. Install Django and gunicorn: pip3 install 'django<4' gunicorn
+2. Install supporting libraries: pip3 install dj_database_url==0.5.0 psycopg2
+3. Install Cloudinary Libraries: pip3 install dj3-cloudinary-storage
+4. Create requirements file
+5. Create Project
+6. Create App 
+7. Create requirements file: pip3 freeze --local > requirements.txt
+8. Create Project: django-admin startproject STOCK-CONTROLLER 
+9. Create App: python3 manage.py startapp stock_controller_app
+10. Migrate Changes: python3 manage.py migrate
 
-**Why have you added this script?**
+### In settings.py:
+1. Add app to installed apps
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+### In ElephantSQL:
+1. Create an external database
 
-**How will this affect me?**
+### In the Heroku app:
+1. Create a new Heroku app
+2. In config vars, add the following variables:
+- SECRET_KEY: Insert secret key here
+- PORT: 8000
+- CLOUDINARY_URL: API environment variable
+- DATABASE_URL: value supplied by Heroku
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+### In the app:
+1. Create an env.py file
+2. Link the database, cloudinary and secret key to the env.py file
+3. Add the database url, cloudinary url and secret key to the settings.py file
+4. Add the Heroku app to allowed hosts
+5. Create the Procfile file
+6. Push the project to Github
+7. Connect the heroku app to the github repository and click on deploy
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+## Credits:
+A lot of this project was based on the projects shown at the Full Stack Software Developement Professional Diploma at Code Institute. Especially the *I think therefore I Blog* and *Hello Django* projects.
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+I also got a lot of ideas and coding techniques from participating in Code Institute hackathons, Stack Overflow and ChatGPT.
 
-**So….?**
-
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
-
-**Can I opt out?**
-
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
-
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
-
-**Anything more?**
-
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
-
----
-
-Happy coding!
+Finally, I would also like to thank my tutor, Martina Terlevic, and the Code Institute tutor assistants for helping me through the tough times while developing the app.
