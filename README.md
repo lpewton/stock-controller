@@ -29,9 +29,10 @@ Finally, another thing that wasn’t an issue but does make life easier was adde
 
 ### Target:
 The target for this app are the employees of La Casa del Gelat. That is why it’s only accessible if the user is authorized. As this app is for education purposes, the credentials are the following:
+![Screen Shot 2023-05-09 at 00 42 58](https://user-images.githubusercontent.com/114712846/236966901-3bcfec08-e8ec-4907-88f6-04059936e413.png)
 
 ### Displays:
-The layout of the app is clear, communicative and there is an easy intuition in how to find the information.
+The layout of the app is clear, communicative and there is an easy intuition on how to find the information.
 
 ### User Stories:
 The Agile methodology has been used during this app’s creation. This has been done by having biweekly meetings with the shop manager, addressing their needs and using the to create user stories. These can be found below:
@@ -54,27 +55,43 @@ The Agile methodology has been used during this app’s creation. This has been 
 
 ## Database Schema:
 ### Ingredient:
+![Screen Shot 2023-05-09 at 01 13 05](https://user-images.githubusercontent.com/114712846/236965927-71d25145-812e-4308-9153-f67ee7d26413.png)
 
 ### Recipe:
+![Screen Shot 2023-05-09 at 01 13 17](https://user-images.githubusercontent.com/114712846/236965947-f5284ec6-46de-4eca-b6eb-6d937f8d5b62.png)
 
 ### Custom User:
+![Screen Shot 2023-05-09 at 01 13 26](https://user-images.githubusercontent.com/114712846/236965965-b8c79b84-a232-4972-a5a7-91f182e7c4f3.png)
 
 ## Colors and design:
 Since this is a practical site that is not available to all users. The design was very minimalistic. The colors for the shop have been added in the heading and the rest are basic colors to alert the user of some information. 
 
 ## Features:
 ### Landing page:
+![Screen Shot 2023-05-09 at 02 31 30](https://user-images.githubusercontent.com/114712846/236966092-f2501b9e-37d0-49b4-b7d7-1d22190ea93e.png)
+### Log In page:
+![Screen Shot 2023-05-09 at 02 31 45](https://user-images.githubusercontent.com/114712846/236966139-b83d99e5-2c13-445b-9995-9562ddb644db.png)
 ### Stock items page:
+![Screen Shot 2023-05-09 at 02 32 11](https://user-images.githubusercontent.com/114712846/236966154-dbd4548e-01c3-437e-9106-fab5c0ac98ef.png)
 ### New Ingredient form:
+![Screen Shot 2023-05-09 at 02 32 29](https://user-images.githubusercontent.com/114712846/236966170-0d42538f-0278-4757-a59c-31f12543bb61.png)
 ### Edit Ingredient form:
+![Screen Shot 2023-05-09 at 02 32 49](https://user-images.githubusercontent.com/114712846/236966191-9355d02c-a90e-477b-a223-e77eaf42abf6.png)
 ### Stock List page:
+![Screen Shot 2023-05-09 at 02 33 11](https://user-images.githubusercontent.com/114712846/236966200-7fcd9522-8db4-47b9-ae23-554cdcfda503.png)
 ### Recipes page:
+![Screen Shot 2023-05-09 at 02 33 52](https://user-images.githubusercontent.com/114712846/236966340-750786cb-d187-4d40-9bb0-d4dab75103c5.png)
 ### New Recipe form:
+![Screen Shot 2023-05-09 at 02 34 23](https://user-images.githubusercontent.com/114712846/236966358-215caec1-1489-476d-ab41-66ab762f77e6.png)
 ### Edit Recipe form:
 ### Ingredients Calculation form:
+![Screen Shot 2023-05-09 at 02 34 39](https://user-images.githubusercontent.com/114712846/236966574-ce8aea38-2016-4bdf-b890-1e0de9dd5a40.png)
 ### Ingredients Result page:
+![Screen Shot 2023-05-09 at 02 34 50](https://user-images.githubusercontent.com/114712846/236966601-f9152f81-f7be-41a2-b9c7-16847bf7a1cf.png)
 ### Sign an Empoyee Up page:
+![Screen Shot 2023-05-09 at 02 35 00](https://user-images.githubusercontent.com/114712846/236966625-7b4f1c17-910c-455b-9353-b7e012958685.png)
 ### Log Out page:
+![Screen Shot 2023-05-09 at 02 35 12](https://user-images.githubusercontent.com/114712846/236966848-2b72ef50-62eb-46e4-a35f-02a7e0eb891b.png)
 
 ## Features left to implement:
 - A new page that contains a list of all the ingredients that are in red, so there is a visual representation of the ingredients that need to be purchased
