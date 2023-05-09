@@ -1,6 +1,6 @@
 # La Casa del Gelat – Stock Controller:
 
-La Casa del Gelat, Stock Controller, is an app designed to allow a closer management of a real life ice cream shop located in Olot, Catalunya. This is my family’s shop and therefore it seemed like a good idea to put my work into practice for something that could be practically useful in the real world.
+La Casa del Gelat, Stock Controller, is an app designed to allow a closer management of a real life ice cream shop located in Olot, Catalunya. This is my family’s shop and therefore it seemed like a good idea to put my work into practice for something that could be useful in the real world.
 
 In a sense, it’s an app that allows for a centralized source of information that can contain all of the recipes, stocked ingredients and it also allows for calculations on the amount of ingredients needed in an event.
 
@@ -29,6 +29,7 @@ Finally, another thing that wasn’t an issue but does make life easier was adde
 
 ### Target:
 The target for this app are the employees of La Casa del Gelat. That is why it’s only accessible if the user is authorized. As this app is for education purposes, the credentials are the following:
+
 ![Screen Shot 2023-05-09 at 00 42 58](https://user-images.githubusercontent.com/114712846/236966901-3bcfec08-e8ec-4907-88f6-04059936e413.png)
 
 ### Displays:
@@ -53,6 +54,9 @@ The Agile methodology has been used during this app’s creation. This has been 
 3. As a **scooper:**
 - I can **add and remove units from the stock** so that **it can remain updated**.
 
+## Roles:
+As this application i meant for a buisness, different roles have been applied to the users. From 
+
 ## Database Schema:
 ### Ingredient:
 ![Screen Shot 2023-05-09 at 01 13 05](https://user-images.githubusercontent.com/114712846/236965927-71d25145-812e-4308-9153-f67ee7d26413.png)
@@ -68,34 +72,46 @@ Since this is a practical site that is not available to all users. The design wa
 
 ## Features:
 ### Landing page:
-![Screen Shot 2023-05-09 at 02 31 30](https://user-images.githubusercontent.com/114712846/236966092-f2501b9e-37d0-49b4-b7d7-1d22190ea93e.png)
+![Screen Shot 2023-05-09 at 17 22 32](https://github.com/lpewton/stock-controller/assets/114712846/5af0b854-2834-4426-98f5-dcfe4987300b)
+
 ### Log In page:
-![Screen Shot 2023-05-09 at 02 31 45](https://user-images.githubusercontent.com/114712846/236966139-b83d99e5-2c13-445b-9995-9562ddb644db.png)
+![Screen Shot 2023-05-09 at 17 23 16](https://github.com/lpewton/stock-controller/assets/114712846/5c784fbd-3983-479e-8ad4-c9ed4689eaaa)
+
 ### Stock items page:
-![Screen Shot 2023-05-09 at 02 32 11](https://user-images.githubusercontent.com/114712846/236966154-dbd4548e-01c3-437e-9106-fab5c0ac98ef.png)
+![Screen Shot 2023-05-09 at 17 23 45](https://github.com/lpewton/stock-controller/assets/114712846/bbca5b21-fb4c-4f29-b361-187957ccb3fa)
+
 ### New Ingredient form:
-![Screen Shot 2023-05-09 at 02 32 29](https://user-images.githubusercontent.com/114712846/236966170-0d42538f-0278-4757-a59c-31f12543bb61.png)
+![Screen Shot 2023-05-09 at 20 46 59](https://github.com/lpewton/stock-controller/assets/114712846/8786943e-53c8-42f5-bd3a-f95aa4466bf3)
+
 ### Edit Ingredient form:
-![Screen Shot 2023-05-09 at 02 32 49](https://user-images.githubusercontent.com/114712846/236966191-9355d02c-a90e-477b-a223-e77eaf42abf6.png)
+![Screen Shot 2023-05-09 at 17 24 16](https://github.com/lpewton/stock-controller/assets/114712846/bc5b7865-f7d5-4f3c-8716-b193b0e6598f)
+
 ### Stock List page:
-![Screen Shot 2023-05-09 at 02 33 11](https://user-images.githubusercontent.com/114712846/236966200-7fcd9522-8db4-47b9-ae23-554cdcfda503.png)
+![Screen Shot 2023-05-09 at 17 25 03](https://github.com/lpewton/stock-controller/assets/114712846/d4d5f909-9e69-4de5-83bf-63b3c914aed3)
+
 ### Recipes page:
-![Screen Shot 2023-05-09 at 02 33 52](https://user-images.githubusercontent.com/114712846/236966340-750786cb-d187-4d40-9bb0-d4dab75103c5.png)
+![Screen Shot 2023-05-09 at 17 26 13](https://github.com/lpewton/stock-controller/assets/114712846/b837da2f-36cf-44b2-a026-617e2218aeb1)
+
 ### New Recipe form:
-![Screen Shot 2023-05-09 at 02 34 23](https://user-images.githubusercontent.com/114712846/236966358-215caec1-1489-476d-ab41-66ab762f77e6.png)
+![Screen Shot 2023-05-09 at 17 27 43](https://github.com/lpewton/stock-controller/assets/114712846/7bfd0cff-877d-48fe-8087-c8078cf8a69b)
+
 ### Edit Recipe form:
 ### Ingredients Calculation form:
-![Screen Shot 2023-05-09 at 02 34 39](https://user-images.githubusercontent.com/114712846/236966574-ce8aea38-2016-4bdf-b890-1e0de9dd5a40.png)
+![Screen Shot 2023-05-09 at 17 28 14](https://github.com/lpewton/stock-controller/assets/114712846/3ddd0d4c-d3db-4bd6-9445-a3f217aeeb9c)
+
 ### Ingredients Result page:
-![Screen Shot 2023-05-09 at 02 34 50](https://user-images.githubusercontent.com/114712846/236966601-f9152f81-f7be-41a2-b9c7-16847bf7a1cf.png)
+![Screen Shot 2023-05-09 at 17 28 30](https://github.com/lpewton/stock-controller/assets/114712846/f3826074-f0cf-47aa-a6bf-64f9cddc9a06)
+
 ### Sign an Empoyee Up page:
-![Screen Shot 2023-05-09 at 02 35 00](https://user-images.githubusercontent.com/114712846/236966625-7b4f1c17-910c-455b-9353-b7e012958685.png)
+![Screen Shot 2023-05-09 at 17 30 04](https://github.com/lpewton/stock-controller/assets/114712846/753a511f-52ac-46a7-a1be-98ba41188421)
+
 ### Log Out page:
-![Screen Shot 2023-05-09 at 02 35 12](https://user-images.githubusercontent.com/114712846/236966848-2b72ef50-62eb-46e4-a35f-02a7e0eb891b.png)
+![Screen Shot 2023-05-09 at 17 30 19](https://github.com/lpewton/stock-controller/assets/114712846/46b0f6f8-58f6-4ce6-ab77-17424349d214)
+
 
 ## Features left to implement:
 - A new page that contains a list of all the ingredients that are in red, so there is a visual representation of the ingredients that need to be purchased
-- Add expiration dates to the ingredients so that theuser knows when he can’t count on them and, eventually, have them disappear automatically from the list
+- Add expiration dates to the ingredients so that the user knows when he can’t count on them and, eventually, have them disappear automatically from the list
 - Get the app to send an email to the providers to order ingredients automatically when they run out
 
 ## Major Issues Found:
