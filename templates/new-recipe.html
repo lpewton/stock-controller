@@ -23,7 +23,7 @@
             <div class="row">
                 <h3>Step 2:</h3>
                 <h5 class="mb-3">Add the name, the ingredients you previously entered and additional notes for the
-                    recipe</h5>
+                    recipe (note is optional)</h5>
             </div>
             <form class="border p-2" action="{% url 'new_recipe' %}" method="POST">
                 {% csrf_token %}
