@@ -239,10 +239,15 @@ class deleteRecipe(View):
 
     def post(self, request, pk):
         recipe = get_object_or_404(Recipe, pk=pk)
-        recipe.ingredient.all().delete()
+        ingredients = recipe.ingredient.all()
+
+        for ingredient in ingredients:
+            if Recipe.objects.filter(ingredient=ingredient).exclude(pk=pk).exists():
+                continue
+            ingredient.delete()
+
         recipe.delete()
         messages.success(request, "Recipe deleted successfully")
-
         return HttpResponseRedirect(reverse('recipes'))
 
 
