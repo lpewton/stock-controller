@@ -226,10 +226,12 @@ class editRecipe(DetailView):
 
     def post(self, request, pk):
         recipe = get_object_or_404(Recipe, pk=pk)
-        form = RecipeForm(request.POST, instance=recipe)
+        recipeForm = RecipeForm(request.POST, instance=recipe)
 
-        if form.is_valid():
-            form.save()
+        if recipeForm.is_valid():
+            recipe = recipeForm.save(commit=False)
+            recipe.recipe_name = recipeForm.cleaned_data['recipe_name'].title()
+            recipeForm.save()
             messages.success(request, "Recipe edited successfully")
             return redirect('recipes')
 
@@ -275,6 +277,8 @@ class newRecipe(TemplateView):
         ingredientQuantityForm = IngredientQuantityForm(request.POST)
 
         if recipeForm.is_valid():
+            recipe = recipeForm.save(commit=False)
+            recipe.recipe_name = recipeForm.cleaned_data['recipe_name'].title()
             recipeForm.save()
             messages.success(request, "Recipe added successfully")
 
