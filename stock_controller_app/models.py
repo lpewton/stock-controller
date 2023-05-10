@@ -28,14 +28,15 @@ class Ingredient(models.Model):
 
     def total_cost(self):
         ingredients = Ingredient.objects.all()
-        return sum(Ingredient.price_value(ingredient) for ingredient in ingredients)
+        return sum(
+            Ingredient.price_value(ingredient) for ingredient in ingredients)
 
     class Meta:
         ordering = ["name"]
 
 
 class ingredientQuantity(models.Model):
-    ingredient_name = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
+    ingredient_name = models.ForeignKey(Ingredient, on_delete=models.PROTECT)
     quantity = models.PositiveIntegerField(default=500)
 
     def __str__(self):

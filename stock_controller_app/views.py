@@ -167,9 +167,12 @@ class deleteIngredient(View):
     """Deletes ingredient"""
 
     def post(self, request, pk):
-        ingredient = get_object_or_404(Ingredient, pk=pk)
-        ingredient.delete()
-        messages.success(request, "Ingredient deleted successfully")
+        try:
+            ingredient = get_object_or_404(Ingredient, pk=pk)
+            ingredient.delete()
+            messages.success(request, "Ingredient deleted successfully")
+        except:
+            messages.error(request, "Couldn't delete ingredient as it's part of a recipe, please delete recipe first")
 
         return HttpResponseRedirect(reverse('ingredients_list'))
 
@@ -236,6 +239,7 @@ class deleteRecipe(View):
 
     def post(self, request, pk):
         recipe = get_object_or_404(Recipe, pk=pk)
+        recipe.ingredient.all().delete()
         recipe.delete()
         messages.success(request, "Recipe deleted successfully")
 
