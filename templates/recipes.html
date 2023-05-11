@@ -22,9 +22,9 @@
         <div class="row d-flex justify-content-around mb-3">
             {% for recipe in recipe_list %}
             {% if recipe.tubs == 0 %}
-            <div class="bg-danger bg-gradient mb-5 mb-md-0 row col-md-3 col-xl-2 text-center">
+            <div class="bg-danger bg-gradient mb-5 mb-md-0 row col-md-3 col-xl-2 text-center border">
                 {% else %}
-                <div class="bg-light mb-5 mb-md-0 row col-md-3 col-xl-2 text-center">
+                <div class="bg-light mb-5 mb-md-0 row col-md-3 col-xl-2 text-center border">
                     {% endif %}
                     <div class="card-body">
                         <a href="{% url 'recipe_detail' recipe.pk %}"
