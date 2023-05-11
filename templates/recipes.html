@@ -93,8 +93,6 @@
                 {% endif %}
                 {% endfor %}
             </div>
-            {% if user.worker_type == 'stock-controller' or user.is_staff %}
-
 
         <!-- Pagination -->
         {% if page_obj.has_previous or page_obj.has_next %}
@@ -103,6 +101,7 @@
     </div>
 
     <!-- New Recipe Button -->
+    {% if user.worker_type == 'stock-controller' or user.is_staff %}
     <div class="text-center mt-2">
         <a href="{% url 'new_recipe' %}" class="mb-3 bg-success text-dark p-1 btn">Add Recipe</a>
     </div>
