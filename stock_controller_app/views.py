@@ -17,7 +17,7 @@ class homePage(TemplateView):
 # Search Bar
 class IngredientSearchResults(generic.ListView):
     """
-    View for rendering the search results page
+    View for rendering the ingredient search results page
     """
     template_name = 'search-ingredients.html'
     paginate_by = 4
@@ -51,7 +51,7 @@ class IngredientSearchResults(generic.ListView):
 
 class RecipeSearchResults(generic.ListView):
     """
-    View for rendering the search results page
+    View for rendering the recipe search results page
     """
     template_name = 'search-recipes.html'
     paginate_by = 4
@@ -237,6 +237,9 @@ class editRecipe(DetailView):
             recipeForm.save()
             messages.success(request, "Recipe edited successfully")
             return redirect('recipes')
+        else:
+            messages.error(request, "Recipe could not be added")
+            return redirect('recipes')
 
 
 class deleteRecipe(View):
@@ -244,9 +247,8 @@ class deleteRecipe(View):
 
     def post(self, request, pk):
         recipe = get_object_or_404(Recipe, pk=pk)
-        ingredients = recipe.ingredient.all()
 
-        for ingredient in ingredients:
+        for ingredient in recipe.ingredient.all():
             if Recipe.objects.filter(ingredient=ingredient).exclude(pk=pk).exists():
                 continue
             ingredient.delete()
@@ -355,6 +357,7 @@ class signup(View):
 
         if signup_form.is_valid():
             signup_form.save()
+            messages.success(request, "New user added successfully")
             return redirect('ingredients_list')
         else:
             messages.error(request, "Something went wrong, please make sure password is long enough and contains letters and numbers")

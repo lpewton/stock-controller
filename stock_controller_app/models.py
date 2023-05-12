@@ -6,7 +6,7 @@ from django.core.validators import MinValueValidator
 names_ic_list = []
 final_ic_list = []
 
-
+# Ingredients
 class Ingredient(models.Model):
     PRODUCT_TYPES = ((0, 'Solid'), (1, 'Liquid'), (2, 'Non-Edibles'))
     name = models.CharField(max_length=50, unique=True)
@@ -20,6 +20,9 @@ class Ingredient(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        ordering = ["name"]
+
     def weight_value(self):
         return self.unit_weight * self.units
 
@@ -27,14 +30,11 @@ class Ingredient(models.Model):
         return round(self.price * self.units, 2)
 
     def total_cost(self):
-        ingredients = Ingredient.objects.all()
         return sum(
-            Ingredient.price_value(ingredient) for ingredient in ingredients)
-
-    class Meta:
-        ordering = ["name"]
+            Ingredient.price_value(ingredient) for ingredient in Ingredient.objects.all())
 
 
+# Recipes
 class ingredientQuantity(models.Model):
     ingredient_name = models.ForeignKey(Ingredient, on_delete=models.PROTECT)
     quantity = models.PositiveIntegerField(default=500)
@@ -61,19 +61,17 @@ class Recipe(models.Model):
 
     def recipe_quantity(self):
 
-        ingredients = self.ingredient.all()
         recipe_quantity = 0
 
-        for ingredient in ingredients:
+        for ingredient in self.ingredient.all():
             recipe_quantity += ingredient.quantity
         return recipe_quantity
 
     def recipe_cost(self):
 
-        ingredients = self.ingredient.all()
         ingredient_list = []
 
-        for ingredient in ingredients:
+        for ingredient in self.ingredient.all():
             ingredient_int = ((ingredient.ingredient_name.price / ingredient.ingredient_name.unit_weight) * ingredient.quantity)
             ingredient_list.append(ingredient_int)
 
@@ -84,12 +82,7 @@ class Recipe(models.Model):
     def profit_medium(self):
         return round(((self.recipe_quantity() / 120) * 3.8) - self.recipe_cost(), 2)
 
-
-class IntermediateIngredientRecipe(models.Model):
-    ingredient = models.ForeignKey(ingredientQuantity, on_delete=models.CASCADE)
-    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
-
-
+# Ingredients calculation
 class IngredientsCalculation(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=0)
@@ -100,9 +93,7 @@ class IngredientsCalculation(models.Model):
 
     def recipe_ingredients(self):
 
-        ingredients = self.recipe.ingredient.all()
-
-        for ingredient in ingredients:
+        for ingredient in self.recipe.ingredient.all():
             ingredient_name = f'{ingredient.ingredient_name}'
             matching_item = next((
                 item for item in final_ic_list if ingredient_name in item),
@@ -126,7 +117,7 @@ class IngredientsCalculation(models.Model):
 
         return self
 
-
+# Users
 class CustomUser(AbstractUser):
     WORKER_TYPES = (
         ('scooper', 'Scooper'),
