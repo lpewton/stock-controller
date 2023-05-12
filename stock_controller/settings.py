@@ -59,6 +59,8 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 LOGIN_REDIRECT_URL = 'ingredients_list'
 LOGOUT_REDIRECT_URL = '/'
 
+AUTH_USER_MODEL = 'stock_controller_app.CustomUser'
+
 MESSAGE_TAGS = {
         messages.DEBUG: 'alert-info',
         messages.INFO: 'alert-info',

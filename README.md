@@ -55,7 +55,7 @@ The Agile methodology has been used during this app’s creation. This has been 
 - I can **add and remove units from the stock** so that **it can remain updated**.
 
 ## Roles:
-As this application i meant for a buisness, different roles have been applied to the users. From 
+As this application i meant for a buisness, different roles have been applied to the users. From the scooper, cooks and stock-controller. Each one of these roles has their own visibility permissions.
 
 ## Database Schema:
 ### Ingredient:
@@ -144,8 +144,10 @@ Since this is a practical site that is not available to all users. The design wa
 - Cannot reach -1 in stock
 - Cannot set a negative value for units
 
-### GENERAL:
+### SECURITY MEASURES:
 All app functions were tested several times to make sure they worked under many conditions.
+
+Also, the ingredients and recipes are protected so that ingredients can only be deleted if they are not part of a recipe. Also, when deleting ingredients, the user is offered double confirmation to make sure they make no mistakes.
 
 ## Validator Testing:
 
