@@ -16,7 +16,7 @@
 
 <!-- Recipes List -->
 <div class="container">
-    <h2 class="my-3 ms-3">Recipes</h2>
+    <h2 class="my-3 ms-3">Recipes:</h2>
 
     <div class="container">
         <div class="row d-flex justify-content-around mb-3">
@@ -51,8 +51,9 @@
                             </form>
                         </div>
                         <div class="row justify-content-around">
-                            <a href="{% url 'edit_recipe' recipe.pk %}" class="w-50"><i
-                                    class="fa-regular fa-pen-to-square text-dark h4"></i></a>
+                            <a href="{% url 'edit_recipe' recipe.pk %}" class="w-50">
+                                <i class="fa-regular fa-pen-to-square text-dark h4"></i>
+                            </a>
                             <div class="col-6">
                                 <button type="button" class="col-3 col-md-8" data-bs-toggle="modal"
                                     data-bs-target="#deletes_recipe-{{ recipe.pk }}">
@@ -60,7 +61,7 @@
                                 </button>
                             </div>
 
-                            <!--RECIPE DELETING MODAL-->
+                            <!-- Recipe deleting modal -->
                             <div class="modal" tabindex="-1" role="dialog" id="deletes_recipe-{{ recipe.pk }}">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -84,19 +85,21 @@
                                     </div>
                                 </div>
                             </div>
+                        
                         </div>
                     </div>
                 </div>
+
                 {% if forloop.counter|divisibleby:4 %}
             </div>
             <div class="row d-flex justify-content-around mb-3">
                 {% endif %}
-                {% endfor %}
+            {% endfor %}
             </div>
 
         <!-- Pagination -->
         {% if page_obj.has_previous or page_obj.has_next %}
-        {% include "pagination.html" %}
+            {% include "pagination.html" %}
         {% endif %}
     </div>
 

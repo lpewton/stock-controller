@@ -15,7 +15,8 @@
                     <hr />
                     <div class="row justify-content-around">
                         <a href="{% url 'edit_recipe' recipe.pk %}" class="w-50"><i
-                                class="fa-regular fa-pen-to-square text-dark h4"></i></a>
+                                class="fa-regular fa-pen-to-square text-dark h4"></i>
+                        </a>
                         <form class="w-50" action="{% url 'delete_recipe' recipe.pk %}" method="POST">
                             {% csrf_token %}
                             <button type="submit" value="{{recipe.pk}}">
@@ -25,6 +26,7 @@
                     </div>
                 </div>
             </div>
+
             {% if forloop.counter|divisibleby:4 %}
         </div>
         <div class="row d-flex justify-content-around mb-3">

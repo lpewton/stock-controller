@@ -4,38 +4,38 @@
 {% if user.is_authenticated %}
 
 <div class="container text-center">
-    <div class="container text-center">
-        <h2 class="mt-3">Register a Worker</h2>
-        <div class="text-center mx-auto w-50">
-            <form action="{% url 'signup' %}" class="text-center" id="user_form" method="post"> 
-                {% csrf_token %}
-                <div class="row">
-                    <label for="username">Username:</label>
-                    <input type="text" id="username" name="username" required>
-                </div>
-                <div class="row">
-                    <label for="worker_type">Worker type:</label>
-                    <select name="worker_type" id="worker-type" class="text-center" required>
-                        <option value="stock-controller">Stock Controller</option>
-                        <option value="scooper">Scooper</option>
-                        <option value="cook">Cook</option>
-                    </select>
-                </div>
-                <div class="row">
-                    <label for="username">Password:</label>
-                    <input type="password" id="password1" name="password1" required>
-                </div>
-                <div class="row">
-                    <label for="username">Confirm Password:</label>
-                    <input type="password" id="password2" name="password2" required>
-                </div>
+    <h2 class="mt-3">Register a Worker</h2>
+    <div class="text-center mx-auto w-50">
+        <form action="{% url 'signup' %}" class="text-center" id="user_form" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="row">
+                <label for="worker_type">Worker type:</label>
+                <select name="worker_type" id="worker-type" class="text-center" required>
+                    <option value="stock-controller">Stock Controller</option>
+                    <option value="scooper">Scooper</option>
+                    <option value="cook">Cook</option>
+                </select>
+            </div>
+            <div class="row">
+                <label for="username">Password:</label>
+                <input type="password" id="password1" name="password1" required>
+            </div>
+            <div class="row">
+                <label for="username">Confirm Password:</label>
+                <input type="password" id="password2" name="password2" required>
+            </div>
 
-                <hr>
-                <button type="submit">Register new Worker</button>
-            </form>
-        </div>
+            <hr>
+            
+            <button type="submit">Register new Worker</button>
+        </form>
     </div>
 </div>
+
 
 {% else %}
 

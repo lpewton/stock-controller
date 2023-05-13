@@ -15,8 +15,8 @@
                 <button type="submit">Add Recipe</button>
             </form>
         </div>
-        {% if ingredients %}
 
+        {% if ingredients %}
         <div class="col-md-6 mt-3 mt-md-0">
             <h5>Recipes:</h5>
             {% for recipe in ingredients %}
@@ -34,12 +34,12 @@
             {% endif %}
 
         </div>
+
         <hr class="mt-3">
 
         <div class="text-center">
             <a href=" {% url 'ingredients_result' %}"
                 class="bg-info rounded border text-dark text-decoration-none p-1">CALCULATE</a>
-            </form>
         </div>
     </div>
 </div>

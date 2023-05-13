@@ -1,47 +1,51 @@
 
-
 <ul class="pagination justify-content-center mt-2">
+    
+    <!-- First and previous -->
     {% if page_obj.has_previous %}
-    <li class="page-item m-1">
-        <a href="?page=1" class="page-link text-dark">&laquo; First</a>
-    </li>
-    <li class="page-item m-1">
-        <a href="?page={{ page_obj.previous_page_number }}" class="page-link text-dark" >Previous</a>
-    </li>
+        <li class="page-item m-1">
+            <a href="?page=1" class="page-link text-dark">&laquo; First</a>
+        </li>
+        <li class="page-item m-1">
+            <a href="?page={{ page_obj.previous_page_number }}" class="page-link text-dark" >Previous</a>
+        </li>
 
-    {% for page in page_obj.paginator.page_range %}
-    {% if page == page_obj.number %}
-        <li class="page-item m-1"><a class="text-dark page-link d-none d-md-inline-block" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a></li>
-        <li class="page-item m-1"><a class="bg-gradient bg-success text-dark page-link d-none d-md-inline-block" href="?page={{ page }}">{{ page }}</a></li>
-        {% endif %}
-
+        <!-- Current page -->
+        {% for page in page_obj.paginator.page_range %}
+            {% if page == page_obj.number %}
+                <li class="page-item m-1"><a class="text-dark page-link d-none d-md-inline-block" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a></li>
+                <li class="page-item m-1"><a class="bg-gradient bg-success text-dark page-link d-none d-md-inline-block" href="?page={{ page }}">{{ page }}</a></li>
+            {% endif %}
         {% endfor %}
     {% endif %}
 
     {% if page_obj.has_previous == False %}
-    {% for page in page_obj.paginator.page_range %}
-    {% if page == 1 %}
-    <li class="page-item m-1"><a class="bg-gradient bg-success text-dark page-link d-none d-md-inline-block" href="?page={{ page }}">{{ page }}</a></li>
+        {% for page in page_obj.paginator.page_range %}
+            {% if page == 1 %}
+            <li class="page-item m-1">
+                <a class="bg-gradient bg-success text-dark page-link d-none d-md-inline-block" href="?page={{ page }}">
+                    {{ page }}</a>
+            </li>
+            {% endif %}
+        {% endfor %}
     {% endif %}
-    {% endfor %}
-    {% endif %}
 
-
-
+    <!-- Next and last -->
     {% if page_obj.has_next %}
-    {% for page in page_obj.paginator.page_range %}
-    {% if page == page_obj.number %}
-        <li class="page-item m-1"><a class="page-link text-dark d-none d-md-inline-block" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a></li>
-
-        {% endif %}
-
+        {% for page in page_obj.paginator.page_range %}
+            {% if page == page_obj.number %}
+                <li class="page-item m-1">
+                    <a class="page-link text-dark d-none d-md-inline-block" href="?page={{ page_obj.next_page_number }}">
+                        {{ page_obj.next_page_number }}</a>
+                </li>
+            {% endif %}
         {% endfor %}
 
-    <li class="page-item m-1">
-        <a href="?page={{ page_obj.next_page_number }}" class="page-link text-dark">Next</a>
-    </li>
-    <li class="page-item m-1">
-        <a href="?page={{ page_obj.paginator.num_pages }}" class="page-link text-dark">Last &raquo;</a>
-    </li>
+        <li class="page-item m-1">
+            <a href="?page={{ page_obj.next_page_number }}" class="page-link text-dark">Next</a>
+        </li>
+        <li class="page-item m-1">
+            <a href="?page={{ page_obj.paginator.num_pages }}" class="page-link text-dark">Last &raquo;</a>
+        </li>
     {% endif %}
 </ul>
