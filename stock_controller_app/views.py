@@ -11,7 +11,7 @@ from django.contrib import messages
 # Login
 class homePage(TemplateView):
     """Render the landing page"""
-    template_name = 'homepage.html'
+    template_name = 'index.html'
 
 
 # Search Bar
@@ -82,9 +82,9 @@ class RecipeSearchResults(generic.ListView):
 
 # Ingredients
 class IngredientsList(ListView):
-    """Render index page"""
+    """Render ingredients list page"""
     model = Ingredient
-    template_name = 'index.html'
+    template_name = 'ingredients-list.html'
     paginate_by = 8
 
 
