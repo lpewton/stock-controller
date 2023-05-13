@@ -32,7 +32,8 @@ class Ingredient(models.Model):
 
     def total_cost(self):
         return round(sum(
-            Ingredient.price_value(ingredient) for ingredient in Ingredient.objects.all()), 2)
+            Ingredient.price_value(
+                ingredient) for ingredient in Ingredient.objects.all()), 2)
 
 
 # Recipes
@@ -73,7 +74,10 @@ class Recipe(models.Model):
         ingredient_list = []
 
         for ingredient in self.ingredient.all():
-            ingredient_int = ((ingredient.ingredient_name.price / ingredient.ingredient_name.unit_weight) * ingredient.quantity)
+            ingredient_price = ingredient.ingredient_name.price
+            ingredient_weight = ingredient.ingredient_name.unit_weight
+            ingredient_int = ((
+                ingredient_price / ingredient_weight) * ingredient.quantity)
             ingredient_list.append(ingredient_int)
 
         recipe_cost = round(sum(ingredient_list), 2)
@@ -81,7 +85,8 @@ class Recipe(models.Model):
         return recipe_cost
 
     def profit_medium(self):
-        return round(((self.recipe_quantity() / 120) * 3.8) - self.recipe_cost(), 2)
+        return round(((
+            self.recipe_quantity() / 120) * 3.8) - self.recipe_cost(), 2)
 
 
 # Ingredients calculation
@@ -114,7 +119,8 @@ class IngredientsCalculation(models.Model):
 
                 final_ic_list.pop(removed_index)
 
-                final_ic_list.append(f'{ingredient.ingredient_name}, {new_quantity}')
+                final_ic_list.append(
+                    f'{ingredient.ingredient_name}, {new_quantity}')
                 final_ic_list.sort()
 
         return self

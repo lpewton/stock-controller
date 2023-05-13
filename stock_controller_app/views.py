@@ -132,7 +132,8 @@ class newIngredient(TemplateView):
 
         else:
             messages.error(
-                request, "Please make sure ingredient doesn't already exist or fields are entered correctly")
+                request, "Please make sure all inputs are correct\
+                or the ingredient doesn't already exist")
             return redirect('new_ingredient')
 
 
@@ -164,8 +165,10 @@ class editIngredient(DetailView):
 
         else:
             messages.error(
-                request, "Please make sure ingredient doesn't already exist or fields are entered correctly")
+                request, "Please make sure all inputs are correct\
+                or the ingredient doesn't already exist")
             return redirect('new_ingredient')
+
 
 class deleteIngredient(View):
     """Deletes ingredient"""
@@ -175,8 +178,9 @@ class deleteIngredient(View):
             ingredient = get_object_or_404(Ingredient, pk=pk)
             ingredient.delete()
             messages.success(request, "Ingredient deleted successfully")
-        except:
-            messages.error(request, "Couldn't delete ingredient as it's part of a recipe, please delete recipe first")
+        except Exception as e:
+            messages.error(request, "Couldn't delete ingredient as\
+            it's part of a recipe, please delete recipe first")
 
         return HttpResponseRedirect(reverse('ingredients_list'))
 
@@ -251,7 +255,8 @@ class deleteRecipe(View):
         recipe = get_object_or_404(Recipe, pk=pk)
 
         for ingredient in recipe.ingredient.all():
-            if Recipe.objects.filter(ingredient=ingredient).exclude(pk=pk).exists():
+            if Recipe.objects.filter(
+                 ingredient=ingredient).exclude(pk=pk).exists():
                 continue
             ingredient.delete()
 
@@ -297,7 +302,9 @@ class newRecipe(TemplateView):
             return redirect('new_recipe')
 
         else:
-            messages.error(request, "Ingredient quantity already exists or quantity is smaller than 1g")
+            messages.error(
+                request, "Ingredient quantity already exists\
+                    or quantity is smaller than 1g")
             return redirect('new_recipe')
 
 
@@ -363,5 +370,6 @@ class signup(View):
             return redirect('ingredients_list')
         else:
             messages.error(
-                request, "Something went wrong, please make sure password is long enough and contains letters and numbers")
+                request, "Something went wrong, please make sure password is\
+                    long enough and contains letters and numbers")
             return redirect('signup')

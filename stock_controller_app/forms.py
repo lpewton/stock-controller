@@ -3,12 +3,14 @@ from .models import *
 from django.contrib.auth.forms import UserCreationForm
 from .models import CustomUser
 
+
 # Ingredients
 class IngredientForm(forms.ModelForm):
 
     class Meta:
         model = Ingredient
         fields = ['name', 'price', 'unit_weight', 'units', 'supplier', 'type']
+
 
 # Recipes
 class RecipeForm(forms.ModelForm):
@@ -24,12 +26,14 @@ class IngredientQuantityForm(forms.ModelForm):
         model = ingredientQuantity
         fields = ['ingredient_name', 'quantity']
 
+
 # Calculations
 class IngredientsCalculationForm(forms.ModelForm):
 
     class Meta:
         model = IngredientsCalculation
         fields = ['recipe', 'quantity']
+
 
 # Users
 class CustomUserCreationForm(UserCreationForm):
