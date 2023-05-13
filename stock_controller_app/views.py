@@ -225,8 +225,6 @@ class editRecipe(DetailView):
 
         return render(request, 'edit-recipe.html', context)
 
-        
-
     def post(self, request, pk):
         recipe = get_object_or_404(Recipe, pk=pk)
         recipeForm = RecipeForm(request.POST, instance=recipe)
@@ -360,5 +358,6 @@ class signup(View):
             messages.success(request, "New user added successfully")
             return redirect('ingredients_list')
         else:
-            messages.error(request, "Something went wrong, please make sure password is long enough and contains letters and numbers")
+            messages.error(
+                request, "Something went wrong, please make sure password is long enough and contains letters and numbers")
             return redirect('signup')

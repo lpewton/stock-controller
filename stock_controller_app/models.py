@@ -6,6 +6,7 @@ from django.core.validators import MinValueValidator
 names_ic_list = []
 final_ic_list = []
 
+
 # Ingredients
 class Ingredient(models.Model):
     PRODUCT_TYPES = ((0, 'Solid'), (1, 'Liquid'), (2, 'Non-Edibles'))
@@ -30,8 +31,8 @@ class Ingredient(models.Model):
         return round(self.price * self.units, 2)
 
     def total_cost(self):
-        return sum(
-            Ingredient.price_value(ingredient) for ingredient in Ingredient.objects.all())
+        return round(sum(
+            Ingredient.price_value(ingredient) for ingredient in Ingredient.objects.all()), 2)
 
 
 # Recipes
@@ -82,6 +83,7 @@ class Recipe(models.Model):
     def profit_medium(self):
         return round(((self.recipe_quantity() / 120) * 3.8) - self.recipe_cost(), 2)
 
+
 # Ingredients calculation
 class IngredientsCalculation(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
@@ -116,6 +118,7 @@ class IngredientsCalculation(models.Model):
                 final_ic_list.sort()
 
         return self
+
 
 # Users
 class CustomUser(AbstractUser):
