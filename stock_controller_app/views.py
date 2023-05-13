@@ -162,6 +162,10 @@ class editIngredient(DetailView):
 
             return redirect('ingredients_list')
 
+        else:
+            messages.error(
+                request, "Please make sure ingredient doesn't already exist or fields are entered correctly")
+            return redirect('new_ingredient')
 
 class deleteIngredient(View):
     """Deletes ingredient"""
