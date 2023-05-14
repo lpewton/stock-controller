@@ -4,107 +4,116 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">  
-  
-  <title>La casa del Gelat</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>La casa del Gelat</title>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-  <header>
-    <div id="header-div" class="text-center">
-      <div>
-        <h1 class="display-1 py-3">La Casa del Gelat</h1>
-        {% if user.is_authenticated %}
-        <h6 class="pb-3">Welcome {{ user.username }}</h6>
-      </div>
+    <header>
+        <div id="header-div" class="text-center">
+            <div>
+                <h1 class="display-1 py-3">La Casa del Gelat</h1>
+                {% if user.is_authenticated %}
+                <h6 class="pb-3">Welcome {{ user.username }}</h6>
+            </div>
+        </div>
+
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active px-5" aria-current="page"
+                                href="{% url 'ingredients_list' %}">Stock</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active px-5" aria-current="page" href="{% url 'stock_list' %}">Stock
+                                List</a>
+                        </li>
+                        {% if user.worker_type != 'scooper' or user.is_staff %}
+                        <li class="nav-item">
+                            <a class="nav-link active px-5" href="{% url 'recipes' %}">Recipes</a>
+                        </li>
+                        {% endif %}
+                        {% if user.worker_type != 'scooper' or user.is_staff %}
+                        <li class="nav-item">
+                            <a class="nav-link active px-5" href="{% url 'ingredients_calculation' %}">How much stock do
+                                I need?</a>
+                        </li>
+                        {% endif %}
+                        {% if user.worker_type == 'stock-controller' or user.is_staff %}
+                        <li class="nav-item">
+                            <a class="nav-link active px-5" href="{% url 'signup' %}">Signup</a>
+                        </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link active px-5" href="{% url 'account_logout' %}">Log Out</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        {% endif %}
+    </header>
+
+    <!-- Messages -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                {% for message in messages %}
+                <div class="alert {{ message.tags }} alert-dismissible fade show mt-1 text-center" id="msg"
+                    role="alert">
+                    {{ message | safe }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active px-5" aria-current="page" href="{% url 'ingredients_list' %}">Stock</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active px-5" aria-current="page" href="{% url 'stock_list' %}">Stock List</a>
-            </li>
-            {% if user.worker_type != 'scooper' or user.is_staff %}
-            <li class="nav-item">
-              <a class="nav-link active px-5" href="{% url 'recipes' %}">Recipes</a>
-            </li>
-            {% endif %}
-            {% if user.worker_type != 'scooper' or user.is_staff %}
-            <li class="nav-item">
-              <a class="nav-link active px-5" href="{% url 'ingredients_calculation' %}">How much stock do I need?</a>
-            </li>
-            {% endif %}
-            {% if user.worker_type == 'stock-controller' or user.is_staff %}
-            <li class="nav-item">
-              <a class="nav-link active px-5" href="{% url 'signup' %}">Signup</a>
-            </li>
-            {% endif %}
-            <li class="nav-item">
-              <a class="nav-link active px-5" href="{% url 'account_logout' %}">Log Out</a>
-            </li>
-          </ul>
+    <!-- Page Content -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="container-fluid mt-auto py-3">
+        <div class="row">
+            <div class="col-6">
+                <p class="h6"><i class="fa-regular fa-copyright"></i> La Casa del Gelat</p>
+            </div>
+            <div class="col-6 text-end">
+                <p class="h6">Stock Controller</p>
+            </div>
         </div>
-      </div>
-    </nav>
-    {% endif %}
-  </header>
+    </footer>
 
-  <!-- Messages -->
-  <div class="container">
-    <div class="row">
-        <div class="col-md-8 offset-md-2">
-            {% for message in messages %}
-            <div class="alert {{ message.tags }} alert-dismissible fade show mt-1 text-center" id="msg" role="alert">
-                {{ message | safe }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-            {% endfor %}
-        </div>
-    </div>
-  </div>
-
-  <!-- Page Content -->
-  <main>
-    {% block content %}
-    {% endblock %}
-  </main>
-
-  <!-- Footer -->
-  <footer class="container-fluid mt-auto py-3">
-    <div class="row">
-      <div class="col-6">
-        <p class="h6"><i class="fa-regular fa-copyright"></i> La Casa del Gelat</p>
-      </div>
-      <div class="col-6 text-end">
-        <p class="h6">Stock Controller</p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Script -->
-  <script src="https://kit.fontawesome.com/8b45f7f3ca.js" crossorigin="anonymous"></script>
-  <script>
-    setTimeout(function () {
-        let messages = document.getElementById('msg');
-        let alert = new bootstrap.Alert(messages);
-        alert.close();
-    }, 3000);
+    <!-- Script -->
+    <script src="https://kit.fontawesome.com/8b45f7f3ca.js" crossorigin="anonymous"></script>
+    <script>
+        setTimeout(function () {
+            let messages = document.getElementById('msg');
+            let alert = new bootstrap.Alert(messages);
+            alert.close();
+        }, 3000);
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>

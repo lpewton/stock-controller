@@ -26,8 +26,6 @@ urlpatterns = [
          name='add_recipe'),
     path('remove-recipe/<int:pk>', views.removeRecipe.as_view(),
          name='remove_recipe'),
-    path('edit-recipe/<int:pk>', views.editRecipe.as_view(),
-         name='edit_recipe'),
     path('delete-recipe/<int:pk>', views.deleteRecipe.as_view(),
          name='delete_recipe'),
     path('recipe/<int:pk>', views.recipeDetail.as_view(),

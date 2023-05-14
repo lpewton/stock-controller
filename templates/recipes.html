@@ -52,10 +52,7 @@
                         </div>
 
                         {% if user.worker_type == 'stock-controller' or user.is_staff %}
-                        <div class="row justify-content-around">
-                            <a href="{% url 'edit_recipe' recipe.pk %}" class="w-50">
-                                <i class="fa-regular fa-pen-to-square text-dark h4"></i>
-                            </a>
+                        <div class="row justify-content-center">
                             <div class="col-6">
                                 <button type="button" class="col-3 col-md-8" data-bs-toggle="modal"
                                     data-bs-target="#deletes_recipe-{{recipe.pk}}">

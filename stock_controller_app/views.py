@@ -219,35 +219,6 @@ class removeRecipe(View):
         return HttpResponseRedirect(reverse('recipes'))
 
 
-class editRecipe(DetailView):
-    """Render edit recipe page"""
-
-    def get(self, request, pk):
-        recipe = get_object_or_404(Recipe, pk=pk)
-        recipeForm = RecipeForm(instance=recipe)
-        context = {
-            'recipeForm': recipeForm,
-            'IngredientQuantityForm': IngredientQuantityForm,
-            'recipe': recipe,
-        }
-
-        return render(request, 'edit-recipe.html', context)
-
-    def post(self, request, pk):
-        recipe = get_object_or_404(Recipe, pk=pk)
-        recipeForm = RecipeForm(request.POST, instance=recipe)
-
-        if recipeForm.is_valid():
-            recipe = recipeForm.save(commit=False)
-            recipe.recipe_name = recipeForm.cleaned_data['recipe_name'].title()
-            recipeForm.save()
-            messages.success(request, "Recipe edited successfully")
-            return redirect('recipes')
-        else:
-            messages.error(request, "Recipe could not be added")
-            return redirect('recipes')
-
-
 class deleteRecipe(View):
     """Deletes recipe"""
 

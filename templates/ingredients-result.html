@@ -4,10 +4,10 @@
 {% if user.worker_type != 'scooper' or user.is_staff %}
 
 <div class="container">
-    
+
     <h2 class="mt-2">Quantities needed:</h2>
     <div class="row">
-        
+
         <div class="col-md-6">
             <h5 class="mt-2">Recipes requested:</h5>
             {% for recipe in recipes %}
