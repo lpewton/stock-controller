@@ -7,12 +7,12 @@
     <h2 class="mt-2">How much stock do I need?</h2>
     <div class="row mt-2">
         <div class="col-md-6">
-            <h5>Add Ice Creams:</h5>
+            <h5>Add Ice Creams (tubs):</h5>
             <form class="border p-2" action="{% url 'ingredients_calculation' %}" method="POST">
                 {% csrf_token %}
                 {{ IngredientsCalculationForm.as_p }}
                 <hr>
-                <button type="submit">Add Ice Creams</button>
+                <button type="submit">Add Ice Cream</button>
             </form>
         </div>
 
@@ -21,7 +21,7 @@
             <h5>Recipes:</h5>
             {% for recipe in ingredients %}
             <ul>
-                <li>{{ recipe.recipe }} ({{ recipe.quantity }}L)</li>
+                <li>{{ recipe.recipe }} ({{ recipe.quantity }} tubs)</li>
             </ul>
             {% endfor %}
 
@@ -31,7 +31,6 @@
                     <button type="submit" class="bg-danger rounded border">RESET</button>
                 </form>
             </div>
-            {% endif %}
 
         </div>
 
@@ -41,6 +40,8 @@
             <a href=" {% url 'ingredients_result' %}"
                 class="bg-info rounded border text-dark text-decoration-none p-1">CALCULATE REQUIRED STOCK</a>
         </div>
+        {% endif %}
+
     </div>
 </div>
 

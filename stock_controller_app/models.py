@@ -92,11 +92,11 @@ class Recipe(models.Model):
 # Ingredients calculation
 class IngredientsCalculation(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField(default=0)
+    quantity = models.PositiveIntegerField(validators=[MinValueValidator(1)], default=0)
     ingredient = models.ManyToManyField(ingredientQuantity)
 
     def __str__(self):
-        return f"{self.recipe} ({self.quantity}L)"
+        return f"{self.recipe} ({self.quantity} tubs)"
 
     def recipe_ingredients(self):
 

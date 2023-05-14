@@ -325,6 +325,9 @@ class ingredientsCalculation(View):
         if ingredientsCalculationForm.is_valid():
             ingredientsCalculationForm.save()
             return redirect('ingredients_calculation')
+        else:
+            messages.error(request, "Could not add ice cream, please make sure quantities are larger than 0")
+            return redirect('ingredients_calculation')
 
 
 class resetIngredients(View):
