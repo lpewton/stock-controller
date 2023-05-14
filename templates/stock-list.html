@@ -26,11 +26,11 @@
 
     <!--Ingredients-->
     {% for ingredient in ingredient_list %}
-    {% if ingredient.weight_value > 10000 %}
+    {% if ingredient.weight_value > 5000 %}
     <div class="row border pt-2 text-success">
-        {% elif ingredient.weight_value > 0 %}
-        <div class="row border pt-2">
-            {% elif ingredient.weight_value == 0 %}
+        {% elif ingredient.weight_value > 1001 %}
+        <div class="row border pt-2 text-warning">
+            {% elif ingredient.weight_value >= 0 %}
             <div class="row border pt-2 text-danger">
                 {% endif %}
                 <p class="col-3 ms-3 col-md-2 ms-md-0 ps-md-4"><strong>{{ ingredient.name }}</strong></p>
