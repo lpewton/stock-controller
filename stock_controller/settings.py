@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-# DEBUG = True
+DEBUG = True
 
 ALLOWED_HOSTS = ["lpewton-stock-controller.herokuapp.com", "localhost", "8000-lpewton-stock-controller-8f1u8b8tc1.us2.codeanyapp.com"]
 
