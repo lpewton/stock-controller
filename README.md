@@ -7,10 +7,8 @@ In a sense, it’s an app that allows for a centralized source of information th
 You can find the live link for this website here: https://lpewton-stock-controller.herokuapp.com.
 
 ## TABLE OF CONTENTS:
-
-  * TABLE OF CONTENTS:
   * User Experience (UX):
-    + App purpose
+    + [App purpose](#app-purpose)
     + App goals
     + Target
     + Displays
@@ -21,7 +19,7 @@ You can find the live link for this website here: https://lpewton-stock-controll
     + Ingredient
     + Recipe
     + Custom User
-  * Features
+  * [Features](#features)
   * Features left to implement
   * Unfixed bugs
   * Major Issues Found
@@ -33,7 +31,7 @@ You can find the live link for this website here: https://lpewton-stock-controll
     + Security Measures
   * Validator Testing
   * Technologies Used
-  * Deployment:
+  * [Deployment:](#deployment)
     + In the terminal
     + In settings.py
     + In ElephantSQL
@@ -76,10 +74,10 @@ For instance, in the ingredients page if an ingredient is about to run out (ther
 The Agile methodology has been used during this app’s creation. This has been done by having biweekly meetings with the shop manager, addressing their needs and using the to create user stories. All these user stories have come directly from the manager and their needs. They can be found below:
 
 1. As a **stock manager:**
-- I can **calculate how much stock I need to make an X number of recipes** so that **I know how much to buy for an event**.
-- I can **add, remove or edit ingredients** so that **I can keep the list updated**.
-- I can **see how much stock is available** so that **I know if I need to buy any**.
-- I can **add and remove recipes** so that **I can keep track of what is available**.
+- I can **calculate how much stock I need to make an X number of recipes** so that **I know how much to buy for an event**. 
+- I can **add, remove or edit ingredients** so that **I can keep the list updated**. 
+- I can **see how much stock is available** so that **I know if I need to buy any**. 
+- I can **add and remove recipes** so that **I can keep track of what is available**. 
 - I can **see how much profit each recipe generates** so that **I can evaluate the most productive recipes and determine a price for them**.
 - I can **visualize a list of items that have run out** so that **I know what we need**.
 - I can **add expiration dates to the ingredients** so that **they disappear when they expire**.
@@ -240,19 +238,21 @@ Where the user logs out.
 
 
 ### USER STORIES COMPLETION:
-1. As a **stock manager:** I can **add, remove or edit ingredients** so that **I can keep the list updated**: 
+1. As a **stock manager:** I can **add, remove or edit ingredients** so that **I can keep the list updated**:
 - These features were tested through many devices and browsers, along with the testing validations metioned above. 
-2. As a **stock manager:** I can **add and remove recipes** so that **I can keep track of what is available**.
+2. As a **stock manager:** I can **add and remove recipes** so that **I can keep track of what is available**:
 - These features were also tested through many devices and browsers, along with the testing validations metioned above.
 3. As a **stock manager:** I can **see a list of how much stock is available** so that **I know if I need to buy any**:
 - The list exists and is responsive throughout all device sizes.
 4. As a **stock manager:** I can **calculate how much stock I need to make an X number of recipes** so that **I know how much to buy for an event**:
 - This was also accomplished by creating different scenarios, calculating the ingredients manually and then comparing them. The results are always the same.
-5. As a **stock manager:** I can **see how much profit each recipe generates** so that **I can evaluate the most productive recipes and determine a price for them**.
+5. As a **stock manager:** I can **see how much profit each recipe generates** so that **I can evaluate the most productive recipes and determine a price for them**:
 - Again, the profits were calculated manually and then compared to the ones the app gave. the results were always the same.
-6. As a **cook:** I can **see a list of the recipes with its ingredients** so that **I know how to make a recipe**.
+6. As a **stock-controller** I can **see how much stock I need for a recipe** so that I **know how much I need to buy:**
+- All recipes show the correct amounts of stock, as created by the user.
+8. As a **cook:** I can **see a list of the recipes with its ingredients** so that **I know how to make a recipe**.
 - The recipe list and recipe detail pages are available for only the cook and stock controller to see, as intended, and it's responsive to all devices.
-As a **scooper:** I can **add and remove units from the stock** so that **it can remain updated**.
+9. As a **scooper:** I can **add and remove units from the stock** so that **it can remain updated**. 
 - This was tested manually from many browsers, with many device sizes. It worked every time. 
 
 In conclusion, all completed user stories work properly and as intended, and the non-completed user stories will be finalised in the near future to make this app as useful as possible.
