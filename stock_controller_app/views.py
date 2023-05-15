@@ -95,8 +95,7 @@ class addIngredient(View):
         ingredient.units += 1
         ingredient.save()
 
-        return HttpResponseRedirect(reverse('ingredients_list'))
-
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 class removeIngredient(View):
     """Substracts from the value of the ingredient's units"""
@@ -105,7 +104,7 @@ class removeIngredient(View):
         ingredient.units -= 1
         ingredient.save()
 
-        return HttpResponseRedirect(reverse('ingredients_list'))
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 class newIngredient(TemplateView):
@@ -208,7 +207,7 @@ class addRecipe(View):
         recipe.tubs += 1
         recipe.save()
 
-        return HttpResponseRedirect(reverse('recipes'))
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 class removeRecipe(View):
@@ -218,7 +217,7 @@ class removeRecipe(View):
         recipe.tubs -= 1
         recipe.save()
 
-        return HttpResponseRedirect(reverse('recipes'))
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 class deleteRecipe(View):
