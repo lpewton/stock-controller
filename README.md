@@ -8,8 +8,36 @@ You can find the live link for this website here: https://lpewton-stock-controll
 
 ## TABLE OF CONTENTS:
 
-- User experience (UX)
-
+  * TABLE OF CONTENTS:
+  * User Experience (UX):
+    + App purpose
+    + App goals
+    + Target
+    + Displays
+    + Colors and design
+    + User Stories
+  * Roles
+  * Database Schema:
+    + Ingredient
+    + Recipe
+    + Custom User
+  * Features
+  * Features left to implement
+  * Unfixed bugs
+  * Major Issues Found
+  * Manual Testing:
+    + Ingredient
+    + Recipes
+    + Security Measures
+  * Validator Testing
+  * Technologies Used
+  * Deployment:
+    + In the terminal
+    + In settings.py
+    + In ElephantSQL
+    + In the Heroku app
+    + In the app
+  * Credits
 
 ## User Experience (UX):
 
@@ -29,21 +57,27 @@ Finally, another thing that wasn’t an issue but does make life easier was adde
 
 ### Target:
 The target for this app are the employees of La Casa del Gelat. That is why it’s only accessible if the user is authorized. As this app is for education purposes, the credentials are the following:
+![Screen Shot 2023-05-15 at 01 39 33](https://github.com/lpewton/stock-controller/assets/114712846/decc1924-b155-4f2f-9aa7-897f8b8ab56d)
 
-![Screen Shot 2023-05-09 at 00 42 58](https://user-images.githubusercontent.com/114712846/236966901-3bcfec08-e8ec-4907-88f6-04059936e413.png)
 
 ### Displays:
 The layout of the app is clear, communicative and there is an easy intuition on how to find the information.
 
+### Colors and design:
+Since this is a practical site that is not available to all users the design was very minimalistic. The colors for the shop have been added in the heading and the rest are basic colors to alert the user of relevant information. 
+
+For instance, in the ingredients page if an ingredient is about to run out (there is less than 1000g or 1000 mililiters of it left) the ingredient will display as red. If it's beginning to run out it will be displayed in yellow and if there is a comfortble quantity of this ingredient it will be shown in green. 
+
+
 ### User Stories:
-The Agile methodology has been used during this app’s creation. This has been done by having biweekly meetings with the shop manager, addressing their needs and using the to create user stories. These can be found below:
+The Agile methodology has been used during this app’s creation. This has been done by having biweekly meetings with the shop manager, addressing their needs and using the to create user stories. All these user stories have come directly from the manager and their needs. They can be found below:
 
 1. As a **stock manager:**
 - I can **calculate how much stock I need to make an X number of recipes** so that **I know how much to buy for an event**.
 - I can **add, remove or edit ingredients and recipes** so that **I can keep the list updated**.
 - I can **see how much stock is available** so that **I know if I need to buy any**.
 - I can **be able to alter recipes** so that **I can fix mistakes and update recipes**.
-- I can **see how much profit each recipe generates** so that ** can evaluate the most productive recipes and determine a price for them**.
+- I can **see how much profit each recipe generates** so that **I can evaluate the most productive recipes and determine a price for them**.
 - I can **visualize a list of items that have run out** so that **I know what we need**.
 - I can **add expiration dates to the ingredients** so that **they disappear when they expire**.
 - I can **see how much stock I need for a recipe** so that **I know how much I need to buy**.
@@ -54,8 +88,12 @@ The Agile methodology has been used during this app’s creation. This has been 
 3. As a **scooper:**
 - I can **add and remove units from the stock** so that **it can remain updated**.
 
-## Roles:
+## Roles and registration:
 As this application i meant for a buisness, different roles have been applied to the users. From the scooper, cooks and stock-controller. Each one of these roles has their own visibility permissions.
+
+For instance, the administrators can see, add and edit all entries. The cooks cannot sign users up, add or edit ingredients. And the scoopers can only alter and see the stock.
+
+As for the registration, the app still has a fully functioning registration system. However, as it will be a private app, the only users authorized to register new accounts are the stock-controllers and the superusers. This is purely for security and confidentiality reasons.
 
 ## Database Schema:
 ### Ingredient:
@@ -67,52 +105,74 @@ As this application i meant for a buisness, different roles have been applied to
 ### Custom User:
 ![Screen Shot 2023-05-09 at 01 13 26](https://user-images.githubusercontent.com/114712846/236965965-b8c79b84-a232-4972-a5a7-91f182e7c4f3.png)
 
-## Colors and design:
-Since this is a practical site that is not available to all users. The design was very minimalistic. The colors for the shop have been added in the heading and the rest are basic colors to alert the user of some information. 
-
 ## Features:
 ### Landing page:
+What the user sees before they log in.
+
 ![Screen Shot 2023-05-09 at 17 22 32](https://github.com/lpewton/stock-controller/assets/114712846/5af0b854-2834-4426-98f5-dcfe4987300b)
 
 ### Log In page:
+Where the user logs in.
+
 ![Screen Shot 2023-05-09 at 17 23 16](https://github.com/lpewton/stock-controller/assets/114712846/5c784fbd-3983-479e-8ad4-c9ed4689eaaa)
 
 ### Stock items page:
-![Screen Shot 2023-05-09 at 17 23 45](https://github.com/lpewton/stock-controller/assets/114712846/bbca5b21-fb4c-4f29-b361-187957ccb3fa)
+The stock is displayed here and the user can add and edit ingredients. They can also add and remove them from the stock.
+
+![Screen Shot 2023-05-15 at 01 41 32](https://github.com/lpewton/stock-controller/assets/114712846/99583a8d-82fb-4b58-9707-2411b390ef2e)
 
 ### New Ingredient form:
-![Screen Shot 2023-05-09 at 20 46 59](https://github.com/lpewton/stock-controller/assets/114712846/8786943e-53c8-42f5-bd3a-f95aa4466bf3)
+Where the user can add an ingredient to the stock list.
+
+![Screen Shot 2023-05-15 at 01 42 35](https://github.com/lpewton/stock-controller/assets/114712846/7cb2870c-1cc1-4b90-be1b-6cdb622553b3)
 
 ### Edit Ingredient form:
-![Screen Shot 2023-05-09 at 17 24 16](https://github.com/lpewton/stock-controller/assets/114712846/bc5b7865-f7d5-4f3c-8716-b193b0e6598f)
+Where the user can edit an ingredient.
+
+![Screen Shot 2023-05-15 at 01 43 03](https://github.com/lpewton/stock-controller/assets/114712846/e4693cb3-2309-4e53-a3b3-72e483dc68bd)
 
 ### Stock List page:
-![Screen Shot 2023-05-09 at 17 25 03](https://github.com/lpewton/stock-controller/assets/114712846/d4d5f909-9e69-4de5-83bf-63b3c914aed3)
+Where all the stock is shown with the total stock value.
+
+![Screen Shot 2023-05-15 at 01 41 03](https://github.com/lpewton/stock-controller/assets/114712846/d4ed8f3b-00a4-43fb-8aba-0088b9aa306a)
 
 ### Recipes page:
-![Screen Shot 2023-05-09 at 17 26 13](https://github.com/lpewton/stock-controller/assets/114712846/b837da2f-36cf-44b2-a026-617e2218aeb1)
+All the recipes are shown here.
+
+![Screen Shot 2023-05-15 at 01 43 26](https://github.com/lpewton/stock-controller/assets/114712846/0cf8745a-b799-4744-897b-72306acf861e)
 
 ### New Recipe form:
-![Screen Shot 2023-05-09 at 17 27 43](https://github.com/lpewton/stock-controller/assets/114712846/7bfd0cff-877d-48fe-8087-c8078cf8a69b)
+Form to add a new recipe.
 
-### Edit Recipe form:
-### Ingredients Calculation form:
-![Screen Shot 2023-05-09 at 17 28 14](https://github.com/lpewton/stock-controller/assets/114712846/3ddd0d4c-d3db-4bd6-9445-a3f217aeeb9c)
+![Screen Shot 2023-05-15 at 01 43 56](https://github.com/lpewton/stock-controller/assets/114712846/57615511-943f-413f-80e0-3e92511c7284)
+
+### Ingredients Calculation page:
+Where the user can add the recipes of the ingredients they want to calculate.
+
+![Screen Shot 2023-05-15 at 01 41 59](https://github.com/lpewton/stock-controller/assets/114712846/1f49f53b-f913-46ad-ba2c-5a15dc8de968)
 
 ### Ingredients Result page:
-![Screen Shot 2023-05-09 at 17 28 30](https://github.com/lpewton/stock-controller/assets/114712846/f3826074-f0cf-47aa-a6bf-64f9cddc9a06)
+Where the ingredients the user needs for your recipes are shown.
+
+![Screen Shot 2023-05-15 at 01 47 53](https://github.com/lpewton/stock-controller/assets/114712846/e6ae57cd-876a-4c40-9b7b-d118cc021f25)
 
 ### Sign an Empoyee Up page:
-![Screen Shot 2023-05-09 at 17 30 04](https://github.com/lpewton/stock-controller/assets/114712846/753a511f-52ac-46a7-a1be-98ba41188421)
+Where the user signs a new employee up.
+
+![Screen Shot 2023-05-15 at 01 44 20](https://github.com/lpewton/stock-controller/assets/114712846/136ff3e7-ad4c-4e58-820d-d4d1fd773478)
 
 ### Log Out page:
-![Screen Shot 2023-05-09 at 17 30 19](https://github.com/lpewton/stock-controller/assets/114712846/46b0f6f8-58f6-4ce6-ab77-17424349d214)
+Where the user logs out.
 
+![Screen Shot 2023-05-15 at 01 44 39](https://github.com/lpewton/stock-controller/assets/114712846/6b98d947-b988-44a0-9d72-69ff49e0065d)
 
 ## Features left to implement:
 - A new page that contains a list of all the ingredients that are in red, so there is a visual representation of the ingredients that need to be purchased
 - Add expiration dates to the ingredients so that the user knows when he can’t count on them and, eventually, have them disappear automatically from the list
 - Get the app to send an email to the providers to order ingredients automatically when they run out
+
+## Unifxed bugs:
+- The new recipes form is a bit complex, I tried to make it easier by expaining the procedure in steps and in the future I would like to simplify the process. However, with the time-frame I had and working with the models, it was not possible for me to do so at this moment.
 
 ## Major Issues Found:
 1. Bootstrap modals not working:
@@ -126,6 +186,10 @@ Since this is a practical site that is not available to all users. The design wa
 3.	Not being able to provide the total stock cost:
 - I was not able to put the total stock cost for one ingredient, and showed behind every ingredient
 - With the {{ ingredient_list.0.total_cost }} I was able to show the total cost for only the first ingredient in the list (which will always be there), as it was the same for all ingredients
+
+4. Customuser superuser did not have any permissions on the admin panel:
+- Every time a superuser was created, they could not enter the admin panel or couldn't modify any entries there
+- The database was corrupted. All migrations were deleted and SQL database was reset manually
 
 ## Manual Testing:
 ### INGREDIENT:
@@ -144,12 +208,40 @@ Since this is a practical site that is not available to all users. The design wa
 - Cannot reach -1 in stock
 - Cannot set a negative value for units
 
+| Test | Expected |Passed |
+
+| User can log in |All user types (scooper, cook and stock-controller) can log in| PASSED
+
+### USER STORIES:
+1. As a **stock manager:** I can **add, remove or edit ingredients** so that **I can keep the list updated**: 
+- These features were tested through many devices and browsers, along with the testing validations metioned above. 
+2. As a **stock manager:** I can **be able to add and remove recipes** so that **I can keep track of what is available**.
+- These features were also tested through many devices and browsers, along with the testing validations metioned above.
+3. As a **stock manager:** I can **see a list of how much stock is available** so that **I know if I need to buy any**:
+- The list exists and is responsive throughout all device sizes.
+4. As a **stock manager:** I can **calculate how much stock I need to make an X number of recipes** so that **I know how much to buy for an event**:
+- This was also accomplished by creating different scenarios, calculating the ingredients manually and then comparing them. The results are always the same.
+5. As a **stock manager:** I can **see how much profit each recipe generates** so that **I can evaluate the most productive recipes and determine a price for them**.
+- Again, the profits were calculated manually and then compared to the ones the app gave. the results were always the same.
+6. As a **cook:** I can **see a list of the recipes with its ingredients** so that **I know how to make a recipe**.
+- The recipe list and recipe detail pages are available for only the cook and stock controller to see, as intended, and it's responsive to all devices.
+As a **scooper:** I can **add and remove units from the stock** so that **it can remain updated**.
+- This was tested manually from many browsers, with many device sizes. It worked every time. 
+
+In conclusion, all completed user stories work properly and as intended, and the non-completed user stories will be finalised in the near future to make this app as useful as possible.
+
 ### SECURITY MEASURES:
 All app functions were tested several times to make sure they worked under many conditions.
 
 Also, the ingredients and recipes are protected so that ingredients can only be deleted if they are not part of a recipe. Also, when deleting ingredients, the user is offered double confirmation to make sure they make no mistakes.
 
 ## Validator Testing:
+- All HTML templates passed the W3C validator (https://validator.w3.org) without any issues except the {% %} tags.
+- All CSS passed the Jigsaw validator (https://jigsaw.w3.org) with no errors found.
+- The lighthouse test could not be performed on this app as it's an authenticated required app and it will only register the login page. However, here is a the validation of that first page:
+ 
+- All python code passed the Code Institute Python Linter (https://pep8ci.herokuapp.com/) without any issues.
+- The app could be opened from Mozzila Firefox, Chrome and Safari without any issues.
 
 ## Technologies Used:
 - HTML5
@@ -198,6 +290,10 @@ Also, the ingredients and recipes are protected so that ingredients can only be 
 ## Credits:
 A lot of this project was based on the projects shown at the Full Stack Software Developement Professional Diploma at Code Institute. Especially the *I think therefore I Blog* and *Hello Django* projects.
 
-I also got a lot of ideas and coding techniques from participating in Code Institute hackathons, Stack Overflow and ChatGPT.
+I also got a some of the ideas and coding techniques from participating in Code Institute hackathons and Stack Overflow.
+
+I would like to thank the shop manager for allowing me to use the buisness as a test for my learning carreer and for taking the time to meet with me when we did. 
+
+Please bear in mind that, as per petition of the manager to mantain the privacy of their recipes, they are all missing one or two ingredients, so please do not try making them at home.
 
 Finally, I would also like to thank my tutor, Martina Terlevic, and the Code Institute tutor assistants for helping me through the tough times while developing the app.
