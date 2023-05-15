@@ -124,6 +124,7 @@ class newIngredient(TemplateView):
 
         if form.is_valid():
             ingredient = form.save(commit=False)
+            # Capitalise names so they're not repeated
             ingredient.name = form.cleaned_data['name'].title()
             ingredient.save()
             messages.success(request, "Ingredient added successfully")
@@ -157,6 +158,7 @@ class editIngredient(DetailView):
 
         if form.is_valid():
             ingredient = form.save(commit=False)
+            # Capitalise names so they're not repeated
             ingredient.name = form.cleaned_data['name'].title()
             ingredient.save()
             messages.success(request, "Ingredient edited successfully")
@@ -225,6 +227,7 @@ class deleteRecipe(View):
     def post(self, request, pk):
         recipe = get_object_or_404(Recipe, pk=pk)
 
+        # Delete ingredient quantities when recipes are deleted
         for ingredient in recipe.ingredient.all():
             if Recipe.objects.filter(
                  ingredient=ingredient).exclude(pk=pk).exists():
@@ -261,7 +264,8 @@ class newRecipe(TemplateView):
 
         if recipeForm.is_valid():
             recipe = recipeForm.save(commit=False)
-            recipe.recipe_name = recipeForm.cleaned_data['recipe_name'].title()
+            # Capitalise names so they're not repeated
+            recipe.recipe_name = recipeForm.cleaned_data['recipe_name'].title() 
             recipeForm.save()
             messages.success(request, "Recipe added successfully")
 
@@ -294,11 +298,20 @@ class ingredientsCalculation(View):
         ingredientsCalculationForm = IngredientsCalculationForm(request.POST)
 
         if ingredientsCalculationForm.is_valid():
-            ingredientsCalculationForm.save()
-            return redirect('ingredients_calculation')
+            recipe = ingredientsCalculationForm.cleaned_data['recipe']
+            quantity = ingredientsCalculationForm.cleaned_data['quantity']            
+            
+            # Make sure recipes don't repeat themselves
+            if IngredientsCalculation.objects.filter(recipe=recipe).exists():  
+                existing_calculation = IngredientsCalculation.objects.get(recipe=recipe)  
+                existing_calculation.quantity += quantity  
+                existing_calculation.save()
+            else:
+                ingredients_calculation = ingredientsCalculationForm.save()
+
         else:
             messages.error(request, "Could not add ice cream, please make sure quantities are larger than 0")
-            return redirect('ingredients_calculation')
+        return redirect('ingredients_calculation')
 
 
 class resetIngredients(View):
