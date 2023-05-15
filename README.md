@@ -28,6 +28,8 @@ You can find the live link for this website here: https://lpewton-stock-controll
   * Manual Testing:
     + Ingredient
     + Recipes
+    + Website
+    + User Stories Completion
     + Security Measures
   * Validator Testing
   * Technologies Used
@@ -57,6 +59,7 @@ Finally, another thing that wasn’t an issue but does make life easier was adde
 
 ### Target:
 The target for this app are the employees of La Casa del Gelat. That is why it’s only accessible if the user is authorized. As this app is for education purposes, the credentials are the following:
+
 ![Screen Shot 2023-05-15 at 01 39 33](https://github.com/lpewton/stock-controller/assets/114712846/decc1924-b155-4f2f-9aa7-897f8b8ab56d)
 
 
@@ -74,9 +77,9 @@ The Agile methodology has been used during this app’s creation. This has been 
 
 1. As a **stock manager:**
 - I can **calculate how much stock I need to make an X number of recipes** so that **I know how much to buy for an event**.
-- I can **add, remove or edit ingredients and recipes** so that **I can keep the list updated**.
+- I can **add, remove or edit ingredients** so that **I can keep the list updated**.
 - I can **see how much stock is available** so that **I know if I need to buy any**.
-- I can **be able to alter recipes** so that **I can fix mistakes and update recipes**.
+- I can **add and remove recipes** so that **I can keep track of what is available**.
 - I can **see how much profit each recipe generates** so that **I can evaluate the most productive recipes and determine a price for them**.
 - I can **visualize a list of items that have run out** so that **I know what we need**.
 - I can **add expiration dates to the ingredients** so that **they disappear when they expire**.
@@ -175,7 +178,7 @@ Where the user logs out.
 - The new recipes form is a bit complex, I tried to make it easier by expaining the procedure in steps and in the future I would like to simplify the process. However, with the time-frame I had and working with the models, it was not possible for me to do so at this moment.
 
 ## Major Issues Found:
-1. Bootstrap modals not working:
+1. Bootstrap not working initially:
 - Through revision of everything I had done to insert the modals, I realized I had been using the Bootstrap 4 code for my app
 - I then changed what needed to be modified and did not repeat that mistake again
 
@@ -200,7 +203,7 @@ Where the user logs out.
 - Should be lowercase sensitive
 - Cannot reach -1 in stock
 
-### RECIPES
+### RECIPES:
 - Ingredient quantities cannot be repeated
 - Names are unique
 - Ingredient quantities have to be positive
@@ -208,14 +211,38 @@ Where the user logs out.
 - Cannot reach -1 in stock
 - Cannot set a negative value for units
 
-| Test | Expected |Passed |
+## WEBSITE:
+| Test  | Result | Status |
+| ------------- | ------------- | ------------- |
+| User can log in  | All user types (scooper, cook and stock-controller) can log in  | PASSED |
+| User can see pages when logged in  | All user types (scooper, cook and stock-controller) can see the pages correctly, if they are not logged in, they are shown the log in option  | PASSED |
+| Ingredient quantities can be altered  | Ingredient quantities can be altered, but not under zero, and display as red when they reach zero | PASSED |
+| Ingredient colors work correctly  | Ingredient colors change according to the qquantity of them left | PASSED |
+| User can add ingredients to stock  | Only stock managers can add new ingredients, and they are added correctly through form validation and error messages | PASSED |
+| There is double confirmation before deleting an ingredients or recipes  | A modal pops up to ensure that deletion is intentional, the deleted item is the correct one and all the buttons work correctly | PASSED |
+| User can delete ingredients in stock  | Only stock managers can delete ingredients, and they are deleted correctly through form validation and error messages | PASSED |
+| User can only delete ingredients in stock if they're not part of any recipes | Error message appears if you try to delete an ingredient that's part of a recipe | PASSED |
+| Pagination works correctly | Pagination displays the correct features and only appears when needed | PASSED |
+| All numbers are calculated correctly on stock-list  | Numbers in stock-list reflect the correct numbers that they should | PASSED |
+| Search ingredient and recipes works correctly  | Each search engine works correctly and can search by name or provider | PASSED |
+| All recipes are shown in recipes page  | Recipes code shows correctly when loading the page | PASSED |
+| Recipes quantities can be altered  | Recipes quantities can be altered, but not under zero, and display as red when they reach zero | PASSED |
+| Add ingredient quantities can be used to create new recipes  | Form works as expected, without issues | PASSED |
+| New recipes can be created  | They can be created and are displayed in the recipes page correctly after | PASSED |
+| User can add recipes to the recipes calculation form  | Form only accepts integers and over zero, if not, it will display an error message | PASSED |
+| Recipes in recipes calculation form cannot be repeated  | If a recipe is put in twice, the sum of it will be shown in the recipes list | PASSED |
+| Reset button works correctly in recipes calculation form  | All recipes in the recipes calculation form are deleted correctly when that is clicked | PASSED |
+| Calculate ingredients button leads to the correct page  | Calculate ingredients button works as expected | PASSED |
+| Ingredients result page shows the correct ammounts  | It shows the correct ammount and also does not allow ingredients to be repeated within it, it sums their quantities | PASSED |
+| Sign up page allows managers to register new employees  | New employees of every working type can be registered here and the procedure is successful | PASSED |
+| Logout page allows users to be logged out  | Logout page works as expected | PASSED |
+| Users have to be authorised and the correct worker type to access pages  | If user is not logged in or the correct worker type, they will be redirected to the home page | PASSED |
 
-| User can log in |All user types (scooper, cook and stock-controller) can log in| PASSED
 
-### USER STORIES:
+### USER STORIES COMPLETION:
 1. As a **stock manager:** I can **add, remove or edit ingredients** so that **I can keep the list updated**: 
 - These features were tested through many devices and browsers, along with the testing validations metioned above. 
-2. As a **stock manager:** I can **be able to add and remove recipes** so that **I can keep track of what is available**.
+2. As a **stock manager:** I can **add and remove recipes** so that **I can keep track of what is available**.
 - These features were also tested through many devices and browsers, along with the testing validations metioned above.
 3. As a **stock manager:** I can **see a list of how much stock is available** so that **I know if I need to buy any**:
 - The list exists and is responsive throughout all device sizes.
@@ -233,13 +260,14 @@ In conclusion, all completed user stories work properly and as intended, and the
 ### SECURITY MEASURES:
 All app functions were tested several times to make sure they worked under many conditions.
 
-Also, the ingredients and recipes are protected so that ingredients can only be deleted if they are not part of a recipe. Also, when deleting ingredients, the user is offered double confirmation to make sure they make no mistakes.
+Also, the ingredients and recipes are protected so that ingredients can only be deleted if they are not part of a recipe. Finally, when deleting ingredients, the user is offered double confirmation to make sure they make no mistakes.
+
+Users can only access their pages when they are logged in and in the correct worker type user. If not, they will be redirected to the home page.
 
 ## Validator Testing:
 - All HTML templates passed the W3C validator (https://validator.w3.org) without any issues except the {% %} tags.
 - All CSS passed the Jigsaw validator (https://jigsaw.w3.org) with no errors found.
-- The lighthouse test could not be performed on this app as it's an authenticated required app and it will only register the login page. However, here is a the validation of that first page:
- 
+- The lighthouse test could not be performed on this app as it's an authenticated required app and it will only register the login page.
 - All python code passed the Code Institute Python Linter (https://pep8ci.herokuapp.com/) without any issues.
 - The app could be opened from Mozzila Firefox, Chrome and Safari without any issues.
 
@@ -294,6 +322,7 @@ I also got a some of the ideas and coding techniques from participating in Code 
 
 I would like to thank the shop manager for allowing me to use the buisness as a test for my learning carreer and for taking the time to meet with me when we did. 
 
-Please bear in mind that, as per petition of the manager to mantain the privacy of their recipes, they are all missing one or two ingredients, so please do not try making them at home.
-
 Finally, I would also like to thank my tutor, Martina Terlevic, and the Code Institute tutor assistants for helping me through the tough times while developing the app.
+
+### Disclaimer:
+Please bear in mind that, as per petition of the manager to mantain the privacy of their recipes, they are all missing one or two ingredients, so please do not try making them at home.
