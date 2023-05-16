@@ -2,42 +2,42 @@
 
 La Casa del Gelat, Stock Controller, is an app designed to allow a closer management of a real life ice cream shop located in Olot, Catalunya. This is my family’s shop and therefore it seemed like a good idea to put my work into practice for something that could be useful in the real world.
 
-In a sense, it’s an app that allows for a centralized source of information that can contain all of the recipes, stocked ingredients and it also allows for calculations on the amount of ingredients needed in an event.
+In a sense, it’s an app that allows for a live controll over the shop's stock as well as a centralized source of information that contains all of the recipes, stocked ingredients and their qualities. Finally, it also allows for calculations on the amount of ingredients needed in an event.
 
 You can find the live link for this website here: https://lpewton-stock-controller.herokuapp.com.
 
 ## TABLE OF CONTENTS:
-  * User Experience (UX):
+  * [User Experience (UX):](#user-experience-ux)
     + [App purpose](#app-purpose)
-    + App goals
-    + Target
-    + Displays
-    + Colors and design
-    + User Stories
-  * Roles
-  * Database Schema:
-    + Ingredient
-    + Recipe
-    + Custom User
+    + [App goals](#app-goals)
+    + [Target](#target)
+    + [Displays](#displays)
+    + [Colors and design](#colors-and-design)
+    + [User Stories](#user-stories)
+  * [Roles adn Registration](#roles-and-registration)
+  * [Database Schema:](#database-schema)
+    + [Ingredient](#ingredient)
+    + [Recipe](#recipe)
+    + [Custom User](#custom-user)
   * [Features](#features)
-  * Features left to implement
-  * Unfixed bugs
-  * Major Issues Found
-  * Manual Testing:
-    + Ingredient
-    + Recipes
-    + Website
-    + User Stories Completion
-    + Security Measures
-  * Validator Testing
-  * Technologies Used
+  * [Features left to implement](#features-left-to-implement)
+  * [Unfixed bugs](#unfixed-bugs)
+  * [Major Issues Found](#major-issues-found)
+  * [Manual Testing:](#manual-testing)
+    + [Ingredient](#ingredient)
+    + [Recipes](#recipes)
+    + [Website](#website)
+    + [User Stories Completion](#user-stories-completion)
+    + [Security Measures](#security-measures)
+  * [Validator Testing](#validator-testing)
+  * [Technologies Used](#technologies-used)
   * [Deployment:](#deployment)
-    + In the terminal
-    + In settings.py
-    + In ElephantSQL
-    + In the Heroku app
-    + In the app
-  * Credits
+    + [In the terminal](#in-the-terminal)
+    + [In settings.py](#in-settingspy)
+    + [In ElephantSQL](#in-elephantsql)
+    + [In the Heroku app](#in-the-heroku-app)
+    + [In the app](#in-the-app)
+  * [Credits](#credits)
 
 ## User Experience (UX):
 
@@ -172,7 +172,7 @@ Where the user logs out.
 - Add expiration dates to the ingredients so that the user knows when he can’t count on them and, eventually, have them disappear automatically from the list
 - Get the app to send an email to the providers to order ingredients automatically when they run out
 
-## Unifxed bugs:
+## Unfixed bugs:
 - The new recipes form is a bit complex, I tried to make it easier by expaining the procedure in steps and in the future I would like to simplify the process. However, with the time-frame I had and working with the models, it was not possible for me to do so at this moment.
 
 ## Major Issues Found:
