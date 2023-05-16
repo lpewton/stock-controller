@@ -271,20 +271,14 @@ class newRecipe(TemplateView):
 
             return redirect('recipes')
 
-        else:
-            messages.error(request, "Could not add recipe")
-
-            return redirect('recipes')
-
         if ingredientQuantityForm.is_valid():
             ingredientQuantityForm.save()
 
             return redirect('new_recipe')
 
         else:
-            messages.error(
-                request, "Ingredient quantity already exists\
-                    or quantity is smaller than 1g")
+            messages.error(request, "Something went wrong, please make sure\
+                elements are not repeated")
 
             return redirect('new_recipe')
 
