@@ -1,5 +1,4 @@
 from django.db import models
-from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import MinValueValidator
 
@@ -11,7 +10,8 @@ final_ic_list = []
 class Ingredient(models.Model):
     PRODUCT_TYPES = ((0, 'Solid'), (1, 'Liquid'), (2, 'Non-Edibles'))
     name = models.CharField(max_length=50, unique=True)
-    unit_price = models.FloatField(validators=[MinValueValidator(0)], default=0)
+    unit_price = models.FloatField(
+        validators=[MinValueValidator(0)], default=0)
     unit_weight = models.PositiveIntegerField(
         validators=[MinValueValidator(1)], default=1)
     units = models.PositiveIntegerField(default=1)
