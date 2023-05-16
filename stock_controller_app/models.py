@@ -11,7 +11,7 @@ final_ic_list = []
 class Ingredient(models.Model):
     PRODUCT_TYPES = ((0, 'Solid'), (1, 'Liquid'), (2, 'Non-Edibles'))
     name = models.CharField(max_length=50, unique=True)
-    price = models.FloatField(validators=[MinValueValidator(0)], default=0)
+    unit_price = models.FloatField(validators=[MinValueValidator(0)], default=0)
     unit_weight = models.PositiveIntegerField(
         validators=[MinValueValidator(1)], default=1)
     units = models.PositiveIntegerField(default=1)
@@ -28,7 +28,7 @@ class Ingredient(models.Model):
         return self.unit_weight * self.units
 
     def price_value(self):
-        return round(self.price * self.units, 2)
+        return round(self.unit_price * self.units, 2)
 
     def total_cost(self):
         return round(sum(
@@ -74,7 +74,7 @@ class Recipe(models.Model):
         ingredient_list = []
 
         for ingredient in self.ingredient.all():
-            ingredient_price = ingredient.ingredient_name.price
+            ingredient_price = ingredient.ingredient_name.unit_price
             ingredient_weight = ingredient.ingredient_name.unit_weight
             ingredient_int = ((
                 ingredient_price / ingredient_weight) * ingredient.quantity)

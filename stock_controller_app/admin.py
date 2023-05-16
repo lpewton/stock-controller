@@ -5,7 +5,7 @@ from django.contrib.auth.admin import UserAdmin
 
 @admin.register(Ingredient)
 class IngredientAdmin(admin.ModelAdmin):
-    list_display = ('name', 'units', 'price')
+    list_display = ('name', 'units', 'unit_price')
     search_fields = ['name']
 
 
