@@ -80,6 +80,7 @@ The Agile methodology has been used during this app’s creation. This has been 
 - I can **visualize a list of items that have run out** so that **I know what we need**.
 - I can **add expiration dates to the ingredients** so that **they disappear when they expire**.
 - I can **see how much stock I need for a recipe** so that **I know how much I need to buy**.
+- I can **determine the user's roles** so that **I can control who can see what in the app**.
 
 2. As a **cook:**
 - I can **see a list of the recipes with its ingredients** so that **I know how to make a recipe**.
@@ -257,10 +258,12 @@ All form validations have been tested combining customised code and the automati
 - Again, the profits were calculated manually and then compared to the ones the app gave. The results were always the same.
 6. As a **stock-controller** I can **see how much stock I need for a recipe** so that I **know how much I need to buy:**
 - All recipes show the correct amounts of stock, as created by the user.
-8. As a **cook:** I can **see a list of the recipes with its ingredients** so that **I know how to make a recipe**.
+7. As a **cook:** I can **see a list of the recipes with its ingredients** so that **I know how to make a recipe**.
 - The recipe list and recipe detail pages are available for only the cook and stock controller to see, as intended, and it's responsive to all devices.
-9. As a **scooper:** I can **add and remove units from the stock** so that **it can remain updated**. 
+8. As a **scooper:** I can **add and remove units from the stock** so that **it can remain updated**. 
 - This was tested manually from many browsers, with many device sizes. It worked every time. 
+9. As a **manager** I can **determine the user's roles** so that **I can control who can see what in the app**.
+- The user roles exist and determine the visibilities of the user. They have been tested thoroughly.
 
 In conclusion, all completed user stories work properly and as intended, and the non-completed user stories will be finalised in the near future to make this app as useful as possible.
 
