@@ -44,22 +44,21 @@ You can find the live link for this website here: https://lpewton-stock-controll
 ### App purpose:
 The purpose of the Stock Controller is to provide a centralized hub of information that is essential to the shop, like the recipes and ingredients that are needed, as well as keeping a closer eye on the stock. 
 
-Another issue the app helps with is keeping a close eye on the stock, providing a clear visual idea of the ingredients that are about to run put.
+Another issue the app helps with is keeping a close eye on the stock, providing a clear visual idea of the ingredients that are about to run out.
 
-Finally, the app helps with he calculation of how many ingredients are needed for a certain event with an X number of recipes, as well as giving the user the costs and profits that this will provide.
+Finally, the app helps with the calculation of how many ingredients are needed for a certain event with an X number of recipes, as well as giving the user the costs and profits that this will provide.
 
 ### App goals:
-One of the issues faced on the day to day in this shop was that the stock ran out and it was not know until it was too late, which caused major delays and headaches. If each employee of the shop marks on the website when an ingredient has been removed it provides a visual indication that can be seen without even being present in the shop and can avoid headaches.
+One of the issues faced on the day to day in this shop was that the stock ran out and it was not known until it was too late, which caused major delays and headaches. If each employee of the shop marks on the website when an ingredient has been removed it provides a visual indication that can be seen without even being present in the shop and can avoid headaches.
 
-Furthermore, another issue found in the shop was the fact that all the information on recipes, costs, profits… was located in different folder and finding resources could prove difficult. With this app the problem is solved as the recipes, profits and costs are all accessible in one location.
+Furthermore, another issue found in the shop was the fact that all the information on recipes, costs, profits… was located in different folders and finding resources could prove difficult. With this app the problem is solved as the recipes, profits and costs are all accessible in one single location.
 
-Finally, another thing that wasn’t an issue but does make life easier was added. The shop also does events (weddings, birthdays, parties…), in which the clients request a certain amount of recipes for the day. The app has also has the capacity to see how many ingredients would be required for these recipes, and what the total cost and profit for them would be.
+Finally, another thing that wasn’t an issue but does make life easier was added. The shop also does events (weddings, birthdays, parties…), in which the clients request a certain amount of recipes for the day. Therefore, it has also has the capacity to see how many ingredients would be required for these recipes, and what the total cost and profit for them would be.
 
 ### Target:
-The target for this app are the employees of La Casa del Gelat. That is why it’s only accessible if the user is authorized. As this app is for education purposes, the credentials are the following:
+The target for this app are the employees of La Casa del Gelat. That's why it’s only accessible if the user is authorized. The current credentials are the following:
 
 ![Screen Shot 2023-05-15 at 01 39 33](https://github.com/lpewton/stock-controller/assets/114712846/decc1924-b155-4f2f-9aa7-897f8b8ab56d)
-
 
 ### Displays:
 The layout of the app is clear, communicative and there is an easy intuition on how to find the information.
@@ -67,8 +66,7 @@ The layout of the app is clear, communicative and there is an easy intuition on 
 ### Colors and design:
 Since this is a practical site that is not available to all users the design was very minimalistic. The colors for the shop have been added in the heading and the rest are basic colors to alert the user of relevant information. 
 
-For instance, in the ingredients page if an ingredient is about to run out (there is less than 1000g or 1000 mililiters of it left) the ingredient will display as red. If it's beginning to run out it will be displayed in yellow and if there is a comfortble quantity of this ingredient it will be shown in green. 
-
+For instance, if an ingredient is about to run out (there is less than 1000g or 1000 mililiters of it left) the ingredient will display as red. If it's beginning to run out it will be displayed in yellow and if there is a comfortable quantity of this ingredient it will be shown in green. 
 
 ### User Stories:
 The Agile methodology has been used during this app’s creation. This has been done by having biweekly meetings with the shop manager, addressing their needs and using the to create user stories. All these user stories have come directly from the manager and their needs. They can be found below:
@@ -90,11 +88,11 @@ The Agile methodology has been used during this app’s creation. This has been 
 - I can **add and remove units from the stock** so that **it can remain updated**.
 
 ## Roles and registration:
-As this application i meant for a buisness, different roles have been applied to the users. From the scooper, cooks and stock-controller. Each one of these roles has their own visibility permissions.
+As this application is meant for a buisness, different roles have been applied to the users. These are the scooper, cooks and stock-controller. Each one of these roles has their own visibility permissions.
 
 For instance, the administrators can see, add and edit all entries. The cooks cannot sign users up, add or edit ingredients. And the scoopers can only alter and see the stock.
 
-As for the registration, the app still has a fully functioning registration system. However, as it will be a private app, the only users authorized to register new accounts are the stock-controllers and the superusers. This is purely for security and confidentiality reasons.
+As for the registration, the app has a fully functioning registration system. However, as it will be a private app, the only users authorized to register new accounts are the stock-controllers and the superusers. This is purely for security and confidentiality reasons.
 
 ## Database Schema:
 ### Ingredient:
@@ -110,7 +108,7 @@ As for the registration, the app still has a fully functioning registration syst
 ### Landing page:
 What the user sees before they log in.
 
-![Screen Shot 2023-05-09 at 17 22 32](https://github.com/lpewton/stock-controller/assets/114712846/5af0b854-2834-4426-98f5-dcfe4987300b)
+![Screen Shot 2023-05-16 at 01 18 06](https://github.com/lpewton/stock-controller/assets/114712846/617891d5-ba94-44bc-9877-e8a7c2638308)
 
 ### Log In page:
 Where the user logs in.
@@ -120,7 +118,7 @@ Where the user logs in.
 ### Stock items page:
 The stock is displayed here and the user can add and edit ingredients. They can also add and remove them from the stock.
 
-![Screen Shot 2023-05-15 at 01 41 32](https://github.com/lpewton/stock-controller/assets/114712846/99583a8d-82fb-4b58-9707-2411b390ef2e)
+![Screen Shot 2023-05-16 at 01 19 58](https://github.com/lpewton/stock-controller/assets/114712846/6dc4e5fa-01da-4c79-9185-2f141758718a)
 
 ### New Ingredient form:
 Where the user can add an ingredient to the stock list.
@@ -167,13 +165,18 @@ Where the user logs out.
 
 ![Screen Shot 2023-05-15 at 01 44 39](https://github.com/lpewton/stock-controller/assets/114712846/6b98d947-b988-44a0-9d72-69ff49e0065d)
 
+### 404 page:
+The user is redirected here when the page isn't found. It contains a button that send them to the stock page.
+
+![Screen Shot 2023-05-16 at 00 33 29](https://github.com/lpewton/stock-controller/assets/114712846/966d34be-a281-4ff9-95a4-33434145b70f)
+
 ## Features left to implement:
 - A new page that contains a list of all the ingredients that are in red, so there is a visual representation of the ingredients that need to be purchased
 - Add expiration dates to the ingredients so that the user knows when he can’t count on them and, eventually, have them disappear automatically from the list
 - Get the app to send an email to the providers to order ingredients automatically when they run out
 
 ## Unfixed bugs:
-- The new recipes form is a bit complex, I tried to make it easier by expaining the procedure in steps and in the future I would like to simplify the process. However, with the time-frame I had and working with the models, it was not possible for me to do so at this moment.
+- The new recipes form is a bit complex, I tried to make it easier by expaining the procedure in steps but in the future I would like to simplify the process. However, with the time-frame I had and working with the models, it was not possible for me to do so at this moment.
 
 ## Major Issues Found:
 1. Bootstrap not working initially:
@@ -197,7 +200,7 @@ Where the user logs out.
 - Names are unique
 - Cannot set a negative value for units
 - No blank names
-- Units Cannot have decimals
+- Units cannot have decimals
 - Should be lowercase sensitive
 - Cannot reach -1 in stock
 
@@ -208,6 +211,8 @@ Where the user logs out.
 - No blank names
 - Cannot reach -1 in stock
 - Cannot set a negative value for units
+
+All form validations have been tested combining customised code and the automatic django validation systems. All of them work properly.
 
 ## WEBSITE:
 | Test  | Result | Status |
@@ -226,6 +231,7 @@ Where the user logs out.
 | All recipes are shown in recipes page  | Recipes code shows correctly when loading the page | PASSED |
 | Recipes quantities can be altered  | Recipes quantities can be altered, but not under zero, and display as red when they reach zero | PASSED |
 | Add ingredient quantities can be used to create new recipes  | Form works as expected, without issues | PASSED |
+| Ingredient quantities are deleted when recipes are  | If the recipe is deleted, its ingredient quantities are deleted as well, proveded they're not part of another recipe | PASSED |
 | New recipes can be created  | They can be created and are displayed in the recipes page correctly after | PASSED |
 | User can add recipes to the recipes calculation form  | Form only accepts integers and over zero, if not, it will display an error message | PASSED |
 | Recipes in recipes calculation form cannot be repeated  | If a recipe is put in twice, the sum of it will be shown in the recipes list | PASSED |
@@ -235,7 +241,7 @@ Where the user logs out.
 | Sign up page allows managers to register new employees  | New employees of every working type can be registered here and the procedure is successful | PASSED |
 | Logout page allows users to be logged out  | Logout page works as expected | PASSED |
 | Users have to be authorised and the correct worker type to access pages  | If user is not logged in or the correct worker type, they will be redirected to the home page | PASSED |
-
+| 404 page works correctly  | 404 page displays properly and is sensitive to the user's worker type, the button redirects them correctly to the stock page | PASSED |
 
 ### USER STORIES COMPLETION:
 1. As a **stock manager:** I can **add, remove or edit ingredients** so that **I can keep the list updated**:
@@ -247,7 +253,7 @@ Where the user logs out.
 4. As a **stock manager:** I can **calculate how much stock I need to make an X number of recipes** so that **I know how much to buy for an event**:
 - This was also accomplished by creating different scenarios, calculating the ingredients manually and then comparing them. The results are always the same.
 5. As a **stock manager:** I can **see how much profit each recipe generates** so that **I can evaluate the most productive recipes and determine a price for them**:
-- Again, the profits were calculated manually and then compared to the ones the app gave. the results were always the same.
+- Again, the profits were calculated manually and then compared to the ones the app gave. The results were always the same.
 6. As a **stock-controller** I can **see how much stock I need for a recipe** so that I **know how much I need to buy:**
 - All recipes show the correct amounts of stock, as created by the user.
 8. As a **cook:** I can **see a list of the recipes with its ingredients** so that **I know how to make a recipe**.
@@ -260,7 +266,7 @@ In conclusion, all completed user stories work properly and as intended, and the
 ### SECURITY MEASURES:
 All app functions were tested several times to make sure they worked under many conditions.
 
-Also, the ingredients and recipes are protected so that ingredients can only be deleted if they are not part of a recipe. Finally, when deleting ingredients, the user is offered double confirmation to make sure they make no mistakes.
+Also, the ingredients and recipes are protected so that ingredients can only be deleted if they are not part of a recipe. Finally, when deleting ingredients or recipes, the user is offered double confirmation to make sure they make no mistakes.
 
 Users can only access their pages when they are logged in and in the correct worker type user. If not, they will be redirected to the home page.
 
@@ -293,7 +299,7 @@ Users can only access their pages when they are logged in and in the correct wor
 10. Migrate Changes: python3 manage.py migrate
 
 ### In settings.py:
-1. Add app to installed apps
+1. Add app to installed apps, at the bottom of the list
 
 ### In ElephantSQL:
 1. Create an external database
@@ -305,11 +311,12 @@ Users can only access their pages when they are logged in and in the correct wor
 - PORT: 8000
 - CLOUDINARY_URL: API environment variable
 - DATABASE_URL: value supplied by Heroku
+- DEBUG_COLLECTSTATIC: 1
 
 ### In the app:
 1. Create an env.py file
 2. Link the database, cloudinary and secret key to the env.py file
-3. Add the database url, cloudinary url and secret key to the settings.py file
+3. Add the database url, cloudinary url and secret key to the settings.py file, always through the env.py file for security
 4. Add the Heroku app to allowed hosts
 5. Create the Procfile file
 6. Push the project to Github
@@ -318,7 +325,7 @@ Users can only access their pages when they are logged in and in the correct wor
 ## Credits:
 A lot of this project was based on the projects shown at the Full Stack Software Developement Professional Diploma at Code Institute. Especially the *I think therefore I Blog* and *Hello Django* projects.
 
-I also got a some of the ideas and coding techniques from participating in Code Institute hackathons and Stack Overflow.
+I also got a some of the ideas and coding techniques from participating in Code Institute hackathons and Stack Overflow. For instance, the code for the search recipe and ingredients was learnt from my the March hackaton *Women in tech* team.
 
 I would like to thank the shop manager for allowing me to use the buisness as a test for my learning carreer and for taking the time to meet with me when we did. 
 
