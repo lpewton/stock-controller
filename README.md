@@ -230,7 +230,7 @@ All form validations have been tested combining customised code and the automati
 | Search ingredient and recipes works correctly  | Each search engine works correctly and can search by name or provider | PASSED |
 | All recipes are shown in recipes page  | Recipes code shows correctly when loading the page | PASSED |
 | Recipes quantities can be altered  | Recipes quantities can be altered, but not under zero, and display as red when they reach zero | PASSED |
-| Add ingredient quantities can be used to create new recipes  | Form works as expected, without issues | PASSED |
+| Ingredient quantities can be added and used to create new recipes  | Form works as expected, without issues | PASSED |
 | Ingredient quantities are deleted when recipes are  | If the recipe is deleted, its ingredient quantities are deleted as well, proveded they're not part of another recipe | PASSED |
 | New recipes can be created  | They can be created and are displayed in the recipes page correctly after | PASSED |
 | User can add recipes to the recipes calculation form  | Form only accepts integers and over zero, if not, it will display an error message | PASSED |
@@ -241,6 +241,7 @@ All form validations have been tested combining customised code and the automati
 | Sign up page allows managers to register new employees  | New employees of every working type can be registered here and the procedure is successful | PASSED |
 | Logout page allows users to be logged out  | Logout page works as expected | PASSED |
 | Users have to be authorised and the correct worker type to access pages  | If user is not logged in or the correct worker type, they will be redirected to the home page | PASSED |
+| Messages work correctly  | All messages are displayed correctly and when they are meant to be | PASSED |
 | 404 page works correctly  | 404 page displays properly and is sensitive to the user's worker type, the button redirects them correctly to the stock page | PASSED |
 
 ### USER STORIES COMPLETION:
@@ -325,7 +326,7 @@ Users can only access their pages when they are logged in and in the correct wor
 ## Credits:
 A lot of this project was based on the projects shown at the Full Stack Software Developement Professional Diploma at Code Institute. Especially the *I think therefore I Blog* and *Hello Django* projects.
 
-I also got a some of the ideas and coding techniques from participating in Code Institute hackathons and Stack Overflow. For instance, the code for the search recipe and ingredients was learnt from my the March hackaton *Women in tech* team.
+I also got a some of the ideas and coding techniques from participating in Code Institute hackathons and Stack Overflow. For instance, the code for the search recipe and ingredients was learnt from my March hackaton *Women in tech* team.
 
 I would like to thank the shop manager for allowing me to use the buisness as a test for my learning carreer and for taking the time to meet with me when we did. 
 
