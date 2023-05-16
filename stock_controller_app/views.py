@@ -364,9 +364,6 @@ class signup(View):
             messages.success(request, "New user added successfully")
             return redirect('ingredients_list')
         else:
-            messages.error(
-                request, "Something went wrong, please make sure password is\
-                    long enough and contains letters and numbers or user\
-                        doesn't exist")
-
+            error_message = signup_form.errors.as_text()
+            messages.error(request, error_message)
             return redirect('signup')
