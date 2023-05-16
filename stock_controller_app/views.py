@@ -42,8 +42,6 @@ class IngredientSearchResults(generic.ListView):
         query = self.request.GET.get('search')
         ingredients_list = Ingredient.objects.filter(
             Q(name__icontains=query) |
-            Q(price__icontains=query) |
-            Q(unit_weight__icontains=query) |
             Q(supplier__icontains=query)
             )
         return ingredients_list
@@ -97,6 +95,7 @@ class addIngredient(View):
 
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
+
 class removeIngredient(View):
     """Substracts from the value of the ingredient's units"""
     def post(self, request, pk):
@@ -134,6 +133,7 @@ class newIngredient(TemplateView):
             messages.error(
                 request, "Please make sure all inputs are correct\
                 or the ingredient doesn't already exist")
+
             return redirect('new_ingredient')
 
 
@@ -168,6 +168,7 @@ class editIngredient(DetailView):
             messages.error(
                 request, "Please make sure all inputs are correct\
                 or the ingredient doesn't already exist")
+
             return redirect('new_ingredient')
 
 
@@ -264,9 +265,14 @@ class newRecipe(TemplateView):
         if recipeForm.is_valid():
             recipe = recipeForm.save(commit=False)
             # Capitalise names so they're not repeated
-            recipe.recipe_name = recipeForm.cleaned_data['recipe_name'].title() 
+            recipe.recipe_name = recipeForm.cleaned_data['recipe_name'].title()
             recipeForm.save()
             messages.success(request, "Recipe added successfully")
+
+            return redirect('recipes')
+
+        else:
+            messages.error(request, "Could not add recipe")
 
             return redirect('recipes')
 
@@ -279,6 +285,7 @@ class newRecipe(TemplateView):
             messages.error(
                 request, "Ingredient quantity already exists\
                     or quantity is smaller than 1g")
+
             return redirect('new_recipe')
 
 
@@ -298,18 +305,20 @@ class ingredientsCalculation(View):
 
         if ingredientsCalculationForm.is_valid():
             recipe = ingredientsCalculationForm.cleaned_data['recipe']
-            quantity = ingredientsCalculationForm.cleaned_data['quantity']            
-            
+            quantity = ingredientsCalculationForm.cleaned_data['quantity']
+
             # Make sure recipes don't repeat themselves
-            if IngredientsCalculation.objects.filter(recipe=recipe).exists():  
-                existing_calculation = IngredientsCalculation.objects.get(recipe=recipe)  
-                existing_calculation.quantity += quantity  
+            if IngredientsCalculation.objects.filter(recipe=recipe).exists():
+                existing_calculation = IngredientsCalculation.objects.get(
+                    recipe=recipe)
+                existing_calculation.quantity += quantity
                 existing_calculation.save()
             else:
                 ingredients_calculation = ingredientsCalculationForm.save()
 
         else:
-            messages.error(request, "Could not add ice cream, please make sure quantities are larger than 0")
+            messages.error(request, "Could not add ice cream, please make sure\
+                quantities are larger than 0")
         return redirect('ingredients_calculation')
 
 
@@ -357,5 +366,7 @@ class signup(View):
         else:
             messages.error(
                 request, "Something went wrong, please make sure password is\
-                    long enough and contains letters and numbers")
+                    long enough and contains letters and numbers or user\
+                        doesn't exist")
+
             return redirect('signup')
