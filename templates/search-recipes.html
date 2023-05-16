@@ -11,12 +11,9 @@
                 <div class="card-body">
                     <a href="{% url 'recipe_detail' recipe.pk %}"
                         class="h5 card-title text-decoration-none">{{ recipe.recipe_name }}</a>
-                    <br/>
-                    <hr/>
+                    <br>
+                    <hr>
                     <div class="row justify-content-around">
-                        <a href="{% url 'edit_recipe' recipe.pk %}" class="w-50"><i
-                                class="fa-regular fa-pen-to-square text-dark h4"></i>
-                        </a>
                         <form class="w-50" action="{% url 'delete_recipe' recipe.pk %}" method="POST">
                             {% csrf_token %}
                             <button type="submit" value="{{recipe.pk}}">
