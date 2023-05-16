@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import MinValueValidator
 
+# Lists to calculate the ingredients for IngredientsCalculation
 names_ic_list = []
 final_ic_list = []
 
@@ -39,7 +40,8 @@ class Ingredient(models.Model):
 # Recipes
 class ingredientQuantity(models.Model):
     ingredient_name = models.ForeignKey(Ingredient, on_delete=models.PROTECT)
-    quantity = models.PositiveIntegerField(default=500)
+    quantity = models.PositiveIntegerField(
+        validators=[MinValueValidator(1)], default=500)
 
     def __str__(self):
         return f"{self.ingredient_name} ({self.quantity}g)"

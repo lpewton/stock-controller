@@ -15,13 +15,8 @@ class recipeAdmin(admin.ModelAdmin):
 
 
 @admin.register(ingredientQuantity)
-class ingredientsQuantity(admin.ModelAdmin):
-    search_fields = ['ingredient_name']
-
-
-@admin.register(IngredientsCalculation)
-class ingredientsCalculation(admin.ModelAdmin):
-    search_fields = ['recipe']
+class ingredientsQuantityAdmin(admin.ModelAdmin):
+    list_display = ('ingredient_name', 'quantity')
 
 
 # Authorized Users
