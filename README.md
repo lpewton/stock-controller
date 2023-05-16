@@ -161,7 +161,7 @@ Where all the stock is shown with the total stock value.
 ### Recipes page:
 All the recipes are shown here.
 
-![Screen Shot 2023-05-15 at 01 43 26](https://github.com/lpewton/stock-controller/assets/114712846/0cf8745a-b799-4744-897b-72306acf861e)
+![Screen Shot 2023-05-16 at 16 07 37](https://github.com/lpewton/stock-controller/assets/114712846/464a332b-4ddb-4da4-bc0e-b19a88456390)
 
 ### New Recipe form:
 Form to add a new recipe.
@@ -181,7 +181,7 @@ Where the ingredients the user needs for your recipes are shown.
 ### Sign an Empoyee Up page:
 Where the user signs a new employee up.
 
-![Screen Shot 2023-05-15 at 01 44 20](https://github.com/lpewton/stock-controller/assets/114712846/136ff3e7-ad4c-4e58-820d-d4d1fd773478)
+![Screen Shot 2023-05-16 at 16 07 15](https://github.com/lpewton/stock-controller/assets/114712846/df69fb56-b46e-4868-89d0-5db0a102a5cf)
 
 ### Log Out page:
 Where the user logs out.
@@ -192,6 +192,11 @@ Where the user logs out.
 The user is redirected here when the page isn't found. It contains a button that send them to the stock page.
 
 ![Screen Shot 2023-05-16 at 00 33 29](https://github.com/lpewton/stock-controller/assets/114712846/966d34be-a281-4ff9-95a4-33434145b70f)
+
+### User not Authorized page:
+This is displayed when an unauthorized user tries to enter a page through the URL.
+
+![Screen Shot 2023-05-16 at 15 45 43](https://github.com/lpewton/stock-controller/assets/114712846/e1b758bb-ce03-4ceb-b221-6c3038909500)
 
 ## Requirements.txt:
 All needed requirements.txt have been added to the app so it works properly. The main vital ones and also the ones added to improve the functionality of the website. 
@@ -249,6 +254,7 @@ All form validations have been tested combining customised code and the automati
 | ------------- | ------------- | ------------- |
 | User can log in  | All user types (scooper, cook and stock-controller) can log in  | PASSED |
 | User can see pages when logged in  | All user types (scooper, cook and stock-controller) can see the pages correctly, if they are not logged in, they are shown the log in option  | PASSED |
+| All pages are responsive  | All pages are fully responsive in all screen sizes | PASSED |
 | User can only see the pages they're allowed to see  | All user types (scooper, cook and stock-controller) can only see the pages they're allowed to  | PASSED |
 | Ingredient units can be altered  | Ingredient unit quantities can be altered, but not under zero, and display as red when they reach less than 1000g or ml | PASSED |
 | Ingredient colors work correctly  | Ingredient colors change according to the qquantity of them left | PASSED |
@@ -336,6 +342,7 @@ Users can only access their pages when they are logged in and in the correct wor
 
 ### In settings.py:
 1. Add app to installed apps, at the bottom of the list
+2. Set DEBUG = True (For security reasons, it's important to set it back to False at the end of the project)
 
 ### In ElephantSQL:
 1. Create an external database
@@ -343,11 +350,10 @@ Users can only access their pages when they are logged in and in the correct wor
 ### In the Heroku app:
 1. Create a new Heroku app
 2. In config vars, add the following variables:
-- SECRET_KEY: Insert secret key here
+- SECRET_KEY: Insert your secret key here
 - PORT: 8000
 - CLOUDINARY_URL: API environment variable
-- DATABASE_URL: value supplied by Heroku
-- DEBUG_COLLECTSTATIC: 1
+- DATABASE_URL: value supplied by SQL
 
 ### In the app:
 1. Create an env.py file in the root directory
