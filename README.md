@@ -2,7 +2,7 @@
 
 La Casa del Gelat, Stock Controller, is an app designed to allow a closer management of a real life ice cream shop located in Olot, Catalunya. This is my family’s shop and therefore it seemed like a good idea to put my work into practice for something that could be useful in the real world.
 
-In a sense, it’s an app that allows for a live controll over the shop's stock as well as a centralized source of information that contains all of the recipes, stocked ingredients and their qualities. Finally, it also allows for calculations on the amount of ingredients needed in an event.
+In a sense, it’s an app that allows for a live control over the shop's stock as well as a centralized source of information that contains all of the recipes, stocked ingredients and their qualities. Finally, it also allows for calculations on the amount of ingredients needed for an event.
 
 You can find the live link for this website here: https://lpewton-stock-controller.herokuapp.com.
 
@@ -14,18 +14,19 @@ You can find the live link for this website here: https://lpewton-stock-controll
     + [Displays](#displays)
     + [Colors and design](#colors-and-design)
     + [User Stories](#user-stories)
-  * [Roles adn Registration](#roles-and-registration)
+  * [Roles and Registration](#roles-and-registration)
   * [Database Schema:](#database-schema)
     + [Ingredient](#ingredient)
     + [Recipe](#recipe)
     + [Custom User](#custom-user)
   * [Features](#features)
+  * [Requirements.txt](#requirementstxt)
   * [Features left to implement](#features-left-to-implement)
   * [Unfixed bugs](#unfixed-bugs)
   * [Major Issues Found](#major-issues-found)
   * [Manual Testing:](#manual-testing)
-    + [Ingredient](#ingredient)
-    + [Recipes](#recipes)
+    + [Ingredient](#ingredient-model)
+    + [Recipes](#recipes-model)
     + [Website](#website)
     + [User Stories Completion](#user-stories-completion)
     + [Security Measures](#security-measures)
@@ -49,7 +50,7 @@ Another issue the app helps with is keeping a close eye on the stock, providing 
 Finally, the app helps with the calculation of how many ingredients are needed for a certain event with an X number of recipes, as well as giving the user the costs and profits that this will provide.
 
 ### App goals:
-One of the issues faced on the day to day in this shop was that the stock ran out and it was not known until it was too late, which caused major delays and headaches. If each employee of the shop marks on the website when an ingredient has been removed it provides a visual indication that can be seen without even being present in the shop and can avoid headaches.
+One of the issues faced on the day to day in this shop was that the stock ran out and it was not known until it was too late, which caused major delays and headaches. If each employee in the shop marks on the website when an ingredient has been used up it provides a visual indication that can be seen without even being present in the shop and can avoid a lot of headaches.
 
 Furthermore, another issue found in the shop was the fact that all the information on recipes, costs, profits… was located in different folders and finding resources could prove difficult. With this app the problem is solved as the recipes, profits and costs are all accessible in one single location.
 
@@ -58,7 +59,12 @@ Finally, another thing that wasn’t an issue but does make life easier was adde
 ### Target:
 The target for this app are the employees of La Casa del Gelat. That's why it’s only accessible if the user is authorized. The current credentials are the following:
 
-![Screen Shot 2023-05-15 at 01 39 33](https://github.com/lpewton/stock-controller/assets/114712846/decc1924-b155-4f2f-9aa7-897f8b8ab56d)
+| Role  | Username | Password |
+| ------------- | ------------- | ------------- |
+| Superuser  | admin | casagelat |
+| Stock-Controller  | manager | casagelat |
+| Cook  | cook | casagelat |
+| Scooper  | scooper | casagelat |
 
 ### Displays:
 The layout of the app is clear, communicative and there is an easy intuition on how to find the information.
@@ -72,20 +78,21 @@ For instance, if an ingredient is about to run out (there is less than 1000g or 
 The Agile methodology has been used during this app’s creation. This has been done by having biweekly meetings with the shop manager, addressing their needs and using the to create user stories. All these user stories have come directly from the manager and their needs. They can be found below:
 
 1. As a **stock manager:**
-- I can **calculate how much stock I need to make an X number of recipes** so that **I know how much to buy for an event**. 
-- I can **add, remove or edit ingredients** so that **I can keep the list updated**. 
-- I can **see how much stock is available** so that **I know if I need to buy any**. 
-- I can **add and remove recipes** so that **I can keep track of what is available**. 
-- I can **see how much profit each recipe generates** so that **I can evaluate the most productive recipes and determine a price for them**.
-- I can **visualize a list of items that have run out** so that **I know what we need**.
-- I can **add expiration dates to the ingredients** so that **they disappear when they expire**.
-- I can **see how much stock I need for a recipe** so that **I know how much I need to buy**.
+- I can **calculate how much stock I need to make an X number of recipes** so that **I know how much to buy for an event** (SHOULD HAVE). 
+- I can **add, remove or edit ingredients** so that **I can keep the list updated**. (MUST HAVE)
+- I can **see how much stock is available** so that **I know if I need to buy any**. (SHOULD HAVE)
+- I can **add and remove recipes** so that **I can keep track of what is available**.(MUST HAVE)
+- I can **see how much profit each recipe generates** so that **I can evaluate the most productive recipes and determine a price for them**. (COULD HAVE)
+- I can **visualize a list of items that have run out** so that **I know what we need**. (COULD HAVE)
+- I can **add expiration dates to the ingredients** so that **they disappear when they expire**. (WON'T HAVE)
+- I can **see how much stock I need for a recipe** so that **I know how much I need to buy**. (MUST HAVE)
+- I can **determine the user's roles** so that **I can control who can see what in the app**. (MUST HAVE)
 
 2. As a **cook:**
-- I can **see a list of the recipes with its ingredients** so that **I know how to make a recipe**.
+- I can **see a list of the recipes with its ingredients** so that **I know how to make a recipe**. (MUST HAVE)
 
 3. As a **scooper:**
-- I can **add and remove units from the stock** so that **it can remain updated**.
+- I can **add and remove units from the stock** so that **it can remain updated**.(MUST HAVE)
 
 ## Roles and registration:
 As this application is meant for a buisness, different roles have been applied to the users. These are the scooper, cooks and stock-controller. Each one of these roles has their own visibility permissions.
@@ -96,13 +103,29 @@ As for the registration, the app has a fully functioning registration system. Ho
 
 ## Database Schema:
 ### Ingredient:
-![Screen Shot 2023-05-09 at 01 13 05](https://user-images.githubusercontent.com/114712846/236965927-71d25145-812e-4308-9153-f67ee7d26413.png)
+| Entry  | Type |
+| ------------- | ------------- | 
+| Name  | Char Field | 
+| Unit Price  | Float Field | 
+| Unit Weight  | Integer |
+| Units  | Integer | 
+| Type  | Integer(Choices) | 
+| Supplier  | Char Field | 
 
 ### Recipe:
-![Screen Shot 2023-05-09 at 01 13 17](https://user-images.githubusercontent.com/114712846/236965947-f5284ec6-46de-4eca-b6eb-6d937f8d5b62.png)
+| Entry  | Type |
+| ------------- | ------------- | 
+| Recipe Name  | Char Field | 
+| Ingredient  | ManytoMany Field | 
+| Notes | Char Field |
+| Tubs  | Integer | 
 
 ### Custom User:
-![Screen Shot 2023-05-09 at 01 13 26](https://user-images.githubusercontent.com/114712846/236965965-b8c79b84-a232-4972-a5a7-91f182e7c4f3.png)
+| Entry  | Type |
+| ------------- | ------------- | 
+| Username  | Username Field | 
+| Password  | Password Field | 
+| Worker Type  | Char Field(Choices) |
 
 ## Features:
 ### Landing page:
@@ -123,12 +146,12 @@ The stock is displayed here and the user can add and edit ingredients. They can 
 ### New Ingredient form:
 Where the user can add an ingredient to the stock list.
 
-![Screen Shot 2023-05-15 at 01 42 35](https://github.com/lpewton/stock-controller/assets/114712846/7cb2870c-1cc1-4b90-be1b-6cdb622553b3)
+![Screen Shot 2023-05-16 at 12 11 59](https://github.com/lpewton/stock-controller/assets/114712846/a3e0eced-1892-4713-a1e4-6d4edc76ccad)
 
 ### Edit Ingredient form:
 Where the user can edit an ingredient.
 
-![Screen Shot 2023-05-15 at 01 43 03](https://github.com/lpewton/stock-controller/assets/114712846/e4693cb3-2309-4e53-a3b3-72e483dc68bd)
+![Screen Shot 2023-05-16 at 12 12 38](https://github.com/lpewton/stock-controller/assets/114712846/444a0563-45ff-464b-886c-a69296d97090)
 
 ### Stock List page:
 Where all the stock is shown with the total stock value.
@@ -170,6 +193,11 @@ The user is redirected here when the page isn't found. It contains a button that
 
 ![Screen Shot 2023-05-16 at 00 33 29](https://github.com/lpewton/stock-controller/assets/114712846/966d34be-a281-4ff9-95a4-33434145b70f)
 
+## Requirements.txt:
+All needed requirements.txt have been added to the app so it works properly. The main vital ones and also the ones added to improve the functionality of the website. 
+
+It's necessary to mention that there were some migration issues and while trying to solve the situation some extra packages were installed to try and resolve the issue. After it was solved, to preserve the integrity of the app I decided best not to remove them to not accidentally delete something important. As a result of that, there are some installed packages that don't have a functionality in requirements.txt. I am aware that this is not the best practice, and it's something I strive to not repeat in the next project.
+
 ## Features left to implement:
 - A new page that contains a list of all the ingredients that are in red, so there is a visual representation of the ingredients that need to be purchased
 - Add expiration dates to the ingredients so that the user knows when he can’t count on them and, eventually, have them disappear automatically from the list
@@ -185,7 +213,7 @@ The user is redirected here when the page isn't found. It contains a button that
 
 2.	Migration issues:
 - The app wasn’t migrating some updates on models because a certain element did not exist
-- With the help of the tutor support, I reset the table manually from my ElephantSQL database
+- With the help of the tutor support, I reset the table manually from my ElephantSQL database.
 
 3.	Not being able to provide the total stock cost:
 - I was not able to put the total stock cost for one ingredient, and showed behind every ingredient
@@ -196,7 +224,7 @@ The user is redirected here when the page isn't found. It contains a button that
 - The database was corrupted. All migrations were deleted and SQL database was reset manually
 
 ## Manual Testing:
-### INGREDIENT:
+### INGREDIENT MODEL:
 - Names are unique
 - Cannot set a negative value for units
 - No blank names
@@ -204,13 +232,15 @@ The user is redirected here when the page isn't found. It contains a button that
 - Should be lowercase sensitive
 - Cannot reach -1 in stock
 
-### RECIPES:
-- Ingredient quantities cannot be repeated
+### RECIPES MODEL:
 - Names are unique
-- Ingredient quantities have to be positive
+- Cannot set a negative value for tubs
 - No blank names
+- Tubs cannot have decimals
+- Names should be lowercase sensitive
 - Cannot reach -1 in stock
-- Cannot set a negative value for units
+- Ingredient quantities cannot be repeated
+- Ingredient quantities have to be positive
 
 All form validations have been tested combining customised code and the automatic django validation systems. All of them work properly.
 
@@ -219,9 +249,11 @@ All form validations have been tested combining customised code and the automati
 | ------------- | ------------- | ------------- |
 | User can log in  | All user types (scooper, cook and stock-controller) can log in  | PASSED |
 | User can see pages when logged in  | All user types (scooper, cook and stock-controller) can see the pages correctly, if they are not logged in, they are shown the log in option  | PASSED |
-| Ingredient quantities can be altered  | Ingredient quantities can be altered, but not under zero, and display as red when they reach zero | PASSED |
+| User can only see the pages they're allowed to see  | All user types (scooper, cook and stock-controller) can only see the pages they're allowed to  | PASSED |
+| Ingredient units can be altered  | Ingredient unit quantities can be altered, but not under zero, and display as red when they reach less than 1000g or ml | PASSED |
 | Ingredient colors work correctly  | Ingredient colors change according to the qquantity of them left | PASSED |
 | User can add ingredients to stock  | Only stock managers can add new ingredients, and they are added correctly through form validation and error messages | PASSED |
+| User can edit ingredients in the stock  | Only stock managers can edit ingredients qualities, and they are correctly edited through form validation and error messages | PASSED |
 | There is double confirmation before deleting an ingredients or recipes  | A modal pops up to ensure that deletion is intentional, the deleted item is the correct one and all the buttons work correctly | PASSED |
 | User can delete ingredients in stock  | Only stock managers can delete ingredients, and they are deleted correctly through form validation and error messages | PASSED |
 | User can only delete ingredients in stock if they're not part of any recipes | Error message appears if you try to delete an ingredient that's part of a recipe | PASSED |
@@ -237,12 +269,13 @@ All form validations have been tested combining customised code and the automati
 | Recipes in recipes calculation form cannot be repeated  | If a recipe is put in twice, the sum of it will be shown in the recipes list | PASSED |
 | Reset button works correctly in recipes calculation form  | All recipes in the recipes calculation form are deleted correctly when that is clicked | PASSED |
 | Calculate ingredients button leads to the correct page  | Calculate ingredients button works as expected | PASSED |
-| Ingredients result page shows the correct ammounts  | It shows the correct ammount and also does not allow ingredients to be repeated within it, it sums their quantities | PASSED |
+| Ingredients result page shows the correct ammounts  | It shows the correct ammount | PASSED |
+| Ingredients are not repeated in ingredients result page | Page does not allow ingredients to be repeated within it, it sums their quantities | PASSED |
 | Sign up page allows managers to register new employees  | New employees of every working type can be registered here and the procedure is successful | PASSED |
 | Logout page allows users to be logged out  | Logout page works as expected | PASSED |
 | Users have to be authorised and the correct worker type to access pages  | If user is not logged in or the correct worker type, they will be redirected to the home page | PASSED |
 | Messages work correctly  | All messages are displayed correctly and when they are meant to be | PASSED |
-| 404 page works correctly  | 404 page displays properly and is sensitive to the user's worker type, the button redirects them correctly to the stock page | PASSED |
+| 404 page works correctly  | 404 page displays properly and is sensitive to the user's worker type, the "back to stock" button redirects them correctly to the stock page | PASSED |
 
 ### USER STORIES COMPLETION:
 1. As a **stock manager:** I can **add, remove or edit ingredients** so that **I can keep the list updated**:
@@ -257,10 +290,12 @@ All form validations have been tested combining customised code and the automati
 - Again, the profits were calculated manually and then compared to the ones the app gave. The results were always the same.
 6. As a **stock-controller** I can **see how much stock I need for a recipe** so that I **know how much I need to buy:**
 - All recipes show the correct amounts of stock, as created by the user.
-8. As a **cook:** I can **see a list of the recipes with its ingredients** so that **I know how to make a recipe**.
+7. As a **cook:** I can **see a list of the recipes with its ingredients** so that **I know how to make a recipe**.
 - The recipe list and recipe detail pages are available for only the cook and stock controller to see, as intended, and it's responsive to all devices.
-9. As a **scooper:** I can **add and remove units from the stock** so that **it can remain updated**. 
+8. As a **scooper:** I can **add and remove units from the stock** so that **it can remain updated**. 
 - This was tested manually from many browsers, with many device sizes. It worked every time. 
+9. As a **manager** I can **determine the user's roles** so that **I can control who can see what in the app**.
+- The user roles exist and determine the visibilities of the user. They have been tested thoroughly.
 
 In conclusion, all completed user stories work properly and as intended, and the non-completed user stories will be finalised in the near future to make this app as useful as possible.
 
@@ -315,7 +350,7 @@ Users can only access their pages when they are logged in and in the correct wor
 - DEBUG_COLLECTSTATIC: 1
 
 ### In the app:
-1. Create an env.py file
+1. Create an env.py file in the root directory
 2. Link the database, cloudinary and secret key to the env.py file
 3. Add the database url, cloudinary url and secret key to the settings.py file, always through the env.py file for security
 4. Add the Heroku app to allowed hosts
@@ -326,11 +361,11 @@ Users can only access their pages when they are logged in and in the correct wor
 ## Credits:
 A lot of this project was based on the projects shown at the Full Stack Software Developement Professional Diploma at Code Institute. Especially the *I think therefore I Blog* and *Hello Django* projects.
 
-I also got a some of the ideas and coding techniques from participating in Code Institute hackathons and Stack Overflow. For instance, the code for the search recipe and ingredients was learnt from my March hackaton *Women in tech* team.
+I also got a some of the ideas and coding techniques from participating in Code Institute hackathons and Stack Overflow. For instance, the code for the search recipe and ingredients was learnt from my March hackathon *Women in tech* team.
 
 I would like to thank the shop manager for allowing me to use the buisness as a test for my learning carreer and for taking the time to meet with me when we did. 
 
-Finally, I would also like to thank my tutor, Martina Terlevic, and the Code Institute tutor assistants for helping me through the tough times while developing the app.
+Finally, I would also like to thank my tutor, Martina Terlevic, and the Code Institute student support team for helping me through the tough times while developing the app.
 
 ### Disclaimer:
 Please bear in mind that, as per petition of the manager to mantain the privacy of their recipes, they are all missing one or two ingredients, so please do not try making them at home.
