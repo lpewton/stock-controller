@@ -124,10 +124,18 @@ class newIngredient(TemplateView):
             ingredient = form.save(commit=False)
             # Capitalise names so they're not repeated
             ingredient.name = form.cleaned_data['name'].title()
-            ingredient.save()
-            messages.success(request, "Ingredient added successfully")
+            if Ingredient.objects.filter(name=ingredient).exists():
+                messages.error(
+                    request, "Please make sure all inputs are correct\
+                    or the ingredient doesn't already exist")
 
-            return redirect('ingredients_list')
+                return redirect('new_ingredient')
+
+            else:
+                ingredient.save()
+                messages.success(request, "Ingredient added successfully")
+
+                return redirect('ingredients_list')
 
         else:
             messages.error(
@@ -159,17 +167,25 @@ class editIngredient(DetailView):
             ingredient = form.save(commit=False)
             # Capitalise names so they're not repeated
             ingredient.name = form.cleaned_data['name'].title()
-            ingredient.save()
-            messages.success(request, "Ingredient edited successfully")
+            if Ingredient.objects.filter(name=ingredient).exists():
+                messages.error(
+                    request, "Please make sure all inputs are correct\
+                    or the ingredient doesn't already exist")
 
-            return redirect('ingredients_list')
+                return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+            else:
+                ingredient.save()
+                messages.success(request, "Ingredient added successfully")
+
+                return redirect('ingredients_list')
 
         else:
             messages.error(
                 request, "Please make sure all inputs are correct\
                 or the ingredient doesn't already exist")
 
-            return redirect('new_ingredient')
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 class deleteIngredient(View):
