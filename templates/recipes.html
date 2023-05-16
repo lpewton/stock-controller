@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-{% if user.worker_type != 'scooper' or user.is_staff %}
+{% if user.is_authenticated and user.worker_type != 'scooper'  %}
 
 <!--Searchbar-->
 <div class="col-6 col-md-4 col-xl-2 mt-1 ms-1">
